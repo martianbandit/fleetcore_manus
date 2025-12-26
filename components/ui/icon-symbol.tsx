@@ -20,7 +20,10 @@ const MAPPING: Record<string, MaterialIconName> = {
   "plus.circle.fill": "add-circle",
   "magnifyingglass": "search",
   "camera.fill": "camera-alt",
+  "camera": "camera-alt",
   "photo.fill": "photo",
+  "photo": "photo-library",
+  "xmark": "close",
   "mic.fill": "mic",
   // Status
   "checkmark.circle.fill": "check-circle",
@@ -38,6 +41,7 @@ const MAPPING: Record<string, MaterialIconName> = {
   "person.fill": "person",
   "info.circle.fill": "info",
   "trash.fill": "delete",
+  "trash": "delete",
   "pencil": "edit",
   "paperplane.fill": "send",
   "chevron.left.forwardslash.chevron.right": "code",

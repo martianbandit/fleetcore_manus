@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { FlatList, Text, View, RefreshControl, Pressable, StyleSheet } from 'react-native';
+import { FlatList, Text, View, RefreshControl, Pressable, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
@@ -102,10 +102,21 @@ export default function VehiclesScreen() {
     <ScreenContainer>
       {/* Header */}
       <View className="px-4 pt-2 pb-4">
-        <Text className="text-3xl font-bold text-foreground">Véhicules</Text>
-        <Text className="text-base text-muted mt-1">
-          {vehicles.length} véhicules dans la flotte
-        </Text>
+        <View className="flex-row items-center justify-between">
+          <View>
+            <Text className="text-3xl font-bold text-foreground">Véhicules</Text>
+            <Text className="text-base text-muted mt-1">
+              {vehicles.length} véhicules dans la flotte
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => router.push('/vehicle/add' as any)}
+            className="bg-primary px-4 py-3 rounded-full flex-row items-center gap-2"
+          >
+            <IconSymbol name="plus.circle.fill" size={20} color="#FFF" />
+            <Text className="text-white font-semibold">Ajouter</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Search */}

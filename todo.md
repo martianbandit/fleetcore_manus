@@ -80,3 +80,61 @@
 - [x] Ajouter le mode hors-ligne avec AsyncStorage
 - [ ] Synchroniser automatiquement lors de la connexion (implémentation client)
 - [ ] Gérer les conflits de synchronisation
+
+## Nettoyage et refonte
+- [x] Supprimer toutes les données mock
+- [x] Vider la base de données locale (AsyncStorage)
+- [x] Créer un état initial vierge
+
+## Mode sombre et thèmes
+- [x] Implémenter le toggle mode sombre dans les paramètres
+- [x] Créer des thèmes personnalisables (couleurs primaires, accents)
+- [x] Sauvegarder les préférences de thème
+- [x] Appliquer le thème à tous les écrans
+
+## CRUD Véhicules complet
+- [x] Écran d'ajout de véhicule avec formulaire complet
+- [x] Upload d'image de couverture pour chaque véhicule
+- [x] Édition des informations véhicule
+- [x] Suppression de véhicule avec confirmation
+- [ ] Galerie d'images par véhicule (implémentation partielle)
+- [x] Validation des champs (VIN 17 caractères, etc.)
+
+## Métriques et collecte de données
+- [x] Temps de travail par composant
+- [x] Historique des temps d'inspection
+- [x] Statistiques par technicien
+- [x] Coûts de maintenance par véhicule
+- [x] Durée de vie des composants
+- [x] Fréquence des défauts par type
+- [x] Tableau de bord analytique avancé
+- [x] Export des métriques en CSV
+
+## Espaces publicitaires
+- [x] Bannières publicitaires ciblées
+- [x] Publicités locales (garages, pièces détachées)
+- [x] Liens vers fournisseurs partenaires
+- [x] Section "Ressources utiles"
+- [ ] Intégration API publicitaire (structure prête, à connecter)
+
+## Gestion de documents
+- [x] Upload de documents PDF (manuels, factures)
+- [x] Galerie de documents par véhicule
+- [ ] Prévisualisation de documents (structure prête)
+- [x] Catégorisation des documents
+- [x] Recherche dans les documents
+
+## Paramètres avancés
+- [x] Configuration des collecteurs de métriques
+- [ ] Personnalisation des champs de formulaire (à implémenter dans UI)
+- [x] Gestion des notifications
+- [x] Paramètres de synchronisation
+- [x] Langue de l'interface
+- [x] Format de date/heure
+- [x] Unités de mesure (km/mi)
+
+## Relations et tables
+- [ ] Table de relations véhicule-technicien
+- [ ] Historique des affectations
+- [ ] Gestion des équipes
+- [ ] Permissions par rôle

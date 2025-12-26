@@ -28,20 +28,14 @@ const STORAGE_KEYS = {
   INITIALIZED: '@fleetcore/initialized',
 };
 
-// Initialiser les données mock si nécessaire
+// Initialiser les données mock si nécessaire (désactivé par défaut)
 async function initializeData(): Promise<void> {
-  const initialized = await AsyncStorage.getItem(STORAGE_KEYS.INITIALIZED);
-  if (!initialized) {
-    await AsyncStorage.setItem(STORAGE_KEYS.VEHICLES, JSON.stringify(mockVehicles));
-    await AsyncStorage.setItem(STORAGE_KEYS.INSPECTIONS, JSON.stringify(mockInspections));
-    await AsyncStorage.setItem(STORAGE_KEYS.CHECKLIST_ITEMS, JSON.stringify(mockChecklistItems));
-    await AsyncStorage.setItem(STORAGE_KEYS.INITIALIZED, 'true');
-  }
+  // L'application démarre maintenant avec des données vierges
+  // Les utilisateurs doivent créer leurs propres véhicules et inspections
 }
 
 // Véhicules
 export async function getVehicles(): Promise<Vehicle[]> {
-  await initializeData();
   const data = await AsyncStorage.getItem(STORAGE_KEYS.VEHICLES);
   return data ? JSON.parse(data) : [];
 }
@@ -92,7 +86,6 @@ export async function updateVehicle(id: string, updates: Partial<Vehicle>): Prom
 
 // Inspections
 export async function getInspections(): Promise<Inspection[]> {
-  await initializeData();
   const data = await AsyncStorage.getItem(STORAGE_KEYS.INSPECTIONS);
   const inspections: Inspection[] = data ? JSON.parse(data) : [];
   
@@ -205,7 +198,6 @@ async function createChecklistItems(inspectionId: string): Promise<void> {
 }
 
 export async function getChecklistItems(inspectionId: string): Promise<ChecklistItem[]> {
-  await initializeData();
   const data = await AsyncStorage.getItem(STORAGE_KEYS.CHECKLIST_ITEMS);
   const items: ChecklistItem[] = data ? JSON.parse(data) : [];
   return items.filter(item => item.inspectionId === inspectionId);
@@ -283,19 +275,86 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   };
 }
 
+const ALERTS_KEY = '@fleetcore/alerts';
+const ACTIVITY_KEY = '@fleetcore/recent_activity';
+
 export async function getAlerts(): Promise<Alert[]> {
-  return mockAlerts;
+  const data = await AsyncStorage.getItem(ALERTS_KEY);
+  return data ? JSON.parse(data) : [];
 }
 
 export async function getRecentActivity(): Promise<RecentActivity[]> {
-  return mockRecentActivity;
+  const data = await AsyncStorage.getItem(ACTIVITY_KEY);
+  return data ? JSON.parse(data) : [];
+}
+
+export async function addRecentActivity(activity: RecentActivity): Promise<void> {
+  const activities = await getRecentActivity();
+  activities.unshift(activity);
+  // Keep only last 20 activities
+  const trimmed = activities.slice(0, 20);
+  await AsyncStorage.setItem(ACTIVITY_KEY, JSON.stringify(trimmed));
 }
 
 // Reset data (pour le développement)
 export async function resetData(): Promise<void> {
-  await AsyncStorage.removeItem(STORAGE_KEYS.INITIALIZED);
-  await AsyncStorage.removeItem(STORAGE_KEYS.VEHICLES);
-  await AsyncStorage.removeItem(STORAGE_KEYS.INSPECTIONS);
-  await AsyncStorage.removeItem(STORAGE_KEYS.CHECKLIST_ITEMS);
-  await initializeData();
+  await AsyncStorage.multiRemove([
+    STORAGE_KEYS.INITIALIZED,
+    STORAGE_KEYS.VEHICLES,
+    STORAGE_KEYS.INSPECTIONS,
+    STORAGE_KEYS.CHECKLIST_ITEMS,
+    ALERTS_KEY,
+    ACTIVITY_KEY,
+  ]);
+}
+
+// Settings
+const SETTINGS_KEY = '@fleetcore/settings';
+
+export interface AppSettings {
+  theme: 'light' | 'dark' | 'auto';
+  primaryColor: string;
+  language: 'fr' | 'en';
+  dateFormat: 'DD/MM/YYYY' | 'MM/DD/YYYY' | 'YYYY-MM-DD';
+  distanceUnit: 'km' | 'mi';
+  notifications: boolean;
+  autoSync: boolean;
+}
+
+const DEFAULT_SETTINGS: AppSettings = {
+  theme: 'auto',
+  primaryColor: '#0066CC',
+  language: 'fr',
+  dateFormat: 'YYYY-MM-DD',
+  distanceUnit: 'km',
+  notifications: true,
+  autoSync: true,
+};
+
+export async function getSettings(): Promise<AppSettings> {
+  const data = await AsyncStorage.getItem(SETTINGS_KEY);
+  return data ? { ...DEFAULT_SETTINGS, ...JSON.parse(data) } : DEFAULT_SETTINGS;
+}
+
+export async function saveSettings(settings: Partial<AppSettings>): Promise<void> {
+  const current = await getSettings();
+  const updated = { ...current, ...settings };
+  await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(updated));
+}
+
+// Delete vehicle
+export async function deleteVehicle(id: string): Promise<void> {
+  const vehicles = await getVehicles();
+  const filtered = vehicles.filter(v => v.id !== id);
+  await AsyncStorage.setItem(STORAGE_KEYS.VEHICLES, JSON.stringify(filtered));
+  
+  // Also delete related inspections
+  const inspections = await getInspections();
+  const filteredInspections = inspections.filter(i => i.vehicleId !== id);
+  const inspectionsData = await AsyncStorage.getItem(STORAGE_KEYS.INSPECTIONS);
+  if (inspectionsData) {
+    const parsed = JSON.parse(inspectionsData);
+    const filtered = parsed.filter((i: Inspection) => i.vehicleId !== id);
+    await AsyncStorage.setItem(STORAGE_KEYS.INSPECTIONS, JSON.stringify(filtered));
+  }
 }
