@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { Text, View, Pressable, StyleSheet, Alert, TextInput, KeyboardAvoidingView, Platform as RNPlatform } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import * as Haptics from 'expo-haptics';
@@ -8,7 +8,9 @@ import { ScreenContainer } from '@/components/screen-container';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
 import { getInspection, getChecklistItems, updateChecklistItem, updateInspection } from '@/lib/data-service';
-import type { Inspection, ChecklistItem, ItemStatus } from '@/lib/types';
+import type { Inspection, ChecklistItem, ItemStatus, Proof } from '@/lib/types';
+import { CameraCapture } from '@/components/camera-capture';
+import { ProofGallery } from '@/components/proof-gallery';
 
 const statusConfig: Record<ItemStatus, { label: string; color: string; icon: string }> = {
   pending: { label: 'En attente', color: '#64748B', icon: 'clock.fill' },
@@ -25,6 +27,8 @@ export default function ChecklistScreen() {
   const [items, setItems] = useState<ChecklistItem[]>([]);
   const [currentIndex, setCurrentIndex] = useState(parseInt(startIndex || '0'));
   const [notes, setNotes] = useState('');
+  const [showCamera, setShowCamera] = useState(false);
+  const [itemProofs, setItemProofs] = useState<Record<string, Proof[]>>({});
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -59,8 +63,56 @@ export default function ChecklistScreen() {
   useEffect(() => {
     if (currentItem) {
       setNotes(currentItem.notes || '');
+      // Load proofs for current item
+      if (!itemProofs[currentItem.id]) {
+        setItemProofs(prev => ({ ...prev, [currentItem.id]: [] }));
+      }
     }
   }, [currentIndex, currentItem]);
+
+  const currentProofs = useMemo(() => {
+    return currentItem ? (itemProofs[currentItem.id] || []) : [];
+  }, [currentItem, itemProofs]);
+
+  const handleAddProof = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+    setShowCamera(true);
+  };
+
+  const handleCapturePhoto = (uri: string) => {
+    if (!currentItem) return;
+    
+    const newProof: Proof = {
+      id: `proof_${Date.now()}`,
+      checklistItemId: currentItem.id,
+      type: 'photo',
+      uri,
+      localUri: uri,
+      timestamp: new Date().toISOString(),
+    };
+
+    setItemProofs(prev => ({
+      ...prev,
+      [currentItem.id]: [...(prev[currentItem.id] || []), newProof],
+    }));
+
+    setShowCamera(false);
+
+    if (Platform.OS !== 'web') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
+  };
+
+  const handleDeleteProof = (proofId: string) => {
+    if (!currentItem) return;
+    
+    setItemProofs(prev => ({
+      ...prev,
+      [currentItem.id]: (prev[currentItem.id] || []).filter(p => p.id !== proofId),
+    }));
+  };
 
   const handleStatusSelect = async (status: ItemStatus) => {
     if (!currentItem || saving) return;
@@ -76,10 +128,10 @@ export default function ChecklistScreen() {
     }
 
     // Check if proof is required for defects
-    if ((status === 'minor_defect' || status === 'major_defect') && !notes.trim()) {
+    if ((status === 'minor_defect' || status === 'major_defect') && !notes.trim() && currentProofs.length === 0) {
       Alert.alert(
-        'Note requise',
-        'Veuillez ajouter une note décrivant le défaut.',
+        'Preuve requise',
+        'Veuillez ajouter une note ou une photo décrivant le défaut.',
         [{ text: 'OK' }]
       );
       return;
@@ -258,6 +310,16 @@ export default function ChecklistScreen() {
           </View>
 
           {/* Notes Input */}
+          {/* Proof Gallery */}
+          <View className="mb-6">
+            <ProofGallery
+              proofs={currentProofs}
+              onAddProof={handleAddProof}
+              onDeleteProof={handleDeleteProof}
+            />
+          </View>
+
+          {/* Notes Input */}
           <View className="mb-6">
             <Text className="text-sm font-semibold text-foreground mb-2">
               Notes (requis si défaut)
@@ -371,6 +433,16 @@ export default function ChecklistScreen() {
           </View>
         </View>
       </KeyboardAvoidingView>
+
+      {/* Camera Modal */}
+      {showCamera && (
+        <View style={StyleSheet.absoluteFill}>
+          <CameraCapture
+            onCapture={handleCapturePhoto}
+            onClose={() => setShowCamera(false)}
+          />
+        </View>
+      )}
     </ScreenContainer>
   );
 }

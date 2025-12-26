@@ -68,6 +68,19 @@ const config: ExpoConfig = {
   plugins: [
     "expo-router",
     [
+      "expo-camera",
+      {
+        cameraPermission: "Allow $(PRODUCT_NAME) to access your camera to capture defect photos.",
+      },
+    ],
+    [
+      "expo-media-library",
+      {
+        photosPermission: "Allow $(PRODUCT_NAME) to save inspection photos.",
+        savePhotosPermission: "Allow $(PRODUCT_NAME) to save inspection photos to your library.",
+      },
+    ],
+    [
       "expo-audio",
       {
         microphonePermission: "Allow $(PRODUCT_NAME) to access your microphone.",

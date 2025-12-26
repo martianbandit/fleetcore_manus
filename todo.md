@@ -52,3 +52,31 @@
 - [x] Tests unitaires des services
 - [x] Vérification de l'interface sur différentes tailles d'écran
 - [x] Optimisation des performances
+
+## Intégration documents officiels
+- [x] Parser et intégrer le guide de sécurité routière JSON (2160 lignes de défauts)
+- [x] Intégrer les codes VMRS pour répertorier les composants
+- [x] Mettre à jour la checklist avec les codes officiels du formulaire SAAQ
+- [x] Ajouter les codes de localisation (diagramme 1-19, positions 40-57)
+
+## Capture de preuves
+- [x] Implémenter la prise de photo lors de la détection de défauts
+- [x] Implémenter la capture vidéo pour les défauts complexes
+- [x] Ajouter la galerie de preuves dans le détail d'inspection
+- [x] Associer les preuves aux items de checklist
+
+## Génération PDF
+- [x] Créer le template PDF conforme au formulaire SAAQ
+- [x] Inclure les informations du véhicule et du technicien
+- [x] Générer le tableau des défauts avec codes VMRS
+- [x] Ajouter les preuves photographiques au rapport
+- [x] Inclure la section "Preuves de réparation"
+- [x] Ajouter les signatures électroniques
+
+## Synchronisation cloud
+- [x] Configurer la base de données MySQL
+- [x] Créer les schémas Drizzle pour véhicules et inspections
+- [x] Implémenter les API tRPC pour sync
+- [x] Ajouter le mode hors-ligne avec AsyncStorage
+- [ ] Synchroniser automatiquement lors de la connexion (implémentation client)
+- [ ] Gérer les conflits de synchronisation

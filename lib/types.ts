@@ -53,12 +53,27 @@ export interface ChecklistItem {
   itemNumber: number;
   title: string;
   description: string;
+  vmrsCode?: string; // Code VMRS pour identifier le composant
+  saaqCode?: string; // Code du formulaire SAAQ
   status: ItemStatus;
   notes: string | null;
   mediaUrls: string[];
+  proofs?: Proof[]; // Preuves photographiques/vidéo
   isRequired: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Proof {
+  id: string;
+  checklistItemId: string;
+  type: 'photo' | 'video';
+  uri: string;
+  localUri?: string; // URI local avant upload
+  thumbnail?: string;
+  timestamp: string;
+  location?: string; // Code de localisation (ex: "40", "51", etc.)
+  notes?: string;
 }
 
 export interface ChecklistSection {
@@ -115,6 +130,21 @@ export interface RecentActivity {
   timestamp: string;
   vehicleId?: string;
   inspectionId?: string;
+}
+
+export interface VMRSCode {
+  system: string;
+  assembly: string;
+  component: string;
+  description: string;
+  category: string;
+}
+
+export interface SAAQDefect {
+  component: string;
+  description: string;
+  type: 'Mineure' | 'Majeure';
+  code?: string;
 }
 
 // Checklist template pour générer les items d'inspection

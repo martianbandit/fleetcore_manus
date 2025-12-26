@@ -51,6 +51,10 @@ const MAPPING: Record<string, MaterialIconName> = {
   "wrench.fill": "build",
   "speedometer": "speed",
   "gauge.fill": "speed",
+  "video.fill": "videocam",
+  "arrow.triangle.2.circlepath.camera.fill": "flip-camera-ios",
+  "funnel.fill": "filter-list",
+  "gear": "settings",
 };
 
 type IconSymbolName = keyof typeof MAPPING;

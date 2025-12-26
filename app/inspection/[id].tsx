@@ -8,7 +8,8 @@ import { ScreenContainer } from '@/components/screen-container';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { IconSymbol, type IconSymbolName } from '@/components/ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
-import { getInspection, getChecklistItems, updateInspection } from '@/lib/data-service';
+import { getInspection, getChecklistItems, updateInspection, getVehicle } from '@/lib/data-service';
+import { generateAndSharePDF } from '@/lib/pdf-generator';
 import type { Inspection, ChecklistItem, ChecklistSection } from '@/lib/types';
 
 const typeLabels: Record<string, string> = {
@@ -81,15 +82,41 @@ export default function InspectionDetailScreen() {
     router.push(`/checklist/${id}?startIndex=${startIndex}` as any);
   };
 
-  const handleGenerateReport = () => {
-    if (Platform.OS !== 'web') {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+  const handleGenerateReport = async () => {
+    if (!inspection || !inspection.vehicle) {
+      Alert.alert('Erreur', 'Informations du véhicule manquantes');
+      return;
     }
-    Alert.alert(
-      'Rapport PDF',
-      'Le rapport PDF a été généré avec succès.',
-      [{ text: 'OK' }]
-    );
+
+    if (Platform.OS !== 'web') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+
+    try {
+      Alert.alert(
+        'Génération du rapport',
+        'Génération du rapport PDF en cours...',
+        []
+      );
+
+      await generateAndSharePDF({
+        inspection,
+        vehicle: inspection.vehicle,
+        checklistItems,
+        technicianNumber: 'TEC-001', // TODO: Get from user profile
+      });
+
+      if (Platform.OS !== 'web') {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      }
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      Alert.alert(
+        'Erreur',
+        'Impossible de générer le rapport PDF. Veuillez réessayer.',
+        [{ text: 'OK' }]
+      );
+    }
   };
 
   const progress = inspection 
