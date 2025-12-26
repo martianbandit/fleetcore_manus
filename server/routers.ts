@@ -2,6 +2,7 @@ import { z } from "zod";
 import { COOKIE_NAME } from "../shared/const.js";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
+import { stripeRouter } from "./routers/stripe";
 import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { getDb } from "./db";
 import { vehicles, inspections, checklistItems, proofs } from "../drizzle/schema";
@@ -22,6 +23,7 @@ export const appRouter = router({
   }),
 
   // FleetCore routers
+  stripe: stripeRouter,
   vehicles: router({
     list: protectedProcedure.query(async ({ ctx }) => {
       const db = await getDb();

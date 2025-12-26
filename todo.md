@@ -266,3 +266,50 @@
 - [ ] Créer section "Ressources utiles" dans Settings (liens présents, à connecter)
 - [ ] Ajouter UI pour langue, format date, unités dans Settings (affiché mais pas interactif)
 - [ ] Créer écran de gestion des techniciens
+
+
+## 💳 Intégration Stripe - Paiement flexible
+
+### Configuration Stripe
+- [x] Configurer les clés API Stripe (test et production) - structure prête
+- [x] Créer les produits Stripe (véhicules, employés, fonctionnalités) - définis dans stripe-service.ts
+- [x] Créer les prix avec tarification basée sur l'usage (metered billing) - logique implémentée
+- [ ] Configurer les meters pour tracking d'usage - à faire dans Stripe Dashboard
+- [x] Créer les forfaits pour grandes flottes (60+ véhicules, 15+ employés) - calculs implémentés
+
+### Modèle de tarification
+- [x] **Pay-per-vehicle**: 15$/mois par véhicule (1-10), 12$/mois (11-30), 10$/mois (31-60), forfait 500$/mois (60+)
+- [x] **Pay-per-employee**: 25$/mois par technicien (1-5), 20$/mois (6-15), forfait 250$/mois (15+)
+- [x] **Pay-per-feature**: Métriques avancées (50$/mois), Export PDF premium (30$/mois), Sync cloud (40$/mois)
+- [x] **Forfaits grandes flottes**: Custom pricing pour 60+ véhicules ou 15+ employés
+
+### Service de paiement
+- [x] Créer stripe-service.ts pour gérer les paiements
+- [x] Implémenter createCheckoutSession pour paiements one-time
+- [x] Implémenter createSubscription pour abonnements (via tRPC)
+- [x] Implémenter updateSubscription pour changements de plan
+- [x] Implémenter reportUsage pour metered billing (véhicules, employés)
+- [x] Implémenter cancelSubscription
+- [ ] Gérer les webhooks Stripe (payment_intent.succeeded, subscription.updated, etc.) - à implémenter
+
+### Écrans de paiement
+- [x] Écran de sélection de plan avec calculateur de prix dynamique (pricing.tsx)
+- [ ] Écran de checkout Stripe intégré - utilise Stripe Checkout Session
+- [ ] Écran de gestion d'abonnement (voir factures, changer plan, annuler) - à créer
+- [ ] Écran d'historique de paiements - API prête (getInvoices)
+- [x] Indicateurs d'usage en temps réel (X véhicules actifs, Y employés) - dans pricing.tsx
+
+### Logique métier
+- [x] Vérifier les limites avant ajout véhicule/employé (déjà implémenté avec subscription-service)
+- [x] Reporter automatiquement l'usage à Stripe chaque mois (reportUsageToStripe)
+- [x] Calculer le prix total basé sur l'usage actuel (calculateTotalPrice)
+- [x] Afficher les prévisions de facturation (dans pricing.tsx)
+- [x] Gérer les périodes d'essai (14 jours gratuits) - implémenté dans createCheckoutSession
+- [x] Implémenter les downgrades/upgrades avec prorata (updateSubscription avec proration_behavior)
+
+### Webhooks et sécurité
+- [ ] Créer endpoint /api/webhooks/stripe - à implémenter
+- [ ] Vérifier les signatures Stripe - à implémenter
+- [ ] Gérer les événements: invoice.payment_succeeded, subscription.deleted, etc. - à implémenter
+- [ ] Mettre à jour le statut d'abonnement local - à implémenter
+- [ ] Envoyer notifications aux utilisateurs (paiement réussi, échec, etc.) - à implémenter
