@@ -1,24 +1,59 @@
 // Fallback for using MaterialIcons on Android and web.
 
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { SymbolWeight, SymbolViewProps } from "expo-symbols";
+import { SymbolWeight } from "expo-symbols";
 import { ComponentProps } from "react";
 import { OpaqueColorValue, type StyleProp, type TextStyle } from "react-native";
 
-type IconMapping = Record<SymbolViewProps["name"], ComponentProps<typeof MaterialIcons>["name"]>;
-type IconSymbolName = keyof typeof MAPPING;
+type MaterialIconName = ComponentProps<typeof MaterialIcons>["name"];
 
 /**
- * Add your SF Symbols to Material Icons mappings here.
- * - see Material Icons in the [Icons Directory](https://icons.expo.fyi).
- * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
+ * FleetCore icon mappings - SF Symbols to Material Icons
  */
-const MAPPING = {
-  "house.fill": "home",
+const MAPPING: Record<string, MaterialIconName> = {
+  // Navigation
+  "house.fill": "dashboard",
+  "car.fill": "local-shipping",
+  "clipboard.fill": "assignment",
+  "gearshape.fill": "settings",
+  // Actions
+  "plus.circle.fill": "add-circle",
+  "magnifyingglass": "search",
+  "camera.fill": "camera-alt",
+  "photo.fill": "photo",
+  "mic.fill": "mic",
+  // Status
+  "checkmark.circle.fill": "check-circle",
+  "exclamationmark.triangle.fill": "warning",
+  "xmark.circle.fill": "cancel",
+  "clock.fill": "schedule",
+  // Navigation arrows
+  "chevron.right": "chevron-right",
+  "chevron.left": "chevron-left",
+  "arrow.left": "arrow-back",
+  // Misc
+  "doc.text.fill": "description",
+  "chart.bar.fill": "bar-chart",
+  "bell.fill": "notifications",
+  "person.fill": "person",
+  "info.circle.fill": "info",
+  "trash.fill": "delete",
+  "pencil": "edit",
   "paperplane.fill": "send",
   "chevron.left.forwardslash.chevron.right": "code",
-  "chevron.right": "chevron-right",
-} as IconMapping;
+  "play.fill": "play-arrow",
+  "pause.fill": "pause",
+  "stop.fill": "stop",
+  "arrow.clockwise": "refresh",
+  "calendar": "event",
+  "location.fill": "location-on",
+  "fuel.pump.fill": "local-gas-station",
+  "wrench.fill": "build",
+  "speedometer": "speed",
+  "gauge.fill": "speed",
+};
+
+type IconSymbolName = keyof typeof MAPPING;
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
@@ -37,5 +72,8 @@ export function IconSymbol({
   style?: StyleProp<TextStyle>;
   weight?: SymbolWeight;
 }) {
-  return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
+  const iconName = MAPPING[name] || "help";
+  return <MaterialIcons color={color} size={size} name={iconName} style={style} />;
 }
+
+export type { IconSymbolName };
