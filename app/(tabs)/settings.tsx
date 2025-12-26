@@ -1,233 +1,257 @@
-import { useState } from 'react';
-import { ScrollView, Text, View, Pressable, Switch, StyleSheet, Alert } from 'react-native';
-import * as Haptics from 'expo-haptics';
-import { Platform } from 'react-native';
-
+import { View, Text, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
+import { router } from 'expo-router';
+import { useState, useEffect } from 'react';
 import { ScreenContainer } from '@/components/screen-container';
-import { IconSymbol, type IconSymbolName } from '@/components/ui/icon-symbol';
-import { useColors } from '@/hooks/use-colors';
-import { resetData } from '@/lib/data-service';
-
-interface SettingItemProps {
-  icon: IconSymbolName;
-  iconColor: string;
-  title: string;
-  subtitle?: string;
-  onPress?: () => void;
-  rightElement?: React.ReactNode;
-}
-
-function SettingItem({ icon, iconColor, title, subtitle, onPress, rightElement }: SettingItemProps) {
-  const colors = useColors();
-  
-  return (
-    <Pressable
-      onPress={onPress}
-      disabled={!onPress}
-      style={({ pressed }) => [
-        styles.settingItem,
-        pressed && onPress && { opacity: 0.7 },
-      ]}
-    >
-      <View
-        className="w-10 h-10 rounded-lg items-center justify-center mr-3"
-        style={{ backgroundColor: `${iconColor}15` }}
-      >
-        <IconSymbol name={icon} size={20} color={iconColor} />
-      </View>
-      <View className="flex-1">
-        <Text className="text-base font-medium text-foreground">{title}</Text>
-        {subtitle && <Text className="text-sm text-muted mt-0.5">{subtitle}</Text>}
-      </View>
-      {rightElement || (onPress && (
-        <IconSymbol name="chevron.right" size={18} color={colors.muted} />
-      ))}
-    </Pressable>
-  );
-}
+import { useTheme } from '@/lib/theme-context';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { useAuth } from '@/hooks/use-auth';
+import { getSettings, saveSettings, type AppSettings } from '@/lib/data-service';
+import { getSubscription, getUsageStats, PLAN_NAMES } from '@/lib/subscription-service';
+import { getCompanyProfile } from '@/lib/company-service';
+import type { PlanType } from '@/lib/subscription-service';
 
 export default function SettingsScreen() {
-  const colors = useColors();
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
+  const { colors, theme, setTheme } = useTheme();
+  const { user, logout } = useAuth();
+  const [settings, setSettingsState] = useState<AppSettings | null>(null);
+  const [subscription, setSubscription] = useState<{ plan: PlanType } | null>(null);
+  const [usage, setUsage] = useState<{ vehiclesCount: number; inspectionsThisMonth: number } | null>(null);
+  const [company, setCompany] = useState<{ name: string } | null>(null);
 
-  const handleToggleNotifications = (value: boolean) => {
-    if (Platform.OS !== 'web') {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }
-    setNotificationsEnabled(value);
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    const [settingsData, subscriptionData, usageData, companyData] = await Promise.all([
+      getSettings(),
+      getSubscription(),
+      getUsageStats(),
+      getCompanyProfile(),
+    ]);
+    setSettingsState(settingsData);
+    setSubscription(subscriptionData);
+    setUsage(usageData);
+    setCompany(companyData);
   };
 
-  const handleToggleDarkMode = (value: boolean) => {
-    if (Platform.OS !== 'web') {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }
-    setDarkModeEnabled(value);
+  const updateSetting = async (key: keyof AppSettings, value: any) => {
+    await saveSettings({ [key]: value });
+    setSettingsState({ ...settings!, [key]: value });
   };
 
-  const handleResetData = () => {
+  const handleLogout = () => {
     Alert.alert(
-      'Réinitialiser les données',
-      'Êtes-vous sûr de vouloir réinitialiser toutes les données ? Cette action est irréversible.',
+      'Déconnexion',
+      'Êtes-vous sûr de vouloir vous déconnecter?',
       [
         { text: 'Annuler', style: 'cancel' },
         {
-          text: 'Réinitialiser',
+          text: 'Déconnexion',
           style: 'destructive',
           onPress: async () => {
-            await resetData();
-            if (Platform.OS !== 'web') {
-              Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            }
-            Alert.alert('Succès', 'Les données ont été réinitialisées.');
+            await logout();
+            router.replace('/auth/login' as any);
           },
         },
       ]
     );
   };
 
+  if (!settings) {
+    return (
+      <ScreenContainer className="items-center justify-center">
+        <Text style={{ color: colors.muted }}>Chargement...</Text>
+      </ScreenContainer>
+    );
+  }
+
   return (
     <ScreenContainer>
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView className="flex-1">
         {/* Header */}
-        <View className="px-4 pt-2 pb-4">
-          <Text className="text-3xl font-bold text-foreground">Paramètres</Text>
-          <Text className="text-base text-muted mt-1">
-            Configuration de l'application
+        <View className="px-4 py-6">
+          <Text className="text-3xl font-bold" style={{ color: colors.foreground }}>
+            Paramètres
           </Text>
         </View>
 
-        {/* Profile Section */}
+        {/* User Section */}
+        {user && (
+          <View className="px-4 mb-6">
+            <View className="rounded-2xl p-4" style={{ backgroundColor: colors.surface }}>
+              <View className="flex-row items-center mb-3">
+                <View
+                  className="w-16 h-16 rounded-full items-center justify-center mr-4"
+                  style={{ backgroundColor: colors.primary }}
+                >
+                  <Text className="text-white text-2xl font-bold">
+                    {user.name?.charAt(0).toUpperCase() || 'U'}
+                  </Text>
+                </View>
+                <View className="flex-1">
+                  <Text className="text-lg font-bold" style={{ color: colors.foreground }}>
+                    {user.name || 'Utilisateur'}
+                  </Text>
+                  <Text className="text-sm" style={{ color: colors.muted }}>
+                    {user.email || 'Aucun email'}
+                  </Text>
+                </View>
+              </View>
+              {company && (
+                <Text className="text-sm mb-2" style={{ color: colors.muted }}>
+                  {company.name}
+                </Text>
+              )}
+            </View>
+          </View>
+        )}
+
+        {/* Subscription Section */}
+        {subscription && usage && (
+          <View className="px-4 mb-6">
+            <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+              ABONNEMENT
+            </Text>
+            <TouchableOpacity
+              onPress={() => router.push('/subscription/upgrade' as any)}
+              className="rounded-2xl p-4"
+              style={{ backgroundColor: colors.surface }}
+            >
+              <View className="flex-row items-center justify-between mb-3">
+                <View>
+                  <Text className="text-lg font-bold" style={{ color: colors.foreground }}>
+                    Plan {PLAN_NAMES[subscription.plan]}
+                  </Text>
+                  <Text className="text-sm" style={{ color: colors.muted }}>
+                    {usage.vehiclesCount} véhicules • {usage.inspectionsThisMonth} inspections ce mois
+                  </Text>
+                </View>
+                <IconSymbol name="chevron.right" size={20} color={colors.muted} />
+              </View>
+              {subscription.plan === 'free' && (
+                <View
+                  className="px-3 py-2 rounded-lg"
+                  style={{ backgroundColor: colors.primary + '15' }}
+                >
+                  <Text className="text-xs font-semibold" style={{ color: colors.primary }}>
+                    Passez au plan Pro pour débloquer toutes les fonctionnalités
+                  </Text>
+                </View>
+              )}
+            </TouchableOpacity>
+          </View>
+        )}
+
+        {/* Appearance Section */}
         <View className="px-4 mb-6">
-          <Text className="text-sm font-semibold text-muted uppercase mb-3">Profil</Text>
-          <View className="bg-surface rounded-xl border border-border overflow-hidden">
-            <View className="p-4 flex-row items-center">
-              <View className="w-14 h-14 rounded-full bg-primary items-center justify-center mr-4">
-                <Text className="text-2xl font-bold text-background">JT</Text>
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            APPARENCE
+          </Text>
+
+          {/* Theme */}
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            <View className="p-4 border-b" style={{ borderColor: colors.border }}>
+              <Text className="text-base font-semibold mb-3" style={{ color: colors.foreground }}>
+                Thème
+              </Text>
+              <View className="flex-row gap-2">
+                {(['auto', 'light', 'dark'] as const).map((mode) => (
+                  <TouchableOpacity
+                    key={mode}
+                    onPress={() => setTheme(mode)}
+                    className="flex-1 py-3 rounded-xl items-center"
+                    style={{
+                      backgroundColor: theme === mode ? colors.primary : colors.background,
+                      borderWidth: 1,
+                      borderColor: theme === mode ? colors.primary : colors.border,
+                    }}
+                  >
+                    <Text
+                      className="font-semibold capitalize"
+                      style={{
+                        color: theme === mode ? '#FFF' : colors.foreground,
+                      }}
+                    >
+                      {mode === 'auto' ? 'Auto' : mode === 'light' ? 'Clair' : 'Sombre'}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
               </View>
-              <View className="flex-1">
-                <Text className="text-lg font-bold text-foreground">Jean Tremblay</Text>
-                <Text className="text-sm text-muted">Technicien d'inspection</Text>
-              </View>
-              <IconSymbol name="chevron.right" size={18} color={colors.muted} />
             </View>
           </View>
         </View>
 
         {/* Preferences Section */}
         <View className="px-4 mb-6">
-          <Text className="text-sm font-semibold text-muted uppercase mb-3">Préférences</Text>
-          <View className="bg-surface rounded-xl border border-border overflow-hidden">
-            <SettingItem
-              icon="bell.fill"
-              iconColor="#0066CC"
-              title="Notifications"
-              subtitle="Recevoir des alertes"
-              rightElement={
-                <Switch
-                  value={notificationsEnabled}
-                  onValueChange={handleToggleNotifications}
-                  trackColor={{ false: colors.border, true: colors.primary }}
-                />
-              }
-            />
-            <View className="h-px bg-border mx-4" />
-            <SettingItem
-              icon="gearshape.fill"
-              iconColor="#64748B"
-              title="Mode sombre"
-              subtitle="Thème de l'application"
-              rightElement={
-                <Switch
-                  value={darkModeEnabled}
-                  onValueChange={handleToggleDarkMode}
-                  trackColor={{ false: colors.border, true: colors.primary }}
-                />
-              }
-            />
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            PRÉFÉRENCES
+          </Text>
+
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            {/* Notifications */}
+            <View
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="bell.fill" size={20} color={colors.foreground} />
+                <Text className="text-base ml-3" style={{ color: colors.foreground }}>
+                  Notifications
+                </Text>
+              </View>
+              <Switch
+                value={settings.notifications}
+                onValueChange={(value) => updateSetting('notifications', value)}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="#FFF"
+              />
+            </View>
+
+            {/* Auto Sync */}
+            <View className="p-4 flex-row items-center justify-between">
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="arrow.triangle.2.circlepath" size={20} color={colors.foreground} />
+                <Text className="text-base ml-3" style={{ color: colors.foreground }}>
+                  Synchronisation automatique
+                </Text>
+              </View>
+              <Switch
+                value={settings.autoSync}
+                onValueChange={(value) => updateSetting('autoSync', value)}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="#FFF"
+              />
+            </View>
           </View>
         </View>
 
-        {/* Data Section */}
-        <View className="px-4 mb-6">
-          <Text className="text-sm font-semibold text-muted uppercase mb-3">Données</Text>
-          <View className="bg-surface rounded-xl border border-border overflow-hidden">
-            <SettingItem
-              icon="doc.text.fill"
-              iconColor="#22C55E"
-              title="Exporter les données"
-              subtitle="Télécharger un rapport"
-              onPress={() => Alert.alert('Export', 'Fonctionnalité à venir')}
-            />
-            <View className="h-px bg-border mx-4" />
-            <SettingItem
-              icon="arrow.clockwise"
-              iconColor="#F59E0B"
-              title="Synchroniser"
-              subtitle="Dernière sync: maintenant"
-              onPress={() => Alert.alert('Sync', 'Données synchronisées')}
-            />
-            <View className="h-px bg-border mx-4" />
-            <SettingItem
-              icon="trash.fill"
-              iconColor="#EF4444"
-              title="Réinitialiser les données"
-              subtitle="Supprimer toutes les données locales"
-              onPress={handleResetData}
-            />
+        {/* Account Section */}
+        <View className="px-4 mb-8">
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            COMPTE
+          </Text>
+
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            <TouchableOpacity
+              onPress={handleLogout}
+              className="p-4 flex-row items-center"
+            >
+              <IconSymbol name="arrow.right.square.fill" size={20} color={colors.error} />
+              <Text className="text-base ml-3 font-semibold" style={{ color: colors.error }}>
+                Déconnexion
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
-        {/* About Section */}
-        <View className="px-4 mb-6">
-          <Text className="text-sm font-semibold text-muted uppercase mb-3">À propos</Text>
-          <View className="bg-surface rounded-xl border border-border overflow-hidden">
-            <SettingItem
-              icon="info.circle.fill"
-              iconColor="#0066CC"
-              title="Version"
-              subtitle="1.0.0"
-            />
-            <View className="h-px bg-border mx-4" />
-            <SettingItem
-              icon="doc.text.fill"
-              iconColor="#64748B"
-              title="Conditions d'utilisation"
-              onPress={() => Alert.alert('Info', 'Conditions d\'utilisation')}
-            />
-            <View className="h-px bg-border mx-4" />
-            <SettingItem
-              icon="person.fill"
-              iconColor="#64748B"
-              title="Politique de confidentialité"
-              onPress={() => Alert.alert('Info', 'Politique de confidentialité')}
-            />
-          </View>
+        {/* Version */}
+        <View className="px-4 pb-8 items-center">
+          <Text className="text-xs" style={{ color: colors.muted }}>
+            FleetCore v1.0.0
+          </Text>
         </View>
-
-        {/* Footer */}
-        <View className="items-center py-8">
-          <Text className="text-sm text-muted">FleetCore v1.0.0</Text>
-          <Text className="text-xs text-muted mt-1">© 2024 FleetCore. Tous droits réservés.</Text>
-        </View>
-
-        {/* Bottom spacing */}
-        <View className="h-24" />
       </ScrollView>
     </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  scrollContent: {
-    flexGrow: 1,
-  },
-  settingItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-  },
-});

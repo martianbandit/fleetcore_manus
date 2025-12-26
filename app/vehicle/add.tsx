@@ -4,6 +4,7 @@ import { router } from 'expo-router';
 import { ScreenContainer } from '@/components/screen-container';
 import { useTheme } from '@/lib/theme-context';
 import { addVehicle } from '@/lib/data-service';
+import { canAddVehicle } from '@/lib/subscription-service';
 import * as ImagePicker from 'expo-image-picker';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import type { Vehicle } from '@/lib/types';
@@ -92,6 +93,20 @@ export default function AddVehicleScreen() {
   };
 
   const handleSubmit = async () => {
+    // Check subscription limits
+    const limitCheck = await canAddVehicle();
+    if (!limitCheck.allowed) {
+      Alert.alert(
+        'Limite atteinte',
+        limitCheck.reason || 'Impossible d\'ajouter plus de véhicules',
+        [
+          { text: 'Annuler', style: 'cancel' },
+          { text: 'Voir les plans', onPress: () => router.push('/subscription/upgrade' as any) },
+        ]
+      );
+      return;
+    }
+
     if (!validateForm()) {
       Alert.alert('Erreur', 'Veuillez corriger les erreurs dans le formulaire');
       return;
