@@ -68,6 +68,21 @@ export const inspections = mysqlTable('inspections', {
   updatedAt: timestamp('updatedAt').defaultNow().onUpdateNow().notNull(),
 });
 
+export const subscriptions = mysqlTable('subscriptions', {
+  id: varchar('id', { length: 36 }).primaryKey(),
+  userId: int('userId').notNull(),
+  stripeCustomerId: varchar('stripeCustomerId', { length: 255 }).notNull(),
+  stripeSubscriptionId: varchar('stripeSubscriptionId', { length: 255 }).notNull().unique(),
+  status: varchar('status', { length: 50 }).notNull(),
+  currentPeriodStart: timestamp('currentPeriodStart'),
+  currentPeriodEnd: timestamp('currentPeriodEnd'),
+  cancelAtPeriodEnd: int('cancelAtPeriodEnd').notNull().default(0),
+  lastPaymentDate: timestamp('lastPaymentDate'),
+  canceledAt: timestamp('canceledAt'),
+  createdAt: timestamp('createdAt').defaultNow().notNull(),
+  updatedAt: timestamp('updatedAt').defaultNow().onUpdateNow().notNull(),
+});
+
 export const checklistItems = mysqlTable('checklistItems', {
   id: varchar('id', { length: 36 }).primaryKey(),
   inspectionId: varchar('inspectionId', { length: 36 }).notNull(),

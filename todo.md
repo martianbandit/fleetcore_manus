@@ -313,3 +313,34 @@
 - [ ] Gérer les événements: invoice.payment_succeeded, subscription.deleted, etc. - à implémenter
 - [ ] Mettre à jour le statut d'abonnement local - à implémenter
 - [ ] Envoyer notifications aux utilisateurs (paiement réussi, échec, etc.) - à implémenter
+
+
+## 🔄 Prochaines étapes - Finalisation Stripe
+
+### Étape 1: Configuration des clés API Stripe
+- [x] Demander les clés API Stripe via webdev_request_secrets
+- [x] Ajouter STRIPE_SECRET_KEY pour le backend
+- [x] Ajouter STRIPE_PUBLISHABLE_KEY pour le frontend
+- [ ] Tester la connexion Stripe avec les clés configurées (attente clés réelles)
+- [ ] Créer les produits dans Stripe Dashboard (véhicules, employés, fonctionnalités)
+
+### Étape 2: Écran de gestion d'abonnement
+- [x] Créer app/subscription/manage.tsx
+- [x] Afficher le plan actuel et les détails d'abonnement
+- [x] Afficher l'historique des factures avec liens de téléchargement PDF
+- [x] Bouton pour modifier l'abonnement (changer quantités)
+- [x] Bouton pour accéder au portail Stripe (gérer moyens de paiement)
+- [x] Bouton pour annuler l'abonnement avec confirmation
+- [x] Afficher les compteurs d'usage en temps réel
+- [x] Lien vers l'écran de tarification pour upgrade
+
+### Étape 3: Webhooks Stripe
+- [x] Créer server/webhooks/stripe.ts
+- [x] Implémenter la vérification des signatures Stripe
+- [x] Gérer l'événement invoice.payment_succeeded
+- [x] Gérer l'événement invoice.payment_failed
+- [x] Gérer l'événement customer.subscription.updated
+- [x] Gérer l'événement customer.subscription.deleted
+- [x] Mettre à jour le statut d'abonnement local (AsyncStorage + DB)
+- [ ] Envoyer des notifications push aux utilisateurs (TODO dans le code)
+- [x] Logger tous les événements webhook pour audit

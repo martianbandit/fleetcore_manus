@@ -15,6 +15,13 @@
       "when": 1766713528842,
       "tag": "0001_nifty_cargill",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1766726612825,
+      "tag": "0002_lethal_earthquake",
+      "breakpoints": true
     }
   ]
 }
