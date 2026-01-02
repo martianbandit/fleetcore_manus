@@ -662,3 +662,25 @@
 - [x] Rappels par défaut: inspection, assurance, immatriculation, maintenance
 - [x] Fonction createVehicleDefaultReminders()
 - [x] Fonction getVehicleReminders() et deleteVehicleReminders()
+
+
+## 🆕 Espaces publicitaires et nouveau thème (v14)
+
+### Espaces publicitaires
+- [x] Créer le composant AdBanner avec rotation automatique (5 secondes)
+- [x] Service de gestion des annonces (ad-service.ts)
+- [x] Intégrer les bannières dans toutes les pages principales
+- [x] Animation de transition fluide entre les annonces (fade + slide)
+- [x] Support des différents formats d'annonces (banner, card, compact)
+- [x] Indicateurs de pagination cliquables
+- [x] Annonces de démo pour flottes (Michelin, Total, Desjardins, NAPA, etc.)
+
+### Nouveau thème FleetCore
+- [x] Analyser l'icône et extraire les couleurs principales (cyan néon #00D4FF)
+- [x] Définir la palette de couleurs sobre et épurée
+- [x] Mode sombre optimisé (fond #030712, surface #0A1628)
+- [x] Mode clair optimisé (fond #F8FAFC, surface #FFFFFF)
+- [x] Mettre à jour theme.config.js avec 14 tokens de couleur
+- [x] Appliquer le style à tous les composants (KPICard, VehicleCard, InspectionCard, AlertCard, StatusBadge, SearchBar)
+- [x] Bordures subtiles avec effet glow
+- [x] Icônes avec fond coloré et bordure

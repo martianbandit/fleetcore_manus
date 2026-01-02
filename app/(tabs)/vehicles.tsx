@@ -8,6 +8,7 @@ import { ScreenContainer } from '@/components/screen-container';
 import { VehicleCard } from '@/components/ui/vehicle-card';
 import { SearchBar } from '@/components/ui/search-bar';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import { AdBanner } from '@/components/ui/ad-banner';
 import { getVehicles, searchVehicles } from '@/lib/data-service';
 import type { Vehicle, VehicleStatus } from '@/lib/types';
 import { useColors } from '@/hooks/use-colors';
@@ -175,6 +176,14 @@ export default function VehiclesScreen() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <AdBanner
+            variant="banner"
+            rotationInterval={5000}
+            showIndicators={true}
+            compact={true}
+          />
+        }
         ListEmptyComponent={
           <View className="items-center py-12">
             <IconSymbol name="car.fill" size={48} color={colors.muted} />

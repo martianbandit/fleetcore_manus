@@ -1,5 +1,6 @@
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { cn } from '@/lib/utils';
+import { useColors } from '@/hooks/use-colors';
 import type { InspectionStatus, ItemStatus, VehicleStatus } from '@/lib/types';
 
 type BadgeVariant = 'success' | 'warning' | 'error' | 'info' | 'neutral';
@@ -27,36 +28,51 @@ const statusConfig: Record<string, { label: string; variant: BadgeVariant }> = {
   maintenance: { label: 'Maintenance', variant: 'warning' },
 };
 
-const variantStyles: Record<BadgeVariant, { bg: string; text: string }> = {
-  success: { bg: 'bg-success/15', text: 'text-success' },
-  warning: { bg: 'bg-warning/15', text: 'text-warning' },
-  error: { bg: 'bg-error/15', text: 'text-error' },
-  info: { bg: 'bg-primary/15', text: 'text-primary' },
-  neutral: { bg: 'bg-muted/15', text: 'text-muted' },
-};
-
 export function StatusBadge({ status, size = 'md', className }: StatusBadgeProps) {
+  const colors = useColors();
+  
   const config = statusConfig[status] || { label: status, variant: 'neutral' as BadgeVariant };
-  const styles = variantStyles[config.variant];
+  
+  const variantColors: Record<BadgeVariant, string> = {
+    success: colors.success,
+    warning: colors.warning,
+    error: colors.error,
+    info: colors.primary,
+    neutral: colors.muted,
+  };
+  
+  const color = variantColors[config.variant];
   
   return (
     <View
       className={cn(
         'rounded-full self-start',
-        styles.bg,
         size === 'sm' ? 'px-2 py-0.5' : 'px-3 py-1',
         className
       )}
+      style={[
+        styles.badge,
+        { 
+          backgroundColor: `${color}15`,
+          borderColor: `${color}30`,
+        },
+      ]}
     >
       <Text
         className={cn(
           'font-semibold',
-          styles.text,
           size === 'sm' ? 'text-xs' : 'text-sm'
         )}
+        style={{ color }}
       >
         {config.label}
       </Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  badge: {
+    borderWidth: 1,
+  },
+});

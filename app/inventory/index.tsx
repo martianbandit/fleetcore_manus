@@ -4,6 +4,7 @@ import { router, useFocusEffect } from 'expo-router';
 import { ScreenContainer } from '@/components/screen-container';
 import { useTheme } from '@/lib/theme-context';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import { AdBanner } from '@/components/ui/ad-banner';
 import { 
   getInventoryItems, 
   getInventoryStats,
@@ -293,6 +294,14 @@ export default function InventoryScreen() {
         contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 100 }}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        ListHeaderComponent={
+          <AdBanner
+            variant="banner"
+            rotationInterval={5000}
+            showIndicators={true}
+            compact={true}
+          />
         }
         ListEmptyComponent={
           <View className="items-center justify-center py-12">

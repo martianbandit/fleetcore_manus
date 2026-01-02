@@ -408,21 +408,13 @@ export default function DashboardScreen() {
           </View>
         )}
 
-        {/* Ad Banner */}
+        {/* Ad Banner - Rotation automatique */}
         <View className="px-4 mt-6">
           <AdBanner
             variant="banner"
-            ad={{
-              id: 'ad_1',
-              type: 'banner',
-              title: 'Pièces de camions lourds',
-              description: 'Livraison rapide partout au Québec',
-              imageUrl: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400',
-              ctaText: 'Voir le catalogue',
-              targetUrl: 'https://example.com/pieces',
-              sponsor: 'Pièces Pro',
-              isLocal: true,
-            }}
+            rotationInterval={5000}
+            showIndicators={true}
+            position="inline"
           />
         </View>
 

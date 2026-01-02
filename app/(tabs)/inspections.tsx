@@ -7,6 +7,7 @@ import { Platform } from 'react-native';
 import { ScreenContainer } from '@/components/screen-container';
 import { InspectionCard } from '@/components/ui/inspection-card';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import { AdBanner } from '@/components/ui/ad-banner';
 import { getInspections } from '@/lib/data-service';
 import type { Inspection, InspectionStatus } from '@/lib/types';
 
@@ -159,6 +160,14 @@ export default function InspectionsScreen() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <AdBanner
+            variant="banner"
+            rotationInterval={5000}
+            showIndicators={true}
+            compact={true}
+          />
+        }
         ListEmptyComponent={
           <View className="items-center py-12">
             <IconSymbol name="clipboard.fill" size={48} color="#64748B" />

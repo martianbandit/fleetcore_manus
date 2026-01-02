@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { ScreenContainer } from '@/components/screen-container';
 import { useTheme } from '@/lib/theme-context';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import { AdBanner } from '@/components/ui/ad-banner';
 import { useAuth } from '@/hooks/use-auth';
 import { getSettings, saveSettings, type AppSettings } from '@/lib/data-service';
 import { getSubscription, getUsageStats, PLAN_NAMES } from '@/lib/subscription-service';
@@ -348,6 +349,16 @@ export default function SettingsScreen() {
               </Text>
             </TouchableOpacity>
           </View>
+        </View>
+
+        {/* Ad Banner */}
+        <View className="px-4 mb-6">
+          <AdBanner
+            variant="banner"
+            rotationInterval={5000}
+            showIndicators={true}
+            compact={false}
+          />
         </View>
 
         {/* Version */}

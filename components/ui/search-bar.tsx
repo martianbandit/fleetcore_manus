@@ -19,23 +19,40 @@ export function SearchBar({
   const colors = useColors();
   
   return (
-    <View className={cn('flex-row items-center bg-surface rounded-xl border border-border px-3', className)}>
-      <IconSymbol name="magnifyingglass" size={20} color={colors.muted} />
+    <View 
+      className={cn('flex-row items-center rounded-xl px-3', className)}
+      style={[
+        styles.container,
+        { 
+          backgroundColor: colors.surface,
+          borderColor: value.length > 0 ? `${colors.primary}40` : colors.border,
+        },
+      ]}
+    >
+      <IconSymbol 
+        name="magnifyingglass" 
+        size={20} 
+        color={value.length > 0 ? colors.primary : colors.muted} 
+      />
       <TextInput
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor={colors.muted}
-        className="flex-1 py-3 px-2 text-foreground"
-        style={styles.input}
+        className="flex-1 py-3 px-2"
+        style={[styles.input, { color: colors.foreground }]}
         returnKeyType="search"
       />
       {value.length > 0 && (
         <Pressable
           onPress={() => onChangeText('')}
-          style={({ pressed }) => [pressed && { opacity: 0.6 }]}
+          style={({ pressed }) => [
+            styles.clearButton,
+            { backgroundColor: `${colors.muted}20` },
+            pressed && { opacity: 0.6 },
+          ]}
         >
-          <IconSymbol name="xmark.circle.fill" size={18} color={colors.muted} />
+          <IconSymbol name="xmark" size={12} color={colors.muted} />
         </Pressable>
       )}
     </View>
@@ -43,7 +60,17 @@ export function SearchBar({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+  },
   input: {
     fontSize: 16,
+  },
+  clearButton: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

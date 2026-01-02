@@ -1,6 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { IconSymbol, type IconSymbolName } from './icon-symbol';
 import { cn } from '@/lib/utils';
+import { useColors } from '@/hooks/use-colors';
 import type { Alert } from '@/lib/types';
 
 interface AlertCardProps {
@@ -9,14 +10,16 @@ interface AlertCardProps {
   className?: string;
 }
 
-const alertConfig: Record<string, { icon: IconSymbolName; color: string; bgColor: string }> = {
-  major_defect: { icon: 'xmark.circle.fill', color: '#EF4444', bgColor: '#FEE2E2' },
-  blocked_inspection: { icon: 'exclamationmark.triangle.fill', color: '#EF4444', bgColor: '#FEE2E2' },
-  overdue_inspection: { icon: 'clock.fill', color: '#F59E0B', bgColor: '#FEF3C7' },
-  maintenance_due: { icon: 'wrench.fill', color: '#F59E0B', bgColor: '#FEF3C7' },
-};
-
 export function AlertCard({ alert, onPress, className }: AlertCardProps) {
+  const colors = useColors();
+  
+  const alertConfig: Record<string, { icon: IconSymbolName; color: string }> = {
+    major_defect: { icon: 'xmark.circle.fill', color: colors.error },
+    blocked_inspection: { icon: 'exclamationmark.triangle.fill', color: colors.error },
+    overdue_inspection: { icon: 'clock.fill', color: colors.warning },
+    maintenance_due: { icon: 'wrench.fill', color: colors.warning },
+  };
+  
   const config = alertConfig[alert.type] || alertConfig.maintenance_due;
   
   return (
@@ -28,16 +31,23 @@ export function AlertCard({ alert, onPress, className }: AlertCardProps) {
       ]}
     >
       <View
-        className={cn('rounded-xl p-4 border', className)}
-        style={{
-          backgroundColor: config.bgColor,
-          borderColor: config.color + '30',
-        }}
+        className={cn('rounded-2xl p-4', className)}
+        style={[
+          styles.card,
+          {
+            backgroundColor: `${config.color}08`,
+            borderColor: `${config.color}30`,
+          },
+        ]}
       >
         <View className="flex-row items-start">
           <View
-            className="w-10 h-10 rounded-lg items-center justify-center mr-3"
-            style={{ backgroundColor: config.color + '20' }}
+            className="w-11 h-11 rounded-xl items-center justify-center mr-3"
+            style={{ 
+              backgroundColor: `${config.color}15`,
+              borderWidth: 1,
+              borderColor: `${config.color}25`,
+            }}
           >
             <IconSymbol name={config.icon} size={22} color={config.color} />
           </View>
@@ -50,11 +60,18 @@ export function AlertCard({ alert, onPress, className }: AlertCardProps) {
               >
                 {alert.title}
               </Text>
-              <Text className="text-xs text-muted ml-2">
+              <Text 
+                className="text-xs ml-2"
+                style={{ color: colors.muted }}
+              >
                 {new Date(alert.createdAt).toLocaleDateString('fr-CA')}
               </Text>
             </View>
-            <Text className="text-sm text-foreground mt-1" numberOfLines={2}>
+            <Text 
+              className="text-sm mt-1" 
+              style={{ color: colors.foreground }}
+              numberOfLines={2}
+            >
               {alert.message}
             </Text>
           </View>
@@ -68,8 +85,11 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 8,
   },
+  card: {
+    borderWidth: 1,
+  },
   pressed: {
-    opacity: 0.8,
-    transform: [{ scale: 0.98 }],
+    opacity: 0.85,
+    transform: [{ scale: 0.985 }],
   },
 });

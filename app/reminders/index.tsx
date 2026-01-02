@@ -20,6 +20,7 @@ import { ScreenContainer } from '@/components/screen-container';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { ReminderCard } from '@/components/ui/reminder-card';
 import { CalendarMiniWidget } from '@/components/ui/calendar-mini-widget';
+import { AdBanner } from '@/components/ui/ad-banner';
 import { useColors } from '@/hooks/use-colors';
 import {
   getUpcomingReminders,
@@ -446,6 +447,16 @@ export default function RemindersScreen() {
               )}
             </View>
           )}
+        </View>
+
+        {/* Ad Banner */}
+        <View className="px-4 mt-6">
+          <AdBanner
+            variant="banner"
+            rotationInterval={5000}
+            showIndicators={true}
+            compact={false}
+          />
         </View>
 
         {/* Bottom spacing */}
