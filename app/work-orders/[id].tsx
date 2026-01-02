@@ -18,6 +18,8 @@ import {
   type WorkOrderPriority 
 } from '@/lib/work-order-service';
 import { getTechnicians, type Technician } from '@/lib/data-service';
+import { WorkTimer, getTimerSessions, getTotalTimeForWorkOrder, type TimerSession } from '@/components/work-timer';
+import { PartsSelector, type SelectedPart } from '@/components/parts-selector';
 
 const statusConfig: Record<WorkOrderStatus, { label: string; color: string; icon: string }> = {
   DRAFT: { label: 'Brouillon', color: '#64748B', icon: 'doc.fill' },
@@ -42,6 +44,9 @@ export default function WorkOrderDetailScreen() {
   const [technicians, setTechnicians] = useState<Technician[]>([]);
   const [loading, setLoading] = useState(true);
   const [showTechnicianPicker, setShowTechnicianPicker] = useState(false);
+  const [totalLoggedTime, setTotalLoggedTime] = useState(0);
+  const [timerSessions, setTimerSessions] = useState<TimerSession[]>([]);
+  const [selectedParts, setSelectedParts] = useState<SelectedPart[]>([]);
 
   const loadData = async () => {
     if (!id) return;
@@ -52,6 +57,16 @@ export default function WorkOrderDetailScreen() {
       ]);
       setWorkOrder(orderData);
       setTechnicians(techData);
+      
+      // Load timer data
+      if (orderData) {
+        const [totalTime, sessions] = await Promise.all([
+          getTotalTimeForWorkOrder(id),
+          getTimerSessions(id),
+        ]);
+        setTotalLoggedTime(totalTime);
+        setTimerSessions(sessions);
+      }
     } catch (error) {
       console.error('Error loading work order:', error);
     } finally {
@@ -307,6 +322,65 @@ export default function WorkOrderDetailScreen() {
             >
               <Text className="text-center" style={{ color: colors.muted }}>Annuler</Text>
             </TouchableOpacity>
+          </View>
+        )}
+
+        {/* Work Timer - Only show when IN_PROGRESS */}
+        {workOrder.status === 'IN_PROGRESS' && workOrder.technicianId && (
+          <View className="mx-4 mb-4">
+            <WorkTimer
+              workOrderId={workOrder.id}
+              technicianId={workOrder.technicianId}
+              technicianName={workOrder.technicianName || 'Technicien'}
+              onTimeLogged={async (session) => {
+                const newTotal = await getTotalTimeForWorkOrder(workOrder.id);
+                setTotalLoggedTime(newTotal);
+                const sessions = await getTimerSessions(workOrder.id);
+                setTimerSessions(sessions);
+              }}
+            />
+          </View>
+        )}
+
+        {/* Logged Time Sessions */}
+        {timerSessions.length > 0 && (
+          <View className="mx-4 mb-4 rounded-xl p-4" style={{ backgroundColor: colors.surface }}>
+            <Text className="text-sm font-semibold mb-3" style={{ color: colors.muted }}>
+              TEMPS ENREGISTRÉ ({formatDuration(Math.round(totalLoggedTime / 60))})
+            </Text>
+            {timerSessions.slice(-5).reverse().map((session, index) => (
+              <View
+                key={session.id}
+                className="flex-row items-center justify-between py-2"
+                style={{ borderBottomWidth: index < timerSessions.length - 1 ? 1 : 0, borderColor: colors.border }}
+              >
+                <View>
+                  <Text className="text-sm" style={{ color: colors.foreground }}>
+                    {session.technicianName}
+                  </Text>
+                  <Text className="text-xs" style={{ color: colors.muted }}>
+                    {new Date(session.startTime).toLocaleDateString('fr-CA')}
+                  </Text>
+                </View>
+                <Text className="text-sm font-semibold" style={{ color: colors.primary }}>
+                  {formatDuration(Math.round(session.duration / 60))}
+                </Text>
+              </View>
+            ))}
+          </View>
+        )}
+
+        {/* Parts Selector - Only show when IN_PROGRESS */}
+        {(workOrder.status === 'IN_PROGRESS' || workOrder.status === 'COMPLETED') && (
+          <View className="mx-4 mb-4">
+            <PartsSelector
+              workOrderId={workOrder.id}
+              technicianId={workOrder.technicianId}
+              technicianName={workOrder.technicianName}
+              selectedParts={selectedParts}
+              onPartsChange={setSelectedParts}
+              readOnly={workOrder.status === 'COMPLETED'}
+            />
           </View>
         )}
 

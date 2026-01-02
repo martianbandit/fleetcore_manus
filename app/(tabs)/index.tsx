@@ -15,6 +15,8 @@ import {
   getInspections,
   getAlerts,
 } from '@/lib/data-service';
+import { getWorkOrderStats } from '@/lib/work-order-service';
+import { getInventoryStats } from '@/lib/inventory-service';
 import type { DashboardStats, Inspection, Alert } from '@/lib/types';
 
 export default function DashboardScreen() {
@@ -22,19 +24,25 @@ export default function DashboardScreen() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [recentInspections, setRecentInspections] = useState<Inspection[]>([]);
   const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [workOrderStats, setWorkOrderStats] = useState<any>(null);
+  const [inventoryStats, setInventoryStats] = useState<any>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const loadData = useCallback(async () => {
     try {
-      const [statsData, inspectionsData, alertsData] = await Promise.all([
+      const [statsData, inspectionsData, alertsData, woStats, invStats] = await Promise.all([
         getDashboardStats(),
         getInspections(),
         getAlerts(),
+        getWorkOrderStats(),
+        getInventoryStats(),
       ]);
       setStats(statsData);
       setRecentInspections(inspectionsData.slice(0, 5));
       setAlerts(alertsData.filter(a => a.severity === 'critical').slice(0, 3));
+      setWorkOrderStats(woStats);
+      setInventoryStats(invStats);
     } catch (error) {
       console.error('Error loading dashboard data:', error);
     } finally {
@@ -135,6 +143,79 @@ export default function DashboardScreen() {
             </View>
           </View>
         </View>
+
+        {/* FleetCommand & FleetCrew KPIs */}
+        {(workOrderStats || inventoryStats) && (
+          <View className="px-4 mt-4">
+            <Text className="text-lg font-bold text-foreground mb-3">Modules connexes</Text>
+            <View className="flex-row flex-wrap -mx-1.5">
+              {workOrderStats && (
+                <>
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <Pressable
+                      onPress={() => router.push('/work-orders' as any)}
+                      style={({ pressed }) => [pressed && { opacity: 0.8 }]}
+                    >
+                      <KPICard
+                        title="Bons de travail"
+                        value={workOrderStats.inProgress || 0}
+                        subtitle={`${workOrderStats.pending || 0} en attente`}
+                        icon="wrench.fill"
+                        iconColor="#F59E0B"
+                      />
+                    </Pressable>
+                  </View>
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <Pressable
+                      onPress={() => router.push('/analytics' as any)}
+                      style={({ pressed }) => [pressed && { opacity: 0.8 }]}
+                    >
+                      <KPICard
+                        title="Coûts réparations"
+                        value={`${(workOrderStats.totalActualCost || 0).toLocaleString()} $`}
+                        subtitle="Total complété"
+                        icon="dollarsign.circle.fill"
+                        iconColor="#22C55E"
+                      />
+                    </Pressable>
+                  </View>
+                </>
+              )}
+              {inventoryStats && (
+                <>
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <Pressable
+                      onPress={() => router.push('/inventory' as any)}
+                      style={({ pressed }) => [pressed && { opacity: 0.8 }]}
+                    >
+                      <KPICard
+                        title="Inventaire"
+                        value={inventoryStats.totalItems || 0}
+                        subtitle={`${inventoryStats.lowStockCount || 0} stock bas`}
+                        icon="cube.box.fill"
+                        iconColor="#8B5CF6"
+                      />
+                    </Pressable>
+                  </View>
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <Pressable
+                      onPress={() => router.push('/inventory' as any)}
+                      style={({ pressed }) => [pressed && { opacity: 0.8 }]}
+                    >
+                      <KPICard
+                        title="Valeur stock"
+                        value={`${(inventoryStats.totalValue || 0).toLocaleString()} $`}
+                        subtitle={`${inventoryStats.outOfStockCount || 0} rupture`}
+                        icon="chart.bar.fill"
+                        iconColor="#3B82F6"
+                      />
+                    </Pressable>
+                  </View>
+                </>
+              )}
+            </View>
+          </View>
+        )}
 
         {/* Quick Actions */}
         <View className="px-4 mt-2">

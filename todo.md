@@ -120,8 +120,8 @@
 - [x] Fréquence des défauts par type
 - [x] Métriques de flotte (FleetMetrics)
 - [x] Export des métriques en CSV
-- [ ] **MANQUANT**: UI pour afficher les métriques (pas d'écran analytics)
-- [ ] **MANQUANT**: UI pour démarrer/arrêter le chrono de travail
+- [x] **COMPLÉTÉ**: UI pour afficher les métriques (écran analytics avec onglets)
+- [x] **COMPLÉTÉ**: UI pour démarrer/arrêter le chrono de travail (WorkTimer component)
 - [ ] **MANQUANT**: UI pour ajouter les coûts de maintenance
 
 ### Espaces publicitaires
@@ -568,3 +568,39 @@
 - [x] Lien vers paramètres de notification depuis Settings
 - [x] Dashboard avec 8 actions rapides (2 lignes)
 - [x] Icônes distinctives pour FleetCommand (orange) et FleetCrew (violet)
+
+
+## 🆕 Analytics et Chrono de travail (v11)
+
+### Écran Analytics avec métriques
+- [x] Créer l'écran /analytics avec tableau de bord métriques
+- [x] Afficher les KPIs de flotte (véhicules, inspections, défauts)
+- [x] Graphiques de tendances (inspections par mois, défauts par type)
+- [x] Statistiques FleetCommand (bons de travail, coûts)
+- [x] Statistiques FleetCrew (inventaire, valeur stock)
+- [x] Statistiques par technicien (inspections, temps moyen)
+- [x] Export des métriques en CSV
+- [x] Onglets pour navigation (Flotte, FleetCommand, FleetCrew)
+
+### Chrono de travail
+- [x] Composant WorkTimer pour démarrer/arrêter le chrono
+- [x] Intégration dans l'écran de détail bon de travail
+- [x] Sauvegarde automatique du temps de travail (AsyncStorage)
+- [x] Historique des sessions de temps
+- [x] Calcul du temps total par bon de travail
+- [x] Affichage des sessions de temps dans le détail
+
+### Intégration inventaire-bons de travail
+- [x] Ajouter section "Pièces utilisées" dans bon de travail
+- [x] Composant PartsSelector pour sélection de pièces
+- [x] Sélection de pièces depuis l'inventaire FleetCrew
+- [x] Mise à jour automatique du stock lors de consommation
+- [x] Calcul du coût total des pièces
+- [x] Modal de recherche de pièces avec filtres
+
+### KPIs FleetCommand
+- [x] Temps moyen de réparation (dans Analytics)
+- [x] Coûts estimés vs réels (dans Analytics)
+- [x] Taux de complétion des bons de travail
+- [x] Bons de travail en attente/en cours (dans Dashboard)
+- [x] KPIs FleetCommand et FleetCrew dans le Dashboard principal
