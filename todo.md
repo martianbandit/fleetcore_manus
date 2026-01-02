@@ -785,3 +785,51 @@
 - [x] Type de rappel PEP_DUE ajouté au calendar-service
 - [x] Rappels 30, 14, 7, 1 jours avant échéance
 - [x] Fonctions getPEPReminders et deletePEPReminders
+
+
+## 🆕 Documentation utilisateurs (v19)
+
+### Documentation par rôle
+- [x] Guide administrateur (docs/guide-administrateur.md)
+  - Configuration initiale et thème
+  - Gestion des abonnements (Free, Plus, Pro, Entreprise)
+  - Gestion des utilisateurs et permissions (4 rôles)
+  - Configuration des véhicules et rappels automatiques
+  - Synchronisation et sauvegarde
+  - Sécurité et conformité SAAQ
+- [x] Guide gestionnaire de flotte (docs/guide-gestionnaire.md)
+  - Tableau de bord et KPIs
+  - Gestion des véhicules et fiches détaillées
+  - Suivi des inspections et statuts
+  - FleetCommand (bons de travail)
+  - FleetCrew (inventaire)
+  - Analytics et rapports
+  - Calendrier et rappels
+  - Bonnes pratiques et indicateurs
+- [x] Guide technicien (docs/guide-technicien.md)
+  - Prise en main et navigation
+  - Réalisation d'inspection (8 sections)
+  - Documentation des défauts avec photos
+  - Fiches PEP SAAQ (12 sections)
+  - Bons de travail et chronomètre
+  - Gestion de l'inventaire
+  - Codes VMRS courants
+- [x] Guide conducteur (docs/guide-conducteur.md)
+  - Obligations légales et responsabilités
+  - Ronde de sécurité en 8 sections
+  - Évaluation des composants (S/O, C, Min, Maj)
+  - Signalement des défauts (mineurs vs majeurs)
+  - Fonctionnalités utiles et mode hors-ligne
+  - Aide-mémoire rapide
+- [x] Référence rapide (docs/reference-rapide.md)
+  - Navigation et actions rapides
+  - Statuts et codes
+  - Plans d'abonnement
+  - Rôles et permissions
+  - Codes VMRS et glossaire
+- [x] Index de documentation (docs/README.md)
+  - Présentation de FleetCore
+  - Liens vers tous les guides
+  - Architecture technique
+  - Conformité réglementaire SAAQ
+  - Historique des versions
