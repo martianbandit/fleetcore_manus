@@ -21,6 +21,7 @@ Cette documentation est organisée par rôle utilisateur pour faciliter l'accès
 | [Guide Technicien](./guide-technicien.md) | Techniciens mécaniciens | Inspections, bons de travail, fiches PEP, inventaire |
 | [Guide Conducteur](./guide-conducteur.md) | Conducteurs | Rondes de sécurité quotidiennes, signalement des défauts |
 | [Référence Rapide](./reference-rapide.md) | Tous | Aide-mémoire, codes, raccourcis |
+| [**FAQ**](./faq.md) | Tous | Questions fréquentes, dépannage |
 
 ---
 
@@ -91,6 +92,8 @@ FleetCore intègre les exigences réglementaires de la SAAQ pour l'entretien pr�
 
 | Version | Date | Principales nouveautés |
 |---------|------|------------------------|
+| 20.0 | Jan 2026 | FAQ interactive complète |
+| 19.0 | Jan 2026 | Documentation utilisateurs |
 | 18.0 | Jan 2026 | Améliorations PEP, KPI Dashboard |
 | 17.0 | Jan 2026 | Fiches PEP SAAQ, plans d'abonnement |
 | 16.0 | Jan 2026 | Relations et tables (techniciens, équipes) |
@@ -113,4 +116,4 @@ Pour toute question ou problème technique :
 
 ---
 
-**Documentation rédigée par Manus AI pour FleetCore v18.0**
+**Documentation rédigée par Manus AI pour FleetCore v20.0**

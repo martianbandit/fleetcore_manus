@@ -833,3 +833,21 @@
   - Architecture technique
   - Conformité réglementaire SAAQ
   - Historique des versions
+
+
+## 🆕 FAQ Interactive (v20)
+
+### Section FAQ
+- [x] Créer le document FAQ complet (docs/faq.md)
+- [x] Questions générales sur FleetCore (5 questions)
+- [x] Véhicules et flotte (6 questions)
+- [x] Inspections et rondes de sécurité (7 questions)
+- [x] Fiches PEP et conformité SAAQ (6 questions)
+- [x] FleetCommand - Bons de travail (6 questions)
+- [x] FleetCrew - Inventaire (4 questions)
+- [x] Techniciens et équipes (5 questions)
+- [x] Synchronisation et données (5 questions)
+- [x] Notifications et rappels (5 questions)
+- [x] Abonnements et facturation (6 questions)
+- [x] Dépannage technique (7 questions)
+- [x] Mettre à jour l'index de documentation (README.md)
