@@ -428,3 +428,43 @@
 - [ ] Synchroniser après chaque modification (véhicule, inspection)
 - [ ] Afficher indicateur de statut sync dans la Tab Bar
 - [ ] Gérer les conflits de synchronisation (last-write-wins)
+
+
+## 🔧 Mise à jour inspection Pré-SAAQ complète
+- [ ] Analyser le guide de vérification mécanique SAAQ complet
+- [ ] Mettre à jour lib/mock-data.ts avec TOUS les composants officiels
+- [ ] Vérifier que les 9 sections SAAQ sont complètes
+- [ ] Ajouter tous les points de contrôle manquants
+- [ ] Valider la conformité avec le formulaire officiel
+
+## 🚀 Fonctionnalités prioritaires restantes
+- [ ] Implémenter l'édition de véhicule (modifier vehicle/add.tsx)
+- [ ] Créer l'écran de paramètres de notification (/settings/notifications)
+- [ ] Activer les permissions de notification au démarrage (app/_layout.tsx)
+- [ ] Intégrer les appels de notification dans les workflows
+
+
+## 🔧 Mise à jour inspection Pré-SAAQ
+- [x] Analyser le guide de vérification mécanique SAAQ complet
+- [x] Générer la checklist avec TOUS les composants exigés (305 items, 420 défauts)
+- [x] Mettre à jour lib/mock-data.ts avec la checklist complète
+- [x] Ajouter les propriétés minorDefects et majorDefects au type ChecklistItem
+
+## 🔔 Fonctionnalités restantes
+
+### 1. Édition de véhicule
+- [x] Modifier app/vehicle/add.tsx pour accepter vehicleId en paramètre
+- [x] Charger les données du véhicule en mode édition
+- [x] Appeler updateVehicle() au lieu de addVehicle()
+- [x] Modifier le titre de l'écran selon le mode
+
+### 2. Paramètres de notification
+- [x] Créer app/settings/notifications.tsx
+- [x] Afficher tous les types de notifications avec toggles
+- [x] Sauvegarder les préférences avec saveNotificationSettings()
+- [ ] Ajouter un lien depuis Settings vers cet écran (TODO)
+
+### 3. Permissions de notification au démarrage
+- [x] Ajouter requestNotificationPermissions() dans app/_layout.tsx
+- [x] Appeler au premier lancement de l'app
+- [x] Gérer les erreurs silencieusement

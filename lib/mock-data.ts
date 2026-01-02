@@ -283,7 +283,65 @@ export const mockRecentActivity: RecentActivity[] = [
   },
 ];
 
-// Template de checklist SAAQ
+// Charger la checklist complète depuis le fichier JSON généré
+import checklistData from '../data/checklist-complete.json';
+
+/**
+ * Checklist d'inspection Pré-SAAQ complète
+ * 
+ * Générée depuis le guide officiel de vérification mécanique SAAQ
+ * - 9 sections
+ * - 305 composants à vérifier
+ * - 420 défauts répertoriés (mineurs et majeurs)
+ */
+export const INSPECTION_CHECKLIST: ChecklistItem[] = (checklistData as any[]).map((item: any) => ({
+  id: item.id,
+  inspectionId: '',
+  sectionId: item.section.toLowerCase().replace(/ /g, '-'),
+  sectionName: item.section,
+  itemNumber: parseInt(item.id.split('-')[1]),
+  title: item.component,
+  description: item.description,
+  status: 'pending' as const,
+  notes: null,
+  mediaUrls: [],
+  isRequired: true,
+  minorDefects: item.minorDefects || [],
+  majorDefects: item.majorDefects || [],
+  vmrsCode: item.vmrsCode || '',
+  locationCode: item.locationCode || '',
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+}));
+
+/**
+ * Obtenir les items de checklist par section
+ */
+export function getChecklistBySection(section: string): ChecklistItem[] {
+  return INSPECTION_CHECKLIST.filter(item => item.sectionName === section);
+}
+
+/**
+ * Obtenir toutes les sections uniques
+ */
+export function getAllSections(): string[] {
+  const sections = new Set(INSPECTION_CHECKLIST.map(item => item.sectionName));
+  return Array.from(sections);
+}
+
+/**
+ * Statistiques de la checklist
+ */
+export const CHECKLIST_STATS = {
+  totalItems: INSPECTION_CHECKLIST.length,
+  sections: getAllSections().length,
+  totalMinorDefects: INSPECTION_CHECKLIST.reduce((sum, item) => sum + ((item.minorDefects as any[])?.length || 0), 0),
+  totalMajorDefects: INSPECTION_CHECKLIST.reduce((sum, item) => sum + ((item.majorDefects as any[])?.length || 0), 0),
+};
+
+console.log('📋 Checklist SAAQ chargée:', CHECKLIST_STATS);
+
+// Template de checklist SAAQ (conservé pour compatibilité)
 export const mockChecklistTemplate: ChecklistTemplate = {
   id: 'ct1',
   name: 'Inspection SAAQ - Véhicule lourd',

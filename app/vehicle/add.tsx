@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { ScreenContainer } from '@/components/screen-container';
 import { useTheme } from '@/lib/theme-context';
-import { addVehicle } from '@/lib/data-service';
+import { addVehicle, updateVehicle, getVehicle } from '@/lib/data-service';
 import { canAddVehicle } from '@/lib/subscription-service';
 import * as ImagePicker from 'expo-image-picker';
 import { IconSymbol } from '@/components/ui/icon-symbol';
@@ -12,8 +12,11 @@ import type { Vehicle } from '@/lib/types';
 export default function AddVehicleScreen() {
   const { colors, colorScheme } = useTheme();
   const isDark = colorScheme === 'dark';
+  const { vehicleId } = useLocalSearchParams<{ vehicleId?: string }>();
+  const isEditMode = !!vehicleId;
   
   const [formData, setFormData] = useState({
+    id: vehicleId || '',
     vin: '',
     plate: '',
     unit: '',
@@ -26,6 +29,39 @@ export default function AddVehicleScreen() {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(isEditMode);
+
+  // Charger les données du véhicule en mode édition
+  useEffect(() => {
+    if (isEditMode && vehicleId) {
+      loadVehicleData(vehicleId);
+    }
+  }, [vehicleId]);
+
+  const loadVehicleData = async (id: string) => {
+    try {
+      const vehicle = await getVehicle(id);
+      if (vehicle) {
+        setFormData({
+          id: vehicle.id,
+          vin: vehicle.vin,
+          plate: vehicle.plate,
+          unit: vehicle.unit,
+          vehicleClass: vehicle.vehicleClass,
+          make: vehicle.make,
+          model: vehicle.model,
+          year: vehicle.year,
+          companyId: vehicle.companyId,
+          coverImage: null, // TODO: charger l'image de couverture
+        });
+      }
+    } catch (error) {
+      Alert.alert('Erreur', 'Impossible de charger les données du véhicule');
+      router.back();
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
@@ -93,18 +129,20 @@ export default function AddVehicleScreen() {
   };
 
   const handleSubmit = async () => {
-    // Check subscription limits
-    const limitCheck = await canAddVehicle();
-    if (!limitCheck.allowed) {
-      Alert.alert(
-        'Limite atteinte',
-        limitCheck.reason || 'Impossible d\'ajouter plus de véhicules',
-        [
-          { text: 'Annuler', style: 'cancel' },
-          { text: 'Voir les plans', onPress: () => router.push('/subscription/upgrade' as any) },
-        ]
-      );
-      return;
+    // Check subscription limits (only for new vehicles)
+    if (!isEditMode) {
+      const limitCheck = await canAddVehicle();
+      if (!limitCheck.allowed) {
+        Alert.alert(
+          'Limite atteinte',
+          limitCheck.reason || 'Impossible d\'ajouter plus de véhicules',
+          [
+            { text: 'Annuler', style: 'cancel' },
+            { text: 'Voir les plans', onPress: () => router.push('/subscription/upgrade' as any) },
+          ]
+        );
+        return;
+      }
     }
 
     if (!validateForm()) {
@@ -113,18 +151,26 @@ export default function AddVehicleScreen() {
     }
 
     try {
-      await addVehicle({
-        ...formData,
-        status: 'active',
-        lastInspectionDate: null,
-        lastInspectionStatus: null,
-      });
-      
-      Alert.alert('Succès', 'Véhicule ajouté avec succès', [
-        { text: 'OK', onPress: () => router.back() }
-      ]);
+      if (isEditMode) {
+        await updateVehicle(formData.id, {
+          ...formData,
+        });
+        Alert.alert('Succès', 'Véhicule modifié avec succès', [
+          { text: 'OK', onPress: () => router.back() }
+        ]);
+      } else {
+        await addVehicle({
+          ...formData,
+          status: 'active',
+          lastInspectionDate: null,
+          lastInspectionStatus: null,
+        });
+        Alert.alert('Succès', 'Véhicule ajouté avec succès', [
+          { text: 'OK', onPress: () => router.back() }
+        ]);
+      }
     } catch (error) {
-      Alert.alert('Erreur', 'Impossible d\'ajouter le véhicule');
+      Alert.alert('Erreur', `Impossible de ${isEditMode ? 'modifier' : 'ajouter'} le véhicule`);
       console.error(error);
     }
   };
@@ -141,7 +187,7 @@ export default function AddVehicleScreen() {
             <IconSymbol name="chevron.left" size={24} color={colors.foreground} />
           </TouchableOpacity>
           <Text className="text-2xl font-bold" style={{ color: colors.foreground }}>
-            Nouveau véhicule
+            {isEditMode ? 'Éditer le véhicule' : 'Nouveau véhicule'}
           </Text>
           <View style={{ width: 24 }} />
         </View>

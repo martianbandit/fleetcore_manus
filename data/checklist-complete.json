@@ -1,0 +1,3817 @@
+[
+  {
+    "id": "item-1",
+    "section": "Éclairage et Signalisation",
+    "component": "Phares, feux, réflecteurs et matériaux réfléchissants",
+    "description": "Vérifier phares, feux, réflecteurs et matériaux réfléchissants",
+    "minorDefects": [
+      "Le véhicule routier n'est pas muni (A) des phares (1, 2), feux (*), réflecteurs (8) ou matériaux réfléchissants (20) requis par le Code (art. 15).",
+      "Un phare (1,2), un feu (*), un réflecteur (8) ou un matériau réfléchissant (20) requis par le Code n'est pas solidement fixé (CC) aux endroits prévus (DD) (art. 15).",
+      "Un phare (1.2) ou un feu (*) requis par le Code n'est pas conforme aux normes du fabricant (W**) (art. 15).",
+      "Un phare (1.2), un feu (*) ou une lampe témoin (5*) ne s'allume (HH) pas avec l'intensité prévue par le fabricant (W**). Dans le cas d'un phare (1, 2) à diodes électroluminescentes (DEL), moins de 100% des diodes fonctionnent et dans le cas d'un feu (*) à DEL, 75% ou moins des diodes fonctionnent (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-2",
+    "section": "Éclairage et Signalisation",
+    "component": "Lentille",
+    "description": "Vérifier lentille",
+    "minorDefects": [
+      "Une lentille (22) est manquante (A), cassée (F), endommagée (N) au point de permettre l'infiltration d'eau, décolorée (J), peinturée (MM) ou de la mauvaise couleur (X**) (art. 18)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-3",
+    "section": "Éclairage et Signalisation",
+    "component": "Phare, feu ou lentille",
+    "description": "Vérifier phare, feu ou lentille",
+    "minorDefects": [
+      "Une matière ou un dispositif est monté ou apposé sur le véhicule, un phare (1. 2), un feu (*) ou une lentille (22) de manière à masquer ou à réduire l'intensité de la lumière (LL) (art. 24)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-4",
+    "section": "Éclairage et Signalisation",
+    "component": "Phares",
+    "description": "Vérifier phares",
+    "minorDefects": [
+      "L'alignement des phares (1, 2) n'est pas conforme aux normes (W**) (art. 20).",
+      "Un des phares (12) n'est pas de couleur blanche (W**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-5",
+    "section": "Éclairage et Signalisation",
+    "component": "Trappe de phare escamotable ou couvre-phare",
+    "description": "Vérifier trappe de phare escamotable ou couvre-phare",
+    "minorDefects": [
+      "Une trappe de phare escamotable ou un couvre-phare (4) ne s'ouvre pas ou ne s'efface pas totalement en position d'ouverture (R) lorsque les phares sont allumés (art. 21).",
+      "Une trappe de phare escamotable ou un couvre-phare (4) ne demeure pas bloqué en position d'ouverture (R) lorsque les phares sont allumés (art. 21)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-6",
+    "section": "Éclairage et Signalisation",
+    "component": "Phare de croisement",
+    "description": "Vérifier phare de croisement",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le véhicule routier n'est pas muni (A, GG, HH) d'au moins un phare de croisement (2) en bon état de fonctionnement (art. 163, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-7",
+    "section": "Éclairage et Signalisation",
+    "component": "Réflecteurs",
+    "description": "Vérifier réflecteurs",
+    "minorDefects": [
+      "Les réflecteurs (8) arrière ne sont pas rouges (X**) et aussi espacés que possible l'un de l'autre (DD) (art. 15).",
+      "Les réflecteurs (8) latéraux arrière ne sont pas rouges (X**) (art. 15).",
+      "Les réflecteurs (8) latéraux avant et centraux ne sont pas jaunes (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-8",
+    "section": "Éclairage et Signalisation",
+    "component": "Réflecteur",
+    "description": "Vérifier réflecteur",
+    "minorDefects": [
+      "Un réflecteur (8) requis par le Code est manquant (A), cassé (F), décoloré (J) ou peinturé (MM) (art. 18)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-9",
+    "section": "Éclairage et Signalisation",
+    "component": "Feu de position arrière",
+    "description": "Vérifier feu de position arrière",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le véhicule routier d’une seule unité ou le dernier véhicule d’un ensemble de véhicules routiers n’est pas muni (A, GG, HH) d’au moins un feu de position (6) arrière en bon état de fonctionnement (art. 163, 1.1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-10",
+    "section": "Éclairage et Signalisation",
+    "component": "Feu de freinage",
+    "description": "Vérifier feu de freinage",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le véhicule routier d’une seule unité ou le dernier véhicule d’un ensemble de véhicules routiers n’est pas muni (A, GG, HH) d’au moins un feu de freinage (11) en bon état de fonctionnement (art. 163, 1.1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-11",
+    "section": "Éclairage et Signalisation",
+    "component": "Feu de changement de direction arrière droit",
+    "description": "Vérifier feu de changement de direction arrière droit",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le véhicule routier d’une seule unité ayant un PNBV de 4 500 kg ou plus n’est pas muni (A, GG, HH) d’au moins un feu de changement de direction (7) en bon état de fonctionnement à l’arrière droit (art. 163, 1.2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-12",
+    "section": "Éclairage et Signalisation",
+    "component": "Feu de changement de direction arrière gauche",
+    "description": "Vérifier feu de changement de direction arrière gauche",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le véhicule routier d’une seule unité ayant un PNBV de 4 500 kg ou plus n’est pas muni (A, GG, HH) d’au moins un feu de changement de direction (7) en bon état de fonctionnement à l’arrière gauche (art. 163, 1.2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-13",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux de position avant",
+    "description": "Vérifier feux de position avant",
+    "minorDefects": [
+      "Les feux de position (6) avant ne sont pas jaunes ou blancs (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-14",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux de position latéraux avant et centraux",
+    "description": "Vérifier feux de position latéraux avant et centraux",
+    "minorDefects": [
+      "Les feux de position (6) latéraux avant et centraux ne sont pas jaunes (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-15",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux de position arrière et latéraux arrière",
+    "description": "Vérifier feux de position arrière et latéraux arrière",
+    "minorDefects": [
+      "Les feux de position (6) arrière et latéraux arrière ne sont pas rouges (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-16",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux de freinage",
+    "description": "Vérifier feux de freinage",
+    "minorDefects": [
+      "Les feux de freinage (11) ne sont pas rouges (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-17",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux de changement de direction avant",
+    "description": "Vérifier feux de changement de direction avant",
+    "minorDefects": [
+      "Les feux de changement de direction avant (7) ne sont pas jaunes ou blancs (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-18",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux de changement de direction arrière",
+    "description": "Vérifier feux de changement de direction arrière",
+    "minorDefects": [
+      "Les feux de changement de direction arrière (7) ne sont pas jaunes ou rouges (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-19",
+    "section": "Éclairage et Signalisation",
+    "component": "Lampe témoin",
+    "description": "Vérifier lampe témoin",
+    "minorDefects": [
+      "La lampe témoin (5*) ne s’allume pas (HH) (art. 15).",
+      "La lampe témoin (5*) ne s’allume pas (HH) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-20",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux de gabarit avant",
+    "description": "Vérifier feux de gabarit avant",
+    "minorDefects": [
+      "Les feux de gabarit (9) avant ne sont pas jaunes (X**), ne sont pas placés à la même hauteur (DD) ou sont situés à plus de 15 cm (6 po) des extrémités du véhicule (DD) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-21",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux de gabarit arrière",
+    "description": "Vérifier feux de gabarit arrière",
+    "minorDefects": [
+      "Les feux de gabarit (9) arrière ne sont pas rouges (X**), ne sont pas placés à la même hauteur (DD) ou sont situés à plus de 15 cm (6 po) des extrémités du véhicule (DD) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-22",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux d’identification avant",
+    "description": "Vérifier feux d’identification avant",
+    "minorDefects": [
+      "Les feux d’identification (10) avant ne sont pas jaunes (X**), ne sont pas placés horizontalement au centre (DD) et plus haut que le sommet du pare-brise (DD) ou ne sont pas espacés d’au moins 15 cm (6 po) et d’au plus 30 cm (12 po) l’un de l’autre (DD) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-23",
+    "section": "Éclairage et Signalisation",
+    "component": "Feux d’identification arrière",
+    "description": "Vérifier feux d’identification arrière",
+    "minorDefects": [
+      "Les feux d’identification arrière (10) ne sont pas rouges (X**), ne sont pas placés horizontalement au centre (DD) aussi près que possible du sommet du véhicule (DD) ou ne sont pas espacés d’au moins 15 cm (6 po) et d’au plus 30 cm (12 po) l’un de l’autre (DD) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-24",
+    "section": "Éclairage et Signalisation",
+    "component": "Feu de plaque d’immatriculation",
+    "description": "Vérifier feu de plaque d’immatriculation",
+    "minorDefects": [
+      "Le feu de plaque (15) ne s’allume pas (HH) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-25",
+    "section": "Éclairage et Signalisation",
+    "component": "Feu de recul",
+    "description": "Vérifier feu de recul",
+    "minorDefects": [
+      "Le feu de recul (14) ne s’allume pas (HH) ou n’est pas de couleur blanche (X**) (art. 15).",
+      "Si le feu est actionné par le levier de vitesses, ce dernier (14) ne s’éteint pas (IN**) lorsque le levier de vitesses n’est plus en marche arrière (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-26",
+    "section": "Éclairage et Signalisation",
+    "component": "Lumières d’éclairage du tableau de bord",
+    "description": "Vérifier lumières d’éclairage du tableau de bord",
+    "minorDefects": [
+      "Une des lumières d’éclairage du tableau de bord (16) ne s’allume pas (HH) (art. 22)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-27",
+    "section": "Éclairage et Signalisation",
+    "component": "Feu de jour",
+    "description": "Vérifier feu de jour",
+    "minorDefects": [
+      "Un feu de jour (3) est inadéquat (IN**) parce qu’il n’est pas de la bonne couleur ou ne s’allume pas (art. 19)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-28",
+    "section": "Éclairage et Signalisation",
+    "component": "Matériaux réfléchissants",
+    "description": "Vérifier matériaux réfléchissants",
+    "minorDefects": [
+      "Un des matériaux réfléchissants (20) requis par le Code est manquant (A), gravement endommagé (N) ou ne couvre pas la longueur requise (X**) (art. 15)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-29",
+    "section": "Éclairage et Signalisation",
+    "component": "Feu rouge intermittent, feu jaune d’avertissement alternatif ou feu clignotant alternatif rouge",
+    "description": "Vérifier feu rouge intermittent, feu jaune d’avertissement alternatif ou feu clignotant alternatif rouge",
+    "minorDefects": [
+      "Un feu rouge intermittent (13), un feu jaune d’avertissement alternatif (26) ou un feu clignotant alternatif rouge (27) est absent (A), n’est pas de la couleur appropriée (X**), ne s’allume pas (HH) ou ne clignote pas (R) (art. 15 et 75)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-30",
+    "section": "Éclairage et Signalisation",
+    "component": "Câble électrique, fiche, raccord, prise de courant ou interrupteur",
+    "description": "Vérifier câble électrique, fiche, raccord, prise de courant ou interrupteur",
+    "minorDefects": [
+      "Un câble électrique (21), une fiche (25), un raccord (25), une prise de courant (25) ou un interrupteur (19) est cassé (F**), éraillé (WW), fissuré (Q**), corrodé ou usé (WW**) au point de nuire au bon fonctionnement de l’élément qui y est rattaché (art. 17)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-31",
+    "section": "Éclairage et Signalisation",
+    "component": "Élément",
+    "description": "Vérifier élément",
+    "minorDefects": [
+      "Un élément (*) n’est pas solidement retenu (CC) à son point de fixation (art. 17)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-32",
+    "section": "Éclairage et Signalisation",
+    "component": "Câble électrique",
+    "description": "Vérifier câble électrique",
+    "minorDefects": [
+      "Un câble électrique (21) non relié à la masse n’est pas recouvert d’une gaine protectrice isolante (X**) (art. 17)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-33",
+    "section": "Éclairage et Signalisation",
+    "component": "Circuit",
+    "description": "Vérifier circuit",
+    "minorDefects": [
+      "Le fonctionnement d’un circuit (*) perturbe (AF**) celui d’un autre circuit (art. 16)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-34",
+    "section": "Éclairage et Signalisation",
+    "component": "Batterie",
+    "description": "Vérifier batterie",
+    "minorDefects": [
+      "La batterie (24) est mal fixée (CC) ou une de ses bornes (24) présente un dépôt excessif de corrosion (NA**) pouvant nuire à son bon fonctionnement (art. 77)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-35",
+    "section": "Éclairage et Signalisation",
+    "component": "Couvercle du coffre à batterie",
+    "description": "Vérifier couvercle du coffre à batterie",
+    "minorDefects": [
+      "Le couvercle (23) du coffre à batterie, si le véhicule en a été muni par le fabricant, est inadéquat (IN**) ou mal fixé (CC) (art. 77)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-36",
+    "section": "Éclairage et Signalisation",
+    "component": "Phares de route",
+    "description": "Vérifier phares de route",
+    "minorDefects": [
+      "L’alignement des phares de route (1) ne satisfait pas aux valeurs suivantes (L**) (art. 20) : - Le centre de la zone de haute intensité est à plus de 10 cm (4 po) à gauche ou à droite de la ligne verticale passant par le centre des phares. - Le centre de la zone est à plus de 10 cm (4 po) au-dessus ou au-dessous de la ligne horizontale passant par le centre des phares."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-37",
+    "section": "Éclairage et Signalisation",
+    "component": "Phares de croisement",
+    "description": "Vérifier phares de croisement",
+    "minorDefects": [
+      "L’alignement des phares de croisement (2) ne satisfait pas aux valeurs suivantes (L**) (art. 20) : - La limite gauche de la zone de haute intensité est à plus de 10 cm (4 po) à gauche ou à droite de la ligne verticale passant par le centre du phare. - La limite supérieure de la zone de haute intensité est à plus de 10 cm (4 po) au-dessus ou au-dessous de la ligne horizontale passant par le centre des phares."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-38",
+    "section": "Direction",
+    "component": "Élément de fixation de la direction",
+    "description": "Vérifier élément de fixation de la direction",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un élément de fixation (34*) de la direction est manquant (A**), fissuré (Q**) ou cassé (F**) (art. 167, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-39",
+    "section": "Direction",
+    "component": "Élément de la direction",
+    "description": "Vérifier élément de la direction",
+    "minorDefects": [
+      "Un élément de la direction (*), incluant ceux de l’essieu autovireur (*), est détérioré (WA**), endommagé (N**) ou usé (WW**) au point d’affecter la conduite du véhicule routier, fissuré (Q), cassé (F), mal fixé (CC), déplacé (EA), déformé (K), manquant (A) ou modifié (FF) (art. 103).",
+      "Un élément de la direction (*) est réparé de façon à ne plus assurer au véhicule les mêmes conditions de sécurité que celles prévues par le fabricant (W**) (art. 104)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-40",
+    "section": "Direction",
+    "component": "Roues avant",
+    "description": "Vérifier roues avant",
+    "minorDefects": [
+      "Les roues (33) avant présentent un défaut de parallélisme (MA**) visible à l’œil (art. 110)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-41",
+    "section": "Direction",
+    "component": "Direction assistée",
+    "description": "Vérifier direction assistée",
+    "minorDefects": [
+      "Jeu de 51 mm (2 po) (Z**) pour une direction (33) assistée (art. 107, 1°)."
+    ],
+    "majorDefects": [
+      "Jeu de 60 mm (2 3/8 po) (AA**) pour une direction (33) assistée (art. 167, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-42",
+    "section": "Direction",
+    "component": "Direction non assistée",
+    "description": "Vérifier direction non assistée",
+    "minorDefects": [
+      "Jeu de 75 mm (3 po) (Z**) pour une direction (33) non assistée (art. 107, 1°)."
+    ],
+    "majorDefects": [
+      "Jeu de 87 mm (3 1/2 po) (AA**) pour une direction (33) non assistée (art. 167, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-43",
+    "section": "Direction",
+    "component": "Direction à crémaillère",
+    "description": "Vérifier direction à crémaillère",
+    "minorDefects": [
+      "Jeu de 10 mm (3/8 po) (Z**) pour une direction (33) à crémaillère assistée ou non (art. 107, 1°)."
+    ],
+    "majorDefects": [
+      "Jeu de 15 mm (5/8 po) (AA**) pour une direction (33) à crémaillère (art. 167, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-44",
+    "section": "Direction",
+    "component": "Volant (diamètre 500 mm et moins)",
+    "description": "Vérifier volant (diamètre 500 mm et moins)",
+    "minorDefects": [
+      "Jeu de 75 mm (3 po) (Z**) pour un volant (33) ayant un diamètre de 500 mm (20 po) et moins (art. 107, 2°)."
+    ],
+    "majorDefects": [
+      "Jeu de 87 mm (3 1/2 po) (AA**) pour un volant (33) ayant un diamètre de 500 mm (20 po) et moins (art. 167, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-45",
+    "section": "Direction",
+    "component": "Volant (diamètre plus de 500 mm)",
+    "description": "Vérifier volant (diamètre plus de 500 mm)",
+    "minorDefects": [
+      "Jeu de 87 mm (3 1/2 po) (Z**) pour un volant (33) ayant un diamètre de plus de 500 mm (20 po) (art. 107, 2°)."
+    ],
+    "majorDefects": [
+      "Jeu de 100 mm (4 po) (AA**) pour un volant (33) ayant un diamètre de plus de 500 mm (20 po) (art. 167, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-46",
+    "section": "Direction",
+    "component": "Volant",
+    "description": "Vérifier volant",
+    "minorDefects": [
+      "Le volant (35) original a été remplacé par un volant qui a un diamètre extérieur inférieur à 30 cm (12 po) ou une surface irrégulière (W**) (art. 109).",
+      "Le volant (35) est déformé (K), fissuré (Q), cassé (F) ou modifié (FF) (art. 103, 109).",
+      "Le volant (35) est mal fixé (CC) (art. 103).",
+      "Il y a une différence de plus d’un demi-tour entre le nombre de tours de volant (33) du centre jusqu’à la butée de gauche et de droite (BB**) (art. 109)."
+    ],
+    "majorDefects": [
+      "Le volant (35) se déplace par rapport à sa position normale et il y a un risque de séparation (AE) (art. 167, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-47",
+    "section": "Direction",
+    "component": "Volant ajustable",
+    "description": "Vérifier volant ajustable",
+    "minorDefects": [
+      "Le volant (36) ne demeure pas à la position choisie (GG**) (volant ajustable) (art. 103)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-48",
+    "section": "Direction",
+    "component": "Colonne de direction",
+    "description": "Vérifier colonne de direction",
+    "minorDefects": [
+      "La colonne de direction (38) est mal fixée (CC) (art. 105, 1°)."
+    ],
+    "majorDefects": [
+      "La colonne de direction (38) se déplace par rapport à sa position normale et il y a un risque de séparation (AE) (art. 167, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-49",
+    "section": "Direction",
+    "component": "Boulon de la colonne",
+    "description": "Vérifier boulon de la colonne",
+    "minorDefects": [
+      "Un boulon (34*) est manquant (A) ou relâché (EE) (art. 105, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-50",
+    "section": "Direction",
+    "component": "Articulation ou joint coulissant de l’arbre de direction",
+    "description": "Vérifier articulation ou joint coulissant de l’arbre de direction",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une articulation (37) ou un joint coulissant (39) de l’arbre de direction présente un risque de rupture imminente (AE) (art. 167, 2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-51",
+    "section": "Direction",
+    "component": "Boîtier de direction ou crémaillère",
+    "description": "Vérifier boîtier de direction ou crémaillère",
+    "minorDefects": [
+      "Le boîtier de direction (40) ou la crémaillère (57) est mal fixé (CC) (art. 105, 1°).",
+      "Il y a une fuite (T) d’huile autre qu’un léger suintement (40, 57) (art. 108)."
+    ],
+    "majorDefects": [
+      "Le boîtier de direction (40) ou la crémaillère (57) se déplace par rapport à sa position normale et il y a un risque de séparation (AE) (art. 167, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-52",
+    "section": "Direction",
+    "component": "Articulation de l’arbre de direction",
+    "description": "Vérifier articulation de l’arbre de direction",
+    "minorDefects": [
+      "Une articulation (37) de l’arbre de direction présente un jeu (Z**), est détériorée (WA) ou a été réparée par soudage (RR) (art. 105, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-53",
+    "section": "Direction",
+    "component": "Joint coulissant de l’arbre de direction",
+    "description": "Vérifier joint coulissant de l’arbre de direction",
+    "minorDefects": [
+      "Un joint coulissant (39) de l’arbre de direction a un jeu (Z**) en rotation entre les cannelures excédant 1,2 mm (0,05 po) ou un jeu horizontal ou vertical de plus de 6,4 mm (1/4 po) (art. 105, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-54",
+    "section": "Direction",
+    "component": "Dispositif d’absorption d’énergie",
+    "description": "Vérifier dispositif d’absorption d’énergie",
+    "minorDefects": [
+      "Le dispositif d’absorption d’énergie (39) dont est équipée la colonne de direction est endommagé (N) ou modifié (FF**) (art. 105, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-55",
+    "section": "Direction",
+    "component": "Pneu",
+    "description": "Vérifier pneu",
+    "minorDefects": [
+      "Il y a un dégagement (X**) inférieur à 25 mm (1 po) entre le pneu et le châssis, la carrosserie ou la timonerie de direction lors de tout mouvement de la direction (33) (art. 109)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-56",
+    "section": "Direction",
+    "component": "Butée de direction",
+    "description": "Vérifier butée de direction",
+    "minorDefects": [
+      "Une butée de direction (56) est absente (A) (art. 109).",
+      "Il y a un jeu (BB**) de plus de 6,4 mm (1/4 po) entre la butée (56) et son point de contact lorsque le volant est tourné à son maximum (art. 109)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-57",
+    "section": "Direction",
+    "component": "Pièce de fixation",
+    "description": "Vérifier pièce de fixation",
+    "minorDefects": [
+      "Une pièce de fixation (34*) est déformée (K) ou a été réparée par soudage (RR) (art. 103)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-58",
+    "section": "Direction",
+    "component": "Élément de la timonerie",
+    "description": "Vérifier élément de la timonerie",
+    "minorDefects": [
+      "Un élément de la timonerie (*) est détérioré (WA) au point d’affecter la conduite du véhicule routier, déformé (K) ou inadéquat (IN**) (art. 103)."
+    ],
+    "majorDefects": [
+      "Un élément de la timonerie (*) est fissuré (Q), cassé (F) ou a été réparé par soudage (RR) (art. 167, 5°).",
+      "Un élément de la timonerie (*) est endommagé (N**) ou mal fixé (CC**) au point de modifier le parallélisme des roues (art. 167, 5°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-59",
+    "section": "Direction",
+    "component": "Articulation ou raccord de direction",
+    "description": "Vérifier articulation ou raccord de direction",
+    "minorDefects": [
+      "Une articulation (43) ou un raccord (*) de direction présente un jeu (Z) dans le sens du mouvement ou de la force appliquée (art. 106)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-60",
+    "section": "Direction",
+    "component": "Articulation à rotule de la timonerie",
+    "description": "Vérifier articulation à rotule de la timonerie",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une articulation à rotule (*) de la timonerie présente un jeu (AA**) excédant 3,2 mm (1/8 po) dans le sens du mouvement ou de la force appliquée (art. 167, 6°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-61",
+    "section": "Direction",
+    "component": "Pivot de fusée",
+    "description": "Vérifier pivot de fusée",
+    "minorDefects": [
+      "Le pivot de fusée (52) est grippé (U) (art. 103)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-62",
+    "section": "Direction",
+    "component": "Support de fusée et essieu",
+    "description": "Vérifier support de fusée et essieu",
+    "minorDefects": [
+      "Le jeu vertical mesuré entre un support de fusée (52) et un essieu excède la valeur maximale prévue par le fabricant ou, à défaut de normes, 2,5 mm (3/32 po) (Z**) (art. 113)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-63",
+    "section": "Direction",
+    "component": "Pivot de fusée (diamètre de jante inférieur à 510 mm)",
+    "description": "Vérifier pivot de fusée (diamètre de jante inférieur à 510 mm)",
+    "minorDefects": [
+      "Le jeu horizontal d’un pivot de fusée (52) mesuré à la circonférence extérieure d’un pneu excède la valeur maximale prévue par le fabricant ou, à défaut de normes, 3,2 mm (1/8 po) (Z**) pour un diamètre de jante inférieur à 510 mm (20 po) (art. 113, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-64",
+    "section": "Direction",
+    "component": "Pivot de fusée (diamètre de jante de 510 mm et plus)",
+    "description": "Vérifier pivot de fusée (diamètre de jante de 510 mm et plus)",
+    "minorDefects": [
+      "Le jeu horizontal d’un pivot de fusée (52) mesuré à la circonférence extérieure d’un pneu excède la valeur maximale prévue par le fabricant ou, à défaut de normes, 4,8 mm (3/16 po) (Z**) pour un diamètre de jante de 510 mm (20 po) et plus (art. 113, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-65",
+    "section": "Direction",
+    "component": "Rotule",
+    "description": "Vérifier rotule",
+    "minorDefects": [
+      "Le jeu (46) vertical ou horizontal mesuré excède celui déterminé par le fabricant (W**) (art. 112)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-66",
+    "section": "Direction",
+    "component": "Rotule avec indicateur d’usure",
+    "description": "Vérifier rotule avec indicateur d’usure",
+    "minorDefects": [
+      "Dans le cas d’une rotule (46) avec indicateur d’usure, la position de l’indicateur n’est pas dans les limites spécifiées par le fabricant (W**) (art. 112)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-67",
+    "section": "Direction",
+    "component": "Rotule reliée à un bras de suspension",
+    "description": "Vérifier rotule reliée à un bras de suspension",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une rotule (46) reliée à un bras de suspension présente un jeu qui excède de 50 % la norme du fabricant (W**) ou est susceptible de sortir de son logement à la suite d’un choc (AE) (art. 167, 8°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-68",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément du cadre",
+    "description": "Vérifier élément du cadre",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un élément du cadre (*) est cassé, fissuré ou affaissé et provoque le contact (AC**) d’une pièce mobile avec la carrosserie (art. 169, 1°).",
+      "Un élément du cadre (*) est fissuré (Q**) ou cassé (F**) et nuit ainsi au bon fonctionnement ou à la solidité d’un élément de la direction, de la suspension, du dispositif d’attelage, du moteur ou de la transmission (art. 169, 2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-69",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Longeron",
+    "description": "Vérifier longeron",
+    "minorDefects": [
+      "Un longeron (194, 195, 196) est cassé (F) dans une partie sans contrainte, fissuré (Q), déformé (K**), perforé par la rouille (NN) ou présente une réparation (FF**) ou une modification (FF**) qui affaiblit la structure du véhicule routier (art. 98)."
+    ],
+    "majorDefects": [
+      "Il y a un risque de rupture (AE) imminente d’un longeron (194, 195, 196) (art. 169, 1°).",
+      "Il y a une fissure (Q**) de 38 mm (1 1/2 po) ou plus dans la partie verticale du longeron (196) (âme) ou une fissure (Q**) de 25 mm (1 po) ou plus dans la partie horizontale inférieure du longeron (196) (semelle) (art. 169, 3°).",
+      "Il y a une fissure (Q**) qui commence dans la partie horizontale inférieure (semelle) d’un longeron (196) et qui se prolonge dans la partie verticale d’un longeron (âme) (art. 169, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-70",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Solive",
+    "description": "Vérifier solive",
+    "minorDefects": [
+      "Une solive (206) est manquante (A), mal fixée (CC), détériorée (N), fissurée (Q), cassée (F) ou déformée (K) (art. 99)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-71",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Membrure",
+    "description": "Vérifier membrure",
+    "minorDefects": [
+      "Une membrure (193) est manquante (A), mal fixée (CC), fissurée (Q), cassée (F), déformée (K), perforée (NN) par la rouille, mal assemblée (MI) ou présente une réparation (FF**) ou une modification (FF**) qui affaiblit la structure du véhicule routier (art. 98)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-72",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément",
+    "description": "Vérifier élément",
+    "minorDefects": [
+      "Un élément (*) est manquant (A), inopérant (V), mal fixée (CC), détérioré (N), fissuré (Q), cassé (F) ou déformé (K) (art. 99)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-73",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Traverse",
+    "description": "Vérifier traverse",
+    "minorDefects": [
+      "Une traverse (197) est absente (A), mal fixée (CC), fissurée (Q), cassée (F), mal assemblée (MI), déformée (K), perforée par la rouille (NN) ou présente une réparation (FF**) ou une modification (FF**) qui affaiblit la structure du véhicule routier (art. 98)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-74",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Arbre de transmission",
+    "description": "Vérifier arbre de transmission",
+    "minorDefects": [
+      "L’arbre de transmission (200) est inadéquat (IN), tordu (P), mal fixé(CC), faussé (P) ou fissuré (Q) (art. 100)."
+    ],
+    "majorDefects": [
+      "L’arbre de transmission (200) est mal fixé, faussé ou fissuré au point qu’il risque de se détacher du véhicule (AE**) (art. 169, 7.1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-75",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Joint universel",
+    "description": "Vérifier joint universel",
+    "minorDefects": [
+      "Un joint universel (208) est mal fixé (CC) ou présente un jeu perceptible (Z) (art. 100)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-76",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Joint coulissant, palier intermédiaire ou support",
+    "description": "Vérifier joint coulissant, palier intermédiaire ou support",
+    "minorDefects": [
+      "Le joint coulissant (202), le palier intermédiaire (205) ou son support (205) est inadéquat (IN) (art. 100)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-77",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Protège-arbre",
+    "description": "Vérifier protège-arbre",
+    "minorDefects": [
+      "Le protège-arbre (207) est absent (A) ou mal fixé (CC) (art. 100)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-78",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément délimitant l’espace de chargement",
+    "description": "Vérifier élément délimitant l’espace de chargement",
+    "minorDefects": [
+      "Un élément délimitant l’espace de chargement, tel qu’un panneau (221), une ridelle (222) , un poteau (220), un potelet (220), un arceau de toit (219) ou une plateforme (223), n’est pas solidement fixé (CC) ou est incapable de supporter les charges maximales déterminées par règlement (B) (art. 101, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-79",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément de fixation",
+    "description": "Vérifier élément de fixation",
+    "minorDefects": [
+      "Un élément de fixation tel qu’un support (225), une attache (224), un boulon (224) ou une butée (226) est usé (WW**) ou corrodé (NA**) au point d’affaiblir sa capacité, est manquant (A), mal fixé (CC), fissuré (Q), brisé (D) ou lâche (EE) (art. 101, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-80",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Mécanisme de levage ou de soutien",
+    "description": "Vérifier mécanisme de levage ou de soutien",
+    "minorDefects": [
+      "Un élément du mécanisme de levage ou de soutien (175) d’une remorque ou d’une semi-remorque ayant un PNBV de 4 500 kg ou plus est inadéquat (IN**), présente une usure excessive (WW) ou est mal fixé (CC) (art. 41 et 101, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-81",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Mécanisme ou pièces de réglage",
+    "description": "Vérifier mécanisme ou pièces de réglage",
+    "minorDefects": [
+      "Le mécanisme ou les pièces de réglage (175) n’assurent pas un blocage adéquat des éléments (IN**) (art. 101, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-82",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Cadre du train roulant coulissant",
+    "description": "Vérifier cadre du train roulant coulissant",
+    "minorDefects": [
+      "Un élément du cadre (*) est fissuré (Q), déformé (K), perforé par la rouille (NN) ou présente une réparation (FF**) ou une modification (FF**) qui affaiblit la structure du véhicule routier (art. 98)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-83",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Longeron du train roulant coulissant",
+    "description": "Vérifier longeron du train roulant coulissant",
+    "minorDefects": [],
+    "majorDefects": [
+      "Il y a un risque de rupture imminente (AE) d’un longeron (194, 195, 196) (art. 169, 1°).",
+      "Un élément du cadre (*) est cassé, fissuré ou affaissé et provoque le contact (AC**) d’une pièce mobile avec la carrosserie (art. 169, 1°).",
+      "Il y a une fissure (Q**) de 38 mm (1 1/2 po) ou plus dans la partie verticale du longeron (196) (âme) ou une fissure (Q**) de 25 mm (1 po) ou plus dans la partie horizontale inférieure du longeron (196) (semelle) (art. 169, 3°).",
+      "Il y a une fissure (Q**) qui commence dans la partie horizontale inférieure du longeron (196) (semelle) et qui se prolonge dans la partie verticale du longeron (196) (âme) (art. 169, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-84",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Butée du train roulant coulissant",
+    "description": "Vérifier butée du train roulant coulissant",
+    "minorDefects": [
+      "Une butée (192) est manquante (A), fissurée (Q) ou cassée (F) (art. 101, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-85",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Système de verrouillage ou élément de fixation du train roulant coulissant",
+    "description": "Vérifier système de verrouillage ou élément de fixation du train roulant coulissant",
+    "minorDefects": [
+      "Le système de verrouillage (190) ou un élément de fixation (203) est manquant (A), inopérant (V), mal fixé (CC), endommagé (N), fissuré (Q), cassé (F), grippé (U) ou coincé (U) (art. 101, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-86",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Goupilles de blocage du train roulant coulissant",
+    "description": "Vérifier goupilles de blocage du train roulant coulissant",
+    "minorDefects": [],
+    "majorDefects": [
+      "Plus de 25 % des goupilles de blocage (191) du train roulant coulissant sont absentes (A**) ou ne sont pas en prise (V**) (art. 169, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-87",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Plaque d’attelage",
+    "description": "Vérifier plaque d’attelage",
+    "minorDefects": [
+      "La plaque d’attelage (172) est courbée vers le bas (X**) de plus de 6,4 mm (1/4 po) ou vers le haut (X**) de plus de 1,6 mm (1/16 po) lorsque mesurée à l’intérieur d’un rayon de 483 mm (19 po) du pivot d’attelage (art. 101, 5°).",
+      "La plaque d’attelage (172) est corrodée (NA**) ou usée (WW**) au point que sa résistance est affaiblie ou que sa fixation au véhicule est compromise (art. 101, 5°)."
+    ],
+    "majorDefects": [
+      "La plaque d’attelage (172) est déformée (K**) de façon à nuire à l’attelage, fissurée (Q) ou mal fixée (CC) (art. 169, 5°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-88",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Pivot d’attelage",
+    "description": "Vérifier pivot d’attelage",
+    "minorDefects": [
+      "Le pivot (173) n’est pas à angle droit dans toutes les directions (X**) avec la plaque d’attelage (art. 101, 5°).",
+      "Le pivot (173) a été réparé par soudage (RR) (art. 101, 5°).",
+      "Le pivot (173) présente une usure (WW**) supérieure à 3,2 mm (1/8 po) à un endroit quelconque de son diamètre (art. 101, 5°)."
+    ],
+    "majorDefects": [
+      "Le pivot d’attelage (173) est déformé (K**) de façon à nuire à l’attelage, fissuré (Q) ou mal fixé (CC) (art. 169, 5°).",
+      "Le pivot d’attelage (173) est mal enclenché (WB) (art. 169, 6°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-89",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Plateforme tournante",
+    "description": "Vérifier plateforme tournante",
+    "minorDefects": [
+      "La plateforme tournante (172*) est mal fixée (CC), ne tourne pas librement sur ses roulements (U) ou présente un jeu vertical supérieur (Z**) à 6,4 mm (1/4 po) (art. 101, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-90",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément de la sellette d’attelage",
+    "description": "Vérifier élément de la sellette d’attelage",
+    "minorDefects": [
+      "Un élément de la sellette d’attelage (171*, 174*) est manquant (A), fissuré (Q), cassé (F), déformé (K), mal fixé (CC) ou inopérant (V) (101, 6°)."
+    ],
+    "majorDefects": [
+      "Un élément de la sellette d’attelage (174*) est mal fixé (CC**), fissuré (Q**), cassé (F**), usé (WW**), déformé (K**), manquant (A**), détérioré (N**), mal ajusté (BB**) au point qu’il y a risque de rupture ou de séparation (art. 169, 7°d).",
+      "Un élément (171*, 174, 176) de la sellette d’attelage qui porte une charge ou qui est soumis à des contraintes en tension ou en cisaillement est fissuré (Q), cassé (F) ou réparé par soudage (RR) (art. 169, 7°b)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-91",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément d’assemblage du dispositif d’attelage",
+    "description": "Vérifier élément d’assemblage du dispositif d’attelage",
+    "minorDefects": [
+      "Il y a un déplacement (Z) entre un élément d’assemblage (174*) du dispositif d’attelage et le châssis du véhicule routier (art. 169, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-92",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Support du plateau d’accouplement",
+    "description": "Vérifier support du plateau d’accouplement",
+    "minorDefects": [
+      "Un support (176) du plateau d’accouplement est fissuré (Q), cassé (F), mal fixé (CC) ou présente une réparation par soudage non prévue par le fabricant (RR) (art. 101, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-93",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Éléments de fixation de la sellette d’attelage",
+    "description": "Vérifier éléments de fixation de la sellette d’attelage",
+    "minorDefects": [
+      "Un ou des éléments de fixation (171) de la sellette d’attelage sont manquants (A), cassés (F) ou desserrés (EE) (art. 101, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-94",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Boulon",
+    "description": "Vérifier boulon",
+    "minorDefects": [
+      "Un boulon (171) est de classe inférieure à 8 (X**) alors que le véhicule tracté est une semi-remorque ayant un PNBV de 4 500 kg (9 921 lb) ou plus (art. 101, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-95",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Éléments de fixation du dispositif d’attelage",
+    "description": "Vérifier éléments de fixation du dispositif d’attelage",
+    "minorDefects": [
+      "Un ou des éléments de fixation du dispositif d’attelage (171) sont manquants (A), cassés (F) ou desserrés (EE) (art. 102, 2°)."
+    ],
+    "majorDefects": [
+      "Plus de 20 % des éléments de fixation (171) sont manquants (A**), cassés (F**) ou desserrés (EE**) sur un élément du dispositif d’attelage (art. 169, 7°e).",
+      "Il y a plus de 20 % des éléments de fixation (171) du dispositif d’attelage qui sont manquants (A**), cassés (F**) ou desserrés (EE**) (art. 169, 7°e)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-96",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Mécanisme de serrage des mâchoires ou mécanisme de verrouillage",
+    "description": "Vérifier mécanisme de serrage des mâchoires ou mécanisme de verrouillage",
+    "minorDefects": [
+      "Un élément du mécanisme de serrage des mâchoires (174*) ou un élément du mécanisme de verrouillage (181*) est usé (WW**) ou mal ajusté (BB**) au point de nuire à son bon fonctionnement, est manquant (A), grippé (U), fissuré (Q), cassé (F), mal fixé (CC) ou réparé par soudage (RR) (art. 101, 6°)."
+    ],
+    "majorDefects": [
+      "Un élément du mécanisme de serrage des mâchoires (174*) ou un élément du mécanisme de verrouillage (181*) est fissuré (Q), cassé (F) ou réparé par soudage (RR) (art. 169, 7°b).",
+      "Un élément du mécanisme de serrage des mâchoires (174*) ou un élément du mécanisme de verrouillage (181*) est mal fixé (CC), usé (WW), déformé (K), manquant (A), détérioré (N) ou mal ajusté (BB**) (art. 169, 7°d)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-97",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Mâchoires et pivot d’attelage",
+    "description": "Vérifier mâchoires et pivot d’attelage",
+    "minorDefects": [
+      "Le jeu (Z**) horizontal entre les mâchoires (174) et le pivot d’attelage excède 6,4 mm (1/4 po) (art. 101, 7°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-98",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Pivot d’attelage et mâchoires",
+    "description": "Vérifier pivot d’attelage et mâchoires",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le jeu horizontal (AA**) entre le pivot d’attelage et les mâchoires (174) est supérieur à 12,8 mm (1/2 po) (art. 169, 6°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-99",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Plateau d’accouplement",
+    "description": "Vérifier plateau d’accouplement",
+    "minorDefects": [
+      "Le plateau d’accouplement (174) est fissuré (Q), cassé (F), déformé (K) ou réparé par soudage (RR) (art. 101, 7°)."
+    ],
+    "majorDefects": [
+      "Il y a une fissure (Q), une cassure (F) ou une soudure (RR) sur une partie du plateau d’accouplement (174) qui porte une charge ou qui est soumise à des contraintes de tension ou de cisaillement (art. 169, 7°b)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-100",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Axes du plateau",
+    "description": "Vérifier axes du plateau",
+    "minorDefects": [
+      "Les axes du plateau (176) présentent un jeu (Z**) horizontal de plus de 9,5 mm (3/8 po) ou un jeu (Z**) vertical de plus de 12,8 mm (1/2 po) (art. 101, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-101",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Butée avant ou arrière (sellette d’attelage coulissante)",
+    "description": "Vérifier butée avant ou arrière (sellette d’attelage coulissante)",
+    "minorDefects": [
+      "Une butée (184) avant ou arrière est absente (A) ou mal fixée (CC) (art. 101, 9°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-102",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Glissière (sellette d’attelage coulissante)",
+    "description": "Vérifier glissière (sellette d’attelage coulissante)",
+    "minorDefects": [
+      "Une glissière (176*) est fissurée (Q), cassée (F), déformée (N) ou mal fixée (CC) (art. 101, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-103",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Système de verrouillage des glissières",
+    "description": "Vérifier système de verrouillage des glissières",
+    "minorDefects": [
+      "Le système de verrouillage des glissières (181) est inadéquat (IN**) ou permet un déplacement (Z**) latéral, vertical ou longitudinal de plus de 6,4 mm (1/4 po) en position verrouillé (art. 101, 9°)."
+    ],
+    "majorDefects": [
+      "Il y a un jeu (AA**) longitudinal de plus de 9,5 mm (3/8 po) dans le système de verrouillage des glissières (181) (art. 169, 7°a)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-104",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Goupilles de blocage d’une sellette d’attelage coulissante",
+    "description": "Vérifier goupilles de blocage d’une sellette d’attelage coulissante",
+    "minorDefects": [],
+    "majorDefects": [
+      "Il y a 25 % ou plus des goupilles de blocage (183) d’une sellette d’attelage coulissante qui sont manquantes (A**) ou inopérantes (V) (art. 169, 7°a)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-105",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément du dispositif d’attelage",
+    "description": "Vérifier élément du dispositif d’attelage",
+    "minorDefects": [
+      "Un élément du dispositif d’attelage (*) est usé (WW**) au point de nuire au bon fonctionnement du dispositif, fissuré (Q), cassé (F), déformé (K), manquant (A) ou grippé (U) (art. 102, 2°)."
+    ],
+    "majorDefects": [
+      "Un élément du dispositif d’attelage (170*) est mal fixé (CC**), fissuré (Q**), cassé (F**), usé (WW**), déformé (K**), manquant (A**), détérioré (WA**) ou mal ajusté (BB**) au point qu’il y a risque de rupture ou de séparation (art. 169, 7°d)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-106",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Boulons de fixation du dispositif d’attelage",
+    "description": "Vérifier boulons de fixation du dispositif d’attelage",
+    "minorDefects": [
+      "Les boulons (171) utilisés pour la fixation du dispositif d’attelage ne sont pas au moins de la classe SAE 8 ou l’équivalent (X**) pour tirer une remorque d’un PNBV de 4 500 kg (9 921lb) ou plus (art. 102, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-107",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Assemblage ou réparation sur un dispositif d’attelage",
+    "description": "Vérifier assemblage ou réparation sur un dispositif d’attelage",
+    "minorDefects": [
+      "Un assemblage ou une réparation (FF**) effectuée sur un dispositif d’attelage (*) n’assure pas les mêmes conditions de sécurité que celles prévues par le fabricant (art. 102, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-108",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Pièce coulée ou forgée",
+    "description": "Vérifier pièce coulée ou forgée",
+    "minorDefects": [
+      "Il y a présence d’une réparation par soudage (RR*) sur une pièce coulée ou forgée (*) (art. 102, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-109",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément d’un dispositif d’attelage",
+    "description": "Vérifier élément d’un dispositif d’attelage",
+    "minorDefects": [],
+    "majorDefects": [
+      "Il y a une fissure (Q), une soudure (RR) ou une cassure (F) sur la partie d’un élément d’un dispositif d’attelage (*) qui porte une charge ou qui est soumis à des contraintes en tension ou en cisaillement (art. 169, 7°b)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-110",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Verrou (crochet ou main)",
+    "description": "Vérifier verrou (crochet ou main)",
+    "minorDefects": [
+      "Le verrou (181*) est inadéquat (IN**), mal adapté (W**), grippé (U) ou usé (WW), présente un jeu excessif (AA) ou ne s’enclenche pas correctement (R) (art. 102, 2° et 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-111",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Système de verrouillage (crochet et anneau)",
+    "description": "Vérifier système de verrouillage (crochet et anneau)",
+    "minorDefects": [
+      "Dans le cas d’un dispositif à crochet et anneau, le système de verrouillage (181*) n’est pas muni d’une double barrure (X**) (art. 102, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-112",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Crochet ou anneau d’attelage",
+    "description": "Vérifier crochet ou anneau d’attelage",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le crochet (180) ou l’anneau d’attelage (182) présente une usure (WW**) qui excède 9,5 mm (3/8 po) au point de contact (art. 169, 7°c)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-113",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Anneau d’attelage ou crochet",
+    "description": "Vérifier anneau d’attelage ou crochet",
+    "minorDefects": [
+      "L’anneau d’attelage (182) ou le crochet (180) est fissuré (Q), cassé (F), déformé (N), a été réparé par soudage (RR) (art. 102, 2° et 4°).",
+      "L’anneau d’attelage (182) ou le crochet (180) présente une usure (WW**) de plus de 4,8 mm (3/16 po) au point de contact pour chacun (art. 102, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-114",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Dispositif compensateur de jeu pneumatique",
+    "description": "Vérifier dispositif compensateur de jeu pneumatique",
+    "minorDefects": [
+      "Si le crochet est muni d’un dispositif compensateur de jeu (186) pneumatique, ce dernier présente une fuite (T) d’air (art. 102, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-115",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Timon d’attelage",
+    "description": "Vérifier timon d’attelage",
+    "minorDefects": [
+      "Le timon d’attelage (185) est plié (K), brisé (D) ou fissuré (Q) (art. 102, 7°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-116",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Élément du timon d’attelage",
+    "description": "Vérifier élément du timon d’attelage",
+    "minorDefects": [
+      "Un élément (185*) du timon d’attelage est usé (W**) au point de ne plus avoir la résistance mécanique nécessaire, est manquant (A) ou mal fixé (CC) (art. 102, 7°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-117",
+    "section": "Cadre, Dessous de Caisse, Espace de Chargement et Dispositif d’Attelage",
+    "component": "Attache de sûreté ou raccord",
+    "description": "Vérifier attache de sûreté ou raccord",
+    "minorDefects": [
+      "Une attache de sûreté ou un raccord (177) est manquant (A), usé (WW), éraillé (G), fissuré (Q), cassé (F), brisé (D), corrodé (NA), lâche (EE), mal fixé (CC) ou inadéquat (IN**) (art. 102, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-118",
+    "section": "Suspension",
+    "component": "Élément de la suspension",
+    "description": "Vérifier élément de la suspension",
+    "minorDefects": [
+      "Un élément de la suspension (*) est manquant (A), inadéquat (IN**) ou mal fixé (CC) (art. 115, 1°).",
+      "Un élément de la suspension (*) est usé (WW**), détérioré (WA**) ou endommagé (N**) au point de nuire au bon fonctionnement de la suspension (art. 115, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-119",
+    "section": "Suspension",
+    "component": "Élément de fixation de l’essieu au véhicule routier",
+    "description": "Vérifier élément de fixation de l’essieu au véhicule routier",
+    "minorDefects": [
+      "Un élément de fixation (*) de l’essieu au véhicule routier est déplacé (EA), déformé (K) ou présente une soudure autre que celles du fabricant (RR) (art. 115, 2°)."
+    ],
+    "majorDefects": [
+      "Un élément de fixation (*) de l’essieu au véhicule routier est manquant (A), mal fixé (CC), fissuré (Q) ou cassé (F) (art. 168, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-120",
+    "section": "Suspension",
+    "component": "Élément de localisation de l’essieu ou de la roue au véhicule routier",
+    "description": "Vérifier élément de localisation de l’essieu ou de la roue au véhicule routier",
+    "minorDefects": [
+      "Un élément de localisation (*) de l’essieu ou de la roue au véhicule routier est fissuré (Q), cassé (F), mal fixé (CC), manquant (A), déplacé (EA), déformé (K) ou présente une soudure autre que celles du fabricant (RR) (art. 115, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-121",
+    "section": "Suspension",
+    "component": "Réparation",
+    "description": "Vérifier réparation",
+    "minorDefects": [
+      "Une réparation (*) n’assure pas le même degré de sécurité que lors de la fabrication du véhicule (W**) (art. 115, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-122",
+    "section": "Suspension",
+    "component": "Essieu",
+    "description": "Vérifier essieu",
+    "minorDefects": [
+      "Un essieu (81) est déformé (K), réparé par soudage (RR), mal aligné (MA) ou non perpendiculaire à l’axe longitudinal du véhicule (X**) (art. 115, 5°)."
+    ],
+    "majorDefects": [
+      "Un essieu (81) est fissuré (Q) ou cassé (F) (art. 168, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-123",
+    "section": "Suspension",
+    "component": "Suspension",
+    "description": "Vérifier suspension",
+    "minorDefects": [
+      "La suspension (74) permet le contact (N**) entre un pneu et la carrosserie ou le châssis (art. 115, 6°).",
+      "La suspension (74) est affaissée (AD**) de façon à abaisser la hauteur d’un côté du véhicule de plus de 5 cm (2 po) par rapport à l’autre ou à permettre le contact avec la butée de débattement (AD**) (art. 116)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-124",
+    "section": "Suspension",
+    "component": "Lame de ressort",
+    "description": "Vérifier lame de ressort",
+    "minorDefects": [
+      "Une lame de ressort (83) est fissurée (Q), cassée (F), mal fixée (CC), manquante (A), réparée par soudage (RR) ou déplacée (EA) (art. 115, 2° et 116)."
+    ],
+    "majorDefects": [
+      "Une lame de ressort (83) s’est déplacée (AC**) de façon à être en contact avec une pièce en mouvement (art. 168, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-125",
+    "section": "Suspension",
+    "component": "Éléments fixant une citerne à son groupe d’essieux",
+    "description": "Vérifier éléments fixant une citerne à son groupe d’essieux",
+    "minorDefects": [
+      "Plus de 25 % des éléments (94) fixant une citerne à son groupe d’essieux sont manquants (A) ou inefficaces (V) sur un élément d’ancrage (art.168, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-126",
+    "section": "Suspension",
+    "component": "Lame maîtresse ou lames de ressort",
+    "description": "Vérifier lame maîtresse ou lames de ressort",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une lame maîtresse (93) ou 25 % et plus des lames de ressort (83) de l’assemblage sont cassées (F**) ou manquantes (A**) (art. 168, 2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-127",
+    "section": "Suspension",
+    "component": "Lame de ressort en composite",
+    "description": "Vérifier lame de ressort en composite",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une lame de ressort en composite (104) est fissurée sur plus de 75 % de sa longueur (Q**) (art. 168, 3.1°).",
+      "Une lame de ressort en composite (104) comporte une intersection de fissures (Q**) (art. 168, 3.1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-128",
+    "section": "Suspension",
+    "component": "Coussin de caoutchouc",
+    "description": "Vérifier coussin de caoutchouc",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un coussin de caoutchouc (85) (autre qu’une butée) est cassé (F) ou manquant (A) (art. 168, 2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-129",
+    "section": "Suspension",
+    "component": "Ressort hélicoïdal",
+    "description": "Vérifier ressort hélicoïdal",
+    "minorDefects": [
+      "Un ressort hélicoïdal (75) est cassé (F), mal fixé (CC) ou a été modifié par l’ajout de cales d’espacement entre les spirales (FF**) (art. 115, 1° et 116)."
+    ],
+    "majorDefects": [
+      "Un ressort hélicoïdal (75) est cassé (F**) au point que le véhicule est complètement affaissé (art. 168, 4°).",
+      "Un ressort hélicoïdal (75) s’est déplacé (AC**) de façon à être en contact avec une pièce en mouvement (art. 168, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-130",
+    "section": "Suspension",
+    "component": "Barre de torsion",
+    "description": "Vérifier barre de torsion",
+    "minorDefects": [
+      "Une barre de torsion (78) est mal fixée (CC) ou a été réparée par soudage (RR) (art. 115, 2°)."
+    ],
+    "majorDefects": [
+      "Une barre de torsion (78) est cassée (F) ou fissurée (Q) (art. 168, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-131",
+    "section": "Suspension",
+    "component": "Étrier",
+    "description": "Vérifier étrier",
+    "minorDefects": [
+      "Un étrier (102) est mal fixé (CC) ou manquant (A) (art. 115, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-132",
+    "section": "Suspension",
+    "component": "Bride de fixation",
+    "description": "Vérifier bride de fixation",
+    "minorDefects": [
+      "Une bride de fixation (90) est réparée par soudage (RR) (art. 115, 2°)."
+    ],
+    "majorDefects": [
+      "Une bride de fixation (90) est manquante (A), mal fixée (CC), fissurée (Q) ou cassée (F) (art. 168, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-133",
+    "section": "Suspension",
+    "component": "Support de ressort à lames",
+    "description": "Vérifier support de ressort à lames",
+    "minorDefects": [
+      "Un support (95) de ressort à lames est mal fixé (CC), fissuré (Q), cassé (F), usé (WW**) ou présente une soudure autre que celles du fabricant (RR) (art. 115, 1° et 115, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-134",
+    "section": "Suspension",
+    "component": "Ancrage de fixation",
+    "description": "Vérifier ancrage de fixation",
+    "minorDefects": [
+      "Un ancrage de fixation (86) est mal fixé (CC), fissuré (Q), cassé (F), réparé par soudage (RR) dans le cas de pièces maintenues en place par boulonnage ou rivetage (art. 115, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-135",
+    "section": "Suspension",
+    "component": "Jumelle",
+    "description": "Vérifier jumelle",
+    "minorDefects": [
+      "Une jumelle (92) est mal fixée (CC), déformée (K), fissurée (Q) ou présente une soudure autre que celles du fabricant (RR) (art. 115, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-136",
+    "section": "Suspension",
+    "component": "Bague d’ancrage métallique d’un ressort et l’axe",
+    "description": "Vérifier bague d’ancrage métallique d’un ressort et l’axe",
+    "minorDefects": [
+      "Le jeu entre la bague d’ancrage métallique d’un ressort (103) et l’axe excède les normes du fabricant (W**) ou, à défaut de telles normes, est de plus de 2 mm (3/32 po) pour un axe d’un diamètre inférieur ou égal à 24 mm (1 po) ou de plus de 3,2 mm (1/8 po) dans les autres cas (X**) (art. 116)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-137",
+    "section": "Suspension",
+    "component": "Bague d’ancrage flexible",
+    "description": "Vérifier bague d’ancrage flexible",
+    "minorDefects": [
+      "La bague d’ancrage (103) flexible est détériorée (WA**), usée (WW**) ou endommagée (N**) au point de nuire au bon fonctionnement de la suspension, est manquante (A) ou inadéquate (IN**) (art. 115, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-138",
+    "section": "Suspension",
+    "component": "Barre stabilisatrice ou biellette de raccordement",
+    "description": "Vérifier barre stabilisatrice ou biellette de raccordement",
+    "minorDefects": [
+      "Une barre stabilisatrice (79) ou une biellette de raccordement (76) est manquante (A), mal fixée (CC) ou est usée (WW**), détériorée (WA**) ou endommagée (N**) au point de nuire au bon fonctionnement de la suspension (art. 115, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-139",
+    "section": "Suspension",
+    "component": "Coussinet",
+    "description": "Vérifier coussinet",
+    "minorDefects": [
+      "Un coussinet (76*) est manquant (X) ou inadéquat (IN) (art. 115, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-140",
+    "section": "Suspension",
+    "component": "Bras de suspension",
+    "description": "Vérifier bras de suspension",
+    "minorDefects": [
+      "Un bras de suspension (80) est déformé (K), endommagé (N), fissuré (Q), perforé par la corrosion (NN), mal fixé (CC) ou présente une soudure autre que celles du fabricant (RR) (art. 115, 1° et 115, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-141",
+    "section": "Suspension",
+    "component": "Butée de débattement",
+    "description": "Vérifier butée de débattement",
+    "minorDefects": [
+      "Une butée de débattement (96) est manquante (A), mal fixée (CC) ou inadéquate (IN) (art. 115, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-142",
+    "section": "Suspension",
+    "component": "Jambe de force",
+    "description": "Vérifier jambe de force",
+    "minorDefects": [
+      "Une jambe de force (98) est usée (WW**), détériorée (WA**) ou endommagée (N**) au point de nuire au bon fonctionnement de la suspension (art. 115, 1°)."
+    ],
+    "majorDefects": [
+      "Une jambe de force (98) est endommagée (N**) au point de modifier le parallélisme des roues ou de permettre à la roue de se déplacer par rapport à sa position normale (art. 168, 1.1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-143",
+    "section": "Suspension",
+    "component": "Bagues de suspension d’un balancier",
+    "description": "Vérifier bagues de suspension d’un balancier",
+    "minorDefects": [
+      "Une ou des bagues de suspension (103) d’un balancier sont usées (WW**) au point de nuire au bon fonctionnement de la suspension (art. 115, 1°).",
+      "Une ou des bagues de suspension (103) d’un balancier permettent le contact (WW**) du pneu avec le châssis lors d’un virage (art. 115, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-144",
+    "section": "Suspension",
+    "component": "Bague de suspension d’un balancier composée de matière flexible",
+    "description": "Vérifier bague de suspension d’un balancier composée de matière flexible",
+    "minorDefects": [
+      "La bague de suspension d’un balancier composée de matière flexible (103) comporte des coupures (G**) pouvant nuire à son rendement (art. 119)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-145",
+    "section": "Suspension",
+    "component": "Balancier",
+    "description": "Vérifier balancier",
+    "minorDefects": [
+      "Un balancier (87) est déformé (K), endommagé (N), mal fixé (CC) ou présente une soudure autre que celles du fabricant (RR) (art. 115, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-146",
+    "section": "Suspension",
+    "component": "Amortisseur",
+    "description": "Vérifier amortisseur",
+    "minorDefects": [
+      "Un amortisseur (77) est mal fixé (CC), fissuré (Q), cassé (F) ou manquant (A) (art. 118).",
+      "Il y a une fuite d’huile (T) à un amortisseur (77) pouvant nuire à son rendement (art. 118)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-147",
+    "section": "Suspension",
+    "component": "Ancrage d’amortisseur",
+    "description": "Vérifier ancrage d’amortisseur",
+    "minorDefects": [
+      "Un ancrage (86*) est inadéquat (IN), mal fixé (CC) ou fissuré (Q) (art. 118)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-148",
+    "section": "Suspension",
+    "component": "Amortisseur d’une suspension pneumatique",
+    "description": "Vérifier amortisseur d’une suspension pneumatique",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un amortisseur (77) d’une suspension pneumatique est absent (A), cassé (F) ou non fixé (CC) à l’une de ses extrémités (art. 168, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-149",
+    "section": "Suspension",
+    "component": "Ballon pneumatique",
+    "description": "Vérifier ballon pneumatique",
+    "minorDefects": [
+      "Un ballon (88) pneumatique est mal fixé (CC), endommagé au point d’exposer la toile (AG) ou présente une réparation (X**) (art. 117)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-150",
+    "section": "Suspension",
+    "component": "Canalisation, soupape, ballon ou raccord du système pneumatique",
+    "description": "Vérifier canalisation, soupape, ballon ou raccord du système pneumatique",
+    "minorDefects": [
+      "Une canalisation (105), une soupape (97), un ballon (88) ou un raccord (106) présente une fuite (T) d’air (art. 117)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-151",
+    "section": "Suspension",
+    "component": "Canalisation (suspension pneumatique)",
+    "description": "Vérifier canalisation (suspension pneumatique)",
+    "minorDefects": [
+      "Une canalisation (105) est entamée ou fendillée au point d’exposer la toile de renforcement (AG), écrasée (LA), pincée (LA), vrillée (LB), renflée (QQ), cassée (F), soudée (RR) ou inadéquate (IN) (art. 117).",
+      "Une canalisation (105) est mal fixée (CC) au point de vibrer ou de frotter sur les parties adjacentes (AC) (art. 117)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-152",
+    "section": "Suspension",
+    "component": "Raccord (suspension pneumatique)",
+    "description": "Vérifier raccord (suspension pneumatique)",
+    "minorDefects": [
+      "Un raccord (106) est usé (WW) ou corrodé excessivement (NA), renflé (QQ), cassé (F), soudé (RR) ou inadéquat (IN) (art. 117)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-153",
+    "section": "Suspension",
+    "component": "Suspension pneumatique",
+    "description": "Vérifier suspension pneumatique",
+    "minorDefects": [
+      "La suspension pneumatique (84) est alimentée en air avant que le circuit de freinage ait atteint une pression de 450 kPa (65 lb) (X**) (art. 117)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-154",
+    "section": "Suspension",
+    "component": "Ballon de suspension pneumatique",
+    "description": "Vérifier ballon de suspension pneumatique",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un ballon (88) d’une suspension pneumatique est absent (A) ou dégonflé (AB) (art. 168, 6°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-155",
+    "section": "Suspension",
+    "component": "Système de suspension pneumatique",
+    "description": "Vérifier système de suspension pneumatique",
+    "minorDefects": [],
+    "majorDefects": [
+      "Il y a une fuite (T**) d’air dans le système de suspension (84) pneumatique qui ne peut être compensée par le compresseur lorsque le moteur tourne au ralenti (art. 168, 5°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-156",
+    "section": "Suspension",
+    "component": "Soupape de niveau",
+    "description": "Vérifier soupape de niveau",
+    "minorDefects": [
+      "Une soupape de niveau (97) est mal fixée (CC) ou inadéquate (IN**) (art. 115, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-157",
+    "section": "Suspension",
+    "component": "Bielle de réaction",
+    "description": "Vérifier bielle de réaction",
+    "minorDefects": [
+      "Une bielle de réaction (82) est mal fixée (CC), déformée (K), fissurée (Q), cassée (F) ou présente une soudure autre que celles du fabricant (RR) (art. 115, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-158",
+    "section": "Suspension",
+    "component": "Coussinet, manchon ou bague de bielle de réaction",
+    "description": "Vérifier coussinet, manchon ou bague de bielle de réaction",
+    "minorDefects": [
+      "Un coussinet, un manchon ou une bague (103*) est détérioré au point de nuire au bon fonctionnement de la suspension (WA) (art. 115, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-159",
+    "section": "Freins",
+    "component": "Pédale",
+    "description": "Vérifier pédale",
+    "minorDefects": [
+      "La pédale (130) est mal fixée (CC) ou désalignée (MA), présente une friction excessive dans son déplacement (U) ou n’est pas antidérapante (WW) (art. 30, 7°).",
+      "La pédale (130) descend pendant l’application de la force (X**) (art. 35)."
+    ],
+    "majorDefects": [
+      "Il faut actionner à plusieurs reprises la pédale (130) de frein pour obtenir une pression dans le circuit (X**) (art. 165, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-160",
+    "section": "Freins",
+    "component": "Roue",
+    "description": "Vérifier roue",
+    "minorDefects": [
+      "Lorsqu’on applique le frein de service (133), on ne perçoit aucune résistance de rotation sur une roue (A) (art. 34)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-161",
+    "section": "Freins",
+    "component": "Système de freinage",
+    "description": "Vérifier système de freinage",
+    "minorDefects": [
+      "Une fuite (T) d’air audible est présente dans le système (*, 133) (art. 38, 0.1°).",
+      "La perte de pression d’air (*, 133) après l’application des freins pendant une minute est supérieure (T**) à : - véhicule simple : 20 kPa (3 lb/po2) - deux véhicules : 28 kPa (4 lb/po2) - trois véhicules : 35 kPa (5 lb/po2) (art. 38, 10° et 38, 11°)."
+    ],
+    "majorDefects": [
+      "Il y a absence de freinage ou réduction importante de la capacité de freinage sur 20 % ou plus des roues ou des ensembles de roues, en raison de l’absence (A**) ou du fonctionnement inadéquat (IN**) d’un ou de plusieurs éléments du système de freinage (*133) (art. 164, 1°).",
+      "La perte de pression d’air (*, 133) après l’application des freins pendant une minute est supérieure (T**) à : - véhicule simple : 40 kPa (6 lb/po2) - deux véhicules : 48 kPa (7 lb/po2) - trois véhicules : 62 kPa (9 lb/po2) (art. 166, 5°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-162",
+    "section": "Freins",
+    "component": "Freins sur essieu relié à la direction",
+    "description": "Vérifier freins sur essieu relié à la direction",
+    "minorDefects": [],
+    "majorDefects": [
+      "Il y a absence de freinage (A) sur une roue de l’essieu unique relié à la direction lorsque celui-ci est muni de freins (133) (art. 164, 2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-163",
+    "section": "Freins",
+    "component": "Élément du système de freins",
+    "description": "Vérifier élément du système de freins",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un élément du système de freins (*) est mal fixé (CC), manquant (A), grippé (U), endommagé (N), détérioré (WA**) ou usé (ww**) au point de nuire de façon importante au bon fonctionnement des freins (art. 164, 5°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-164",
+    "section": "Freins",
+    "component": "Roues ou ensembles de roues",
+    "description": "Vérifier roues ou ensembles de roues",
+    "minorDefects": [],
+    "majorDefects": [
+      "Il y a 20 % ou plus des roues ou ensembles de roues d’un véhicule routier qui sont contaminées par l’huile ou la graisse (M**) sur la surface de frottement d’un tambour (123), d’un disque (124) ou des garnitures de frein (125), ou sont profondément corrodées (NA) sur les deux côtés de la surface de frottement d’un disque (124) (art. 164, 6°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-165",
+    "section": "Freins",
+    "component": "Frein de stationnement",
+    "description": "Vérifier frein de stationnement",
+    "minorDefects": [
+      "Le frein de stationnement (135) n’empêche pas le véhicule d’avancer (V) (art. 39, 2°).",
+      "Le frein de stationnement (135) est relâché et les roues ne sont pas totalement libres de tourner (U) (art. 39, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-166",
+    "section": "Freins",
+    "component": "Mécanisme du frein de stationnement",
+    "description": "Vérifier mécanisme du frein de stationnement",
+    "minorDefects": [
+      "Le mécanisme (135*) est inopérant (V) (art. 30, 9° et 31, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-167",
+    "section": "Freins",
+    "component": "Garniture de frein (frein de stationnement)",
+    "description": "Vérifier garniture de frein (frein de stationnement)",
+    "minorDefects": [
+      "Une garniture de frein (125) est décollée (QA), cassée (F), contaminée (M) par l’huile ou la graisse, fissurée (Q**) d’une profondeur de plus de la moitié de son épaisseur résiduelle, mal fixée (CC) ou usée (WW) d’une façon extrêmement inégale (art. 31, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-168",
+    "section": "Freins",
+    "component": "Garniture de frein (frein de stationnement, distincte du frein de service)",
+    "description": "Vérifier garniture de frein (frein de stationnement, distincte du frein de service)",
+    "minorDefects": [
+      "Une garniture de frein (125) qui est distincte de celles du frein de service a une épaisseur inférieure à 1,6 mm (1/16 po) à l’endroit le plus mince (WW**), excluant la partie chanfreinée (art. 31, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-169",
+    "section": "Freins",
+    "component": "Témoin lumineux (frein de stationnement)",
+    "description": "Vérifier témoin lumineux (frein de stationnement)",
+    "minorDefects": [
+      "Le témoin lumineux (5*) ne s’allume pas (HH) lorsque le frein de stationnement est appliqué ou ne s’éteint pas lorsqu’il est relâché (X**) (art. 39, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-170",
+    "section": "Freins",
+    "component": "Câble (frein de stationnement)",
+    "description": "Vérifier câble (frein de stationnement)",
+    "minorDefects": [
+      "Un câble (158) est affaibli (effiloché) (B), grippé (U), manquant (A), non raccordé (MI), mal fixé (CC) ou cassé (F) (art. 31, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-171",
+    "section": "Freins",
+    "component": "Frein de travail",
+    "description": "Vérifier frein de travail",
+    "minorDefects": [
+      "Le frein de travail (134) n’est pas muni d’un accumulateur, d’un avertisseur sonore de basse pression et d’un limiteur de pression adéquats (X**) (art. 39, 4°).",
+      "Le frein de travail (134) ne retient pas le véhicule lorsqu’il est appliqué (V) (art. 39, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-172",
+    "section": "Freins",
+    "component": "Système hydraulique",
+    "description": "Vérifier système hydraulique",
+    "minorDefects": [
+      "Que le frein de service soit appliqué ou non, il y a un suintement de liquide de frein (TA) le long du système (*, 133) (art. 30, 3°)."
+    ],
+    "majorDefects": [
+      "Que le frein de service soit appliqué ou non, il y a une fuite (T) du liquide de frein le long du système (*, 133) autre qu’un suintement (art. 165, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-173",
+    "section": "Freins",
+    "component": "Maître-cylindre",
+    "description": "Vérifier maître-cylindre",
+    "minorDefects": [
+      "Le maître-cylindre (116) est mal fixé (CC) ou présente un suintement (TA) (art. 30, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-174",
+    "section": "Freins",
+    "component": "Liquide de frein",
+    "description": "Vérifier liquide de frein",
+    "minorDefects": [
+      "Le niveau du liquide de frein (132) est sous le niveau recommandé par le fabricant (JJ) ou, à défaut d’indication, à plus de 12,5 mm (1/2 po) au-dessous du col de l’orifice de remplissage du réservoir (JJ) (art. 30, 5°)."
+    ],
+    "majorDefects": [
+      "Le niveau du liquide de frein (132) dans le réservoir du maître-cylindre est inférieur au quart du niveau maximal indiqué par le fabricant (X**) (art. 165, 2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-175",
+    "section": "Freins",
+    "component": "Couvercle du réservoir",
+    "description": "Vérifier couvercle du réservoir",
+    "minorDefects": [
+      "Le couvercle (120*) du réservoir est absent (A) (art. 30, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-176",
+    "section": "Freins",
+    "component": "Raccord",
+    "description": "Vérifier raccord",
+    "minorDefects": [
+      "Un raccord (143) est usé (WW) ou corrodé excessivement (NA), soudé (RR) ou inadéquat (IN) (art. 30, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-177",
+    "section": "Freins",
+    "component": "Canalisation flexible",
+    "description": "Vérifier canalisation flexible",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une canalisation flexible (118) est usée jusqu’à la deuxième tresse (WW**) ou est renflée lorsqu’elle est sous pression (QQ) (art. 165, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-178",
+    "section": "Freins",
+    "component": "Canalisation",
+    "description": "Vérifier canalisation",
+    "minorDefects": [
+      "Une canalisation (118) est écrasée (LA), pincée (LA), cassée (F), soudée (RR), vrillée (LB), usée excessivement (WW), corrodée excessivement (NA) ou inadéquate (IN) (art. 30, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-179",
+    "section": "Freins",
+    "component": "Canalisation en nylon ou en caoutchouc",
+    "description": "Vérifier canalisation en nylon ou en caoutchouc",
+    "minorDefects": [
+      "Une canalisation en nylon (118) ou en caoutchouc (118) est entamée (G) ou fendillée (Q) au point d’exposer la toile de renforcement (art.30, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-180",
+    "section": "Freins",
+    "component": "Fixation d’une canalisation",
+    "description": "Vérifier fixation d’une canalisation",
+    "minorDefects": [
+      "La fixation d’une canalisation (118) est mal serrée (EE) au point qu’elle permet à la canalisation de vibrer ou de frotter (AC) sur une partie adjacente (art. 30, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-181",
+    "section": "Freins",
+    "component": "Cylindre",
+    "description": "Vérifier cylindre",
+    "minorDefects": [
+      "Un cylindre (121) présente un suintement (TA) ou le piston (121) est grippé (U) (art. 31, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-182",
+    "section": "Freins",
+    "component": "Étrier",
+    "description": "Vérifier étrier",
+    "minorDefects": [
+      "Un étrier (122) est grippé (U), fissuré (Q), cassé (F), mal fixé (CC), mal installé (MI) ou présente un suintement (TA) (art. 31, 11°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-183",
+    "section": "Freins",
+    "component": "Course de la pédale",
+    "description": "Vérifier course de la pédale",
+    "minorDefects": [
+      "La course de la pédale (130) excède de 65 % la course totale possible (X**) (art. 35)."
+    ],
+    "majorDefects": [
+      "La course de la pédale (130) excède de 80 % la course totale possible (Z**) (art. 165, 6°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-184",
+    "section": "Freins",
+    "component": "Témoin lumineux",
+    "description": "Vérifier témoin lumineux",
+    "minorDefects": [
+      "Le témoin lumineux (5*) ne s’allume pas lorsque la clé de contact est à la position Marche alors que le moteur est arrêté ou à la position Démarrage (HH) (art. 35).",
+      "Le témoin lumineux (5*) s’allume lorsque le moteur est en marche (X**) (art. 35).",
+      "Le témoin lumineux (5*) s’allume lorsqu’on appuie fortement sur la pédale de frein (X**) (art. 35)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-185",
+    "section": "Freins",
+    "component": "Pédale de frein",
+    "description": "Vérifier pédale de frein",
+    "minorDefects": [],
+    "majorDefects": [
+      "La pédale (130) de frein descend au plancher en moins de 10 secondes (X**) (art. 165, 5°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-186",
+    "section": "Freins",
+    "component": "Servofrein",
+    "description": "Vérifier servofrein",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le servofrein (117) n’est pas en mesure d’assister le conducteur pour une application des freins lorsque le moteur est arrêté (V**) (art. 165, 7°).",
+      "Le servofrein (117) ne fonctionne pas (GG) (art. 165, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-187",
+    "section": "Freins",
+    "component": "Canalisation (servofrein à dépression)",
+    "description": "Vérifier canalisation (servofrein à dépression)",
+    "minorDefects": [
+      "Une canalisation (118) est écrasée (LA), pincée (LA), cassée (F), usée excessivement (WW) ou inadéquate (IN) (art. 30, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-188",
+    "section": "Freins",
+    "component": "Canalisation en nylon ou en caoutchouc (servofrein à dépression)",
+    "description": "Vérifier canalisation en nylon ou en caoutchouc (servofrein à dépression)",
+    "minorDefects": [
+      "Une canalisation en nylon (118) ou en caoutchouc (118) est entamée (G) ou fendillée au point d’exposer la toile (AG) de renforcement (art. 30, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-189",
+    "section": "Freins",
+    "component": "Fixation d’une canalisation (servofrein à dépression)",
+    "description": "Vérifier fixation d’une canalisation (servofrein à dépression)",
+    "minorDefects": [
+      "La fixation d’une canalisation (118) est mal serrée (EE) au point que la canalisation vibre ou frotte sur une partie adjacente (AC) (art. 30, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-190",
+    "section": "Freins",
+    "component": "Courroie (servofrein à dépression)",
+    "description": "Vérifier courroie (servofrein à dépression)",
+    "minorDefects": [
+      "La courroie (137) présente une coupure (G), est détériorée au point de nuire à son efficacité (N**) ou est insuffisamment tendue (TT) (au point de permettre un glissement) (art. 30, 1° et 30, 11°)."
+    ],
+    "majorDefects": [
+      "La courroie (137) présente une coupure et un bris apparaît imminent (AE) (art. 164, 5°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-191",
+    "section": "Freins",
+    "component": "Réserve (servofrein à dépression)",
+    "description": "Vérifier réserve (servofrein à dépression)",
+    "minorDefects": [
+      "La réserve est insuffisante (117) pour trois applications assistées de frein (X**) (art. 37).",
+      "Si le véhicule n’est pas muni d’un manomètre, lorsque l’avertisseur sonore ou lumineux se déclenche, il ne reste pas assez de réserve (117) pour une application assistée des freins (X**) (art. 37)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-192",
+    "section": "Freins",
+    "component": "Avertisseur sonore ou lumineux (servofrein à dépression)",
+    "description": "Vérifier avertisseur sonore ou lumineux (servofrein à dépression)",
+    "minorDefects": [
+      "L’avertisseur sonore (140) ou lumineux (5*) ne se déclenche pas lorsque la dépression est inférieure à 2 kPa (X**) (art. 37)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-193",
+    "section": "Freins",
+    "component": "Pompe à dépression",
+    "description": "Vérifier pompe à dépression",
+    "minorDefects": [
+      "La pompe à dépression (139*) ne peut établir et maintenir une dépression minimale (V) de 4,5 kPa (art. 37).",
+      "La pompe à dépression (139*) est mal fixée (CC) (art. 30, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-194",
+    "section": "Freins",
+    "component": "Réservoir à dépression",
+    "description": "Vérifier réservoir à dépression",
+    "minorDefects": [
+      "Le réservoir à dépression (120) est absent (A), mal fixé (CC), inadéquat (IN**) ou présente le signe d’une détérioration nuisant à son efficacité (N) (art. 30, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-195",
+    "section": "Freins",
+    "component": "Manomètre (servofrein à dépression)",
+    "description": "Vérifier manomètre (servofrein à dépression)",
+    "minorDefects": [
+      "Le manomètre (138) est inadéquat (IN) (art. 30, 12°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-196",
+    "section": "Freins",
+    "component": "Filtre (servofrein à dépression)",
+    "description": "Vérifier filtre (servofrein à dépression)",
+    "minorDefects": [
+      "Le filtre (119) est absent (A) ou encrassé (M) au point de réduire l’efficacité du système de freinage (art. 30, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-197",
+    "section": "Freins",
+    "component": "Pompe électrique (servofrein hydraulique)",
+    "description": "Vérifier pompe électrique (servofrein hydraulique)",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le servofrein n’est pas en mesure d’assister le conducteur pour une application des freins si la pompe électrique (139*) ne fonctionne pas (GG) (art. 165, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-198",
+    "section": "Freins",
+    "component": "Témoin lumineux du tableau de bord (ABS)",
+    "description": "Vérifier témoin lumineux du tableau de bord (abs)",
+    "minorDefects": [
+      "Le témoin lumineux du tableau de bord (5*) ne s’allume (HH) pas lors du cycle d’autovérification ou reste constamment allumé (R) (art. 30, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-199",
+    "section": "Freins",
+    "component": "Témoin lumineux extérieur (ABS)",
+    "description": "Vérifier témoin lumineux extérieur (abs)",
+    "minorDefects": [
+      "Le témoin lumineux extérieur (145) ne s’allume (HH) pas lors du cycle d’autovérification ou reste constamment allumé (R) (art. 30, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-200",
+    "section": "Freins",
+    "component": "Réservoir de la pompe (servofrein hydraulique)",
+    "description": "Vérifier réservoir de la pompe (servofrein hydraulique)",
+    "minorDefects": [
+      "Le réservoir (120) de la pompe est mal fixé (CC), présente une fuite (T) ou le niveau d’huile est sous le niveau recommandé par le fabricant (X**) (art. 30, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-201",
+    "section": "Freins",
+    "component": "Pompe (servofrein hydraulique)",
+    "description": "Vérifier pompe (servofrein hydraulique)",
+    "minorDefects": [
+      "La pompe (139*) est mal fixée (CC) ou présente une fuite (T) (art. 30, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-202",
+    "section": "Freins",
+    "component": "Système antiblocage des freins",
+    "description": "Vérifier système antiblocage des freins",
+    "minorDefects": [
+      "Le système antiblocage des freins (145) dont a été muni un véhicule routier lors de sa fabrication est absent (A) ou inadéquat (IN**) (art. 30, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-203",
+    "section": "Freins",
+    "component": "Électroaimant (frein électrique)",
+    "description": "Vérifier électroaimant (frein électrique)",
+    "minorDefects": [
+      "Un électroaimant (146) est manquant (A), mal fixé (CC) ou inadéquat (IN**) (art. 31, 12°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-204",
+    "section": "Freins",
+    "component": "Câble électrique ou raccord électrique (frein électrique)",
+    "description": "Vérifier câble électrique ou raccord électrique (frein électrique)",
+    "minorDefects": [
+      "Un câble électrique (21*) ou un raccord électrique (25*) est usé (WW**) au point de nuire au bon fonctionnement des freins, manquant (A), court-circuité (AF), brisé (D), cassé (F), éraillé (F), fissuré (Q) ou mal fixé à son point d’attache ou de connexion (CC) (art. 30, 10°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-205",
+    "section": "Freins",
+    "component": "Circuit électrique des freins",
+    "description": "Vérifier circuit électrique des freins",
+    "minorDefects": [
+      "Le circuit électrique des freins (133) n’est pas indépendant d’un autre circuit (X**) (art. 30, 10°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-206",
+    "section": "Freins",
+    "component": "Attelage (frein électrique)",
+    "description": "Vérifier attelage (frein électrique)",
+    "minorDefects": [
+      "L’attelage (133) sert de connexion à la masse (X**) (art. 30, 10°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-207",
+    "section": "Freins",
+    "component": "Canalisation flexible (frein pneumatique)",
+    "description": "Vérifier canalisation flexible (frein pneumatique)",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une canalisation flexible (118) est renflée quand elle est sous pression (QQ) (art. 166, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-208",
+    "section": "Freins",
+    "component": "Canalisation thermoplastique (frein pneumatique)",
+    "description": "Vérifier canalisation thermoplastique (frein pneumatique)",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une canalisation (118) thermoplastique est usée (WW**) jusqu’à la deuxième couche de couleur ou la deuxième tresse (AG) (art. 166, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-209",
+    "section": "Freins",
+    "component": "Canalisation (frein pneumatique)",
+    "description": "Vérifier canalisation (frein pneumatique)",
+    "minorDefects": [
+      "Une canalisation (118) est écrasée (LA), vrillée (LB), pincée (LA), entamée (WW) ou fendillée (Q**) au point d’exposer la toile de renforcement, usée excessivement (WW), corrodée excessivement (NA), cassée (F), soudée (RR) ou inadéquate (IN**) (art. 30, 4°).",
+      "Une canalisation (118) présente une fuite d’air (T) (art. 38, 0.1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-210",
+    "section": "Freins",
+    "component": "Fixation d’une canalisation (frein pneumatique)",
+    "description": "Vérifier fixation d’une canalisation (frein pneumatique)",
+    "minorDefects": [
+      "La fixation d’une canalisation (118) est mal serrée (EE) au point que la canalisation vibre ou frotte sur une partie adjacente (AC) (art. 30, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-211",
+    "section": "Freins",
+    "component": "Raccord ou têtes d’accouplement (frein pneumatique)",
+    "description": "Vérifier raccord ou têtes d’accouplement (frein pneumatique)",
+    "minorDefects": [
+      "Un raccord (143) ou une tête d’accouplement (131) est excessivement usé (WW) ou corrodé (NA), cassé (F), mal fixé (CC) ou présente une fuite (T) (art. 30, 2°, 30, 4° et 38, 0.1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-212",
+    "section": "Freins",
+    "component": "Raccord de canalisation (frein pneumatique)",
+    "description": "Vérifier raccord de canalisation (frein pneumatique)",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un raccord de canalisation (143) n’est pas conforme aux normes du fabricant (W**) pour son usage (art. 166, 2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-213",
+    "section": "Freins",
+    "component": "Filtre (compresseur d’air)",
+    "description": "Vérifier filtre (compresseur d’air)",
+    "minorDefects": [
+      "Le filtre (119) est absent (A) ou encrassé (M) au point de réduire l’efficacité du système de freinage (art. 30, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-214",
+    "section": "Freins",
+    "component": "Manomètre (compresseur d’air)",
+    "description": "Vérifier manomètre (compresseur d’air)",
+    "minorDefects": [
+      "Le manomètre (138) est manquant (A) ou inadéquat (IN) (art. 30, 2° et 30, 12°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-215",
+    "section": "Freins",
+    "component": "Courroie (compresseur d’air)",
+    "description": "Vérifier courroie (compresseur d’air)",
+    "minorDefects": [
+      "La courroie (137) présente une coupure (G), est détériorée (N**) au point de nuire à son efficacité ou est insuffisamment tendue (TT) (au point de permettre un glissement) (art. 30, 2° et 30, 11°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-216",
+    "section": "Freins",
+    "component": "Compresseur d’air",
+    "description": "Vérifier compresseur d’air",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le compresseur (128) d’air est mal fixé (CC) (art. 166, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-217",
+    "section": "Freins",
+    "component": "Courroie d’entraînement du compresseur d’air",
+    "description": "Vérifier courroie d’entraînement du compresseur d’air",
+    "minorDefects": [],
+    "majorDefects": [
+      "La courroie (137) d’entraînement du compresseur d’air présente une coupure et un bris apparaît imminent (AE) (art. 166, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-218",
+    "section": "Freins",
+    "component": "Poulie du compresseur d’air",
+    "description": "Vérifier poulie du compresseur d’air",
+    "minorDefects": [],
+    "majorDefects": [
+      "La poulie (129) est fissurée (Q) ou cassée (F) (art. 166, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-219",
+    "section": "Freins",
+    "component": "Réservoir d’air",
+    "description": "Vérifier réservoir d’air",
+    "minorDefects": [
+      "Un réservoir d’air (120) est inadéquat (IN**), mal fixé (CC), fissuré (Q), excessivement corrodé (NA), ou présente une soudure autre que celles du fabricant (RR) ou une fuite (T) (art. 30, 13° et 38, 0.1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-220",
+    "section": "Freins",
+    "component": "Support de réservoir d’air",
+    "description": "Vérifier support de réservoir d’air",
+    "minorDefects": [
+      "Un support de réservoir (149*) est fissuré (Q), cassé (F) ou manquant (A) (art. 30, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-221",
+    "section": "Freins",
+    "component": "Pièce de remplacement de support de réservoir",
+    "description": "Vérifier pièce de remplacement de support de réservoir",
+    "minorDefects": [
+      "Une pièce de remplacement (149*) non adaptée (W**) est utilisée (ex. : chaîne) (art. 30, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-222",
+    "section": "Freins",
+    "component": "Robinet de purge",
+    "description": "Vérifier robinet de purge",
+    "minorDefects": [
+      "Un robinet de purge (147) est manquant (A) ou inadéquat (IN**) (art. 38, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-223",
+    "section": "Freins",
+    "component": "Compresseur",
+    "description": "Vérifier compresseur",
+    "minorDefects": [
+      "Le temps de récupération (128) excède trois minutes (X**) (art. 38, 1°)."
+    ],
+    "majorDefects": [
+      "Le compresseur (128) ne permet pas d’atteindre ou de maintenir la pression minimale de 620 kPa (90 lb/po2) alors que le moteur tourne au ralenti, qu’on applique à fond le frein de service et que le frein de stationnement est relâché (V**) (art. 166, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-224",
+    "section": "Freins",
+    "component": "Régulateur de pression",
+    "description": "Vérifier régulateur de pression",
+    "minorDefects": [
+      "La pression de déclenchement du régulateur (148) ne se situe pas entre 805 et 945 kPa (117 et 137 lb/po2) (X**) (art. 38, 2°).",
+      "La pression d’enclenchement du régulateur (148) est égale ou inférieure à 550 kPa (80 lb/po2) (X**) (art. 38, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-225",
+    "section": "Freins",
+    "component": "Avertisseur sonore de basse pression",
+    "description": "Vérifier avertisseur sonore de basse pression",
+    "minorDefects": [
+      "L’avertisseur sonore (140*) de basse pression dont est muni le véhicule ne fonctionne pas à une pression inférieure à 380 kPa (55 lb/po2) (X**) (art. 38, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-226",
+    "section": "Freins",
+    "component": "Avertisseur visuel et lumineux de basse pression",
+    "description": "Vérifier avertisseur visuel et lumineux de basse pression",
+    "minorDefects": [
+      "L’avertisseur visuel (140*) et l’avertisseur lumineux (5*) de basse pression dont est muni le véhicule ne fonctionnent pas à une pression inférieure à 380 kPa (55 lb/po2) (X**) (art. 38, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-227",
+    "section": "Freins",
+    "component": "Avertisseurs sonore, visuel et lumineux de basse pression",
+    "description": "Vérifier avertisseurs sonore, visuel et lumineux de basse pression",
+    "minorDefects": [],
+    "majorDefects": [
+      "Aucun des avertisseurs sonore (140*), visuel (140*) et lumineux (5*) de basse pression signalant une pression inférieure à 380 kPa ne fonctionne (GG) (166, 10°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-228",
+    "section": "Freins",
+    "component": "Clapet de non-retour des réservoirs d’air",
+    "description": "Vérifier clapet de non-retour des réservoirs d’air",
+    "minorDefects": [
+      "Le clapet (144*) est manquant (A) ou ne se ferme pas (GG) (art. 38, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-229",
+    "section": "Freins",
+    "component": "Valve relais",
+    "description": "Vérifier valve relais",
+    "minorDefects": [
+      "L’air n’est pas expulsé rapidement (V) par l’orifice d’échappement de la valve relais (144) lorsque les freins sont relâchés (art. 38, 6°).",
+      "La valve relais (144) est mal fixée (CC) (art. 38, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-230",
+    "section": "Freins",
+    "component": "Valve de protection du camion-tracteur",
+    "description": "Vérifier valve de protection du camion-tracteur",
+    "minorDefects": [
+      "La valve de protection (142) du camion-tracteur ne maintient pas un minimum de 420 kPa (60 lb/po2) de pression d’air (X**) (art. 38, 7°)."
+    ],
+    "majorDefects": [
+      "La valve de protection (142) du camion-tracteur ne maintient pas un minimum de 138 kPa (X**) (20 lb/po2) ou est absente (A) alors qu’il tire une remorque ou une semi-remorque équipée de freins pneumatiques (art. 166, 6°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-231",
+    "section": "Freins",
+    "component": "Arbre à came",
+    "description": "Vérifier arbre à came",
+    "minorDefects": [
+      "Le jeu radial entre un coussinet et l’arbre à came (126) excède 2,1 mm (Z**) (3/32 po) (art. 38, 12°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-232",
+    "section": "Freins",
+    "component": "Tige de commande des récepteurs de freinage",
+    "description": "Vérifier tige de commande des récepteurs de freinage",
+    "minorDefects": [
+      "La variation de la course des tiges de commande (157) sur un même essieu excède 6,4 mm (L) (1/4 po) (art. 38, 9°).",
+      "La course de la tige de commande (157) excède la valeur maximale permise prévue par le fabricant (BB**) spécifiée dans le tableau (art. 38, 9°)."
+    ],
+    "majorDefects": [
+      "La course de la tige de commande (157) de 20 % ou plus des récepteurs de freinage d’un véhicule routier excède de 6,4 mm (1/4 po) ou plus la valeur maximale prévue par le fabricant (BB**) spécifiée dans le tableau (art. 166, 9°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-233",
+    "section": "Freins",
+    "component": "Garniture (freins à coin de serrage)",
+    "description": "Vérifier garniture (freins à coin de serrage)",
+    "minorDefects": [
+      "Le déplacement de la garniture (125) excède la valeur maximale prévue par le fabricant, qui est de 1,6 mm (BB**) (1/16 po) (art. 31, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-234",
+    "section": "Freins",
+    "component": "Récepteurs de freinage",
+    "description": "Vérifier récepteurs de freinage",
+    "minorDefects": [
+      "Les récepteurs de freinage (141) sur un même essieu sont de dimension (KK**) ou de type différent (KK**) (art. 38, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-235",
+    "section": "Freins",
+    "component": "Récepteur de freinage",
+    "description": "Vérifier récepteur de freinage",
+    "minorDefects": [
+      "Un récepteur de freinage (141) est mal fixé (CC) (art. 38, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-236",
+    "section": "Freins",
+    "component": "Élément ou pièce connexe (récepteur de freinage)",
+    "description": "Vérifier élément ou pièce connexe (récepteur de freinage)",
+    "minorDefects": [
+      "Un élément (*) ou une pièce connexe (*) est manquant (A), endommagé (N), fissuré (Q), cassé (F), excessivement corrodé (NA**) ou usé (WW**), ou est non conforme aux normes du fabricant (W**) (art. 38, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-237",
+    "section": "Freins",
+    "component": "Récepteurs de freinage sur essieu relié à la direction",
+    "description": "Vérifier récepteurs de freinage sur essieu relié à la direction",
+    "minorDefects": [],
+    "majorDefects": [
+      "Les récepteurs de freinage (141) installés sur un essieu relié à la direction ne sont pas de même dimension (KK**) (art. 166, 8°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-238",
+    "section": "Freins",
+    "component": "Leviers de frein",
+    "description": "Vérifier leviers de frein",
+    "minorDefects": [
+      "Les leviers de frein (127) installés sur un même essieu ne sont pas du même type (KK**) ou sont de dimension différente (KK**) (art. 38, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-239",
+    "section": "Freins",
+    "component": "Levier de frein",
+    "description": "Vérifier levier de frein",
+    "minorDefects": [
+      "Un levier de frein (127) est corrodé (NA) ou usé (WW) au point de nuire à son bon fonctionnement, mal fixé (CC), manquant (A), endommagé (N) ou détérioré (WA) (art. 38, 8°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-240",
+    "section": "Freins",
+    "component": "Véhicule lourd (freinage pneumatique)",
+    "description": "Vérifier véhicule lourd (freinage pneumatique)",
+    "minorDefects": [
+      "Un véhicule lourd construit après le 31 mai 1996, équipé d’un système de freinage pneumatique, n’est pas muni de leviers de frein à réglage automatique (127) (KK**) agissant sur chaque roue (art. 40)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-241",
+    "section": "Freins",
+    "component": "Semi-remorque (freinage pneumatique)",
+    "description": "Vérifier semi-remorque (freinage pneumatique)",
+    "minorDefects": [
+      "Une semi-remorque de plus de 15,5 m (51 pi) et d’au plus 16,2 m (53 pi), équipée d’un système de freinage pneumatique, n’est pas munie de leviers de frein à réglage automatique (127) (KK**) agissant sur chaque roue (art. 40)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-242",
+    "section": "Freins",
+    "component": "Leviers de frein sur essieu relié à la direction",
+    "description": "Vérifier leviers de frein sur essieu relié à la direction",
+    "minorDefects": [],
+    "majorDefects": [
+      "Les leviers de frein (127) installés sur un essieu relié à la direction ne sont pas de même dimension (KK**) (art. 166, 8°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-243",
+    "section": "Freins",
+    "component": "Surface de friction (disque de frein)",
+    "description": "Vérifier surface de friction (disque de frein)",
+    "minorDefects": [
+      "La surface de friction (124) est contaminée par de l’huile ou de la graisse (M) (art. 31, 10°).",
+      "La surface de friction (124) présente un signe de détérioration (N**) nuisant à son efficacité (art. 30, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-244",
+    "section": "Freins",
+    "component": "Disque de frein",
+    "description": "Vérifier disque de frein",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une fissure (Q) s’étend jusqu’au bord extérieur de la surface de frottement du disque (124) ou sur toute autre partie du disque (ne pas tenir compte des fissures de surface superficielles) (art. 164, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-245",
+    "section": "Freins",
+    "component": "Étrier (frein à disque)",
+    "description": "Vérifier étrier (frein à disque)",
+    "minorDefects": [
+      "Un étrier (122) est mal fixé (CC), fissuré (Q), cassé (F), grippé (U), mal installé (MI**) ou présente un suintement (TA) (art. 31, 11°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-246",
+    "section": "Freins",
+    "component": "Garniture (plaquette de frein)",
+    "description": "Vérifier garniture (plaquette de frein)",
+    "minorDefects": [
+      "L’épaisseur de la garniture (125) rivetée des freins de l’essieu relié à la direction est inférieure à 4,8 mm (3/16 po) ou à 1 mm (1/32 po) au-dessus des rivets (WW**) (art. 31, 2°).",
+      "L’épaisseur de la garniture (125) rivetée des freins sur un essieu qui n’est pas relié à la direction est inférieure à 8 mm (5/16 po) ou à 1 mm (1/32 po) au-dessus des rivets (WW**) (art. 31, 2°).",
+      "L’épaisseur d’une garniture (125) collée est inférieure à 1,6 mm (WW**) (1/16 po) pour un système de freinage hydraulique ou inférieure à 5 mm (3/16 po) pour un système de freinage pneumatique (art. 31, 2°).",
+      "Une garniture (125) est décollée (QA), cassée (F), mal fixée (CC) à son segment, contaminée par l’huile ou la graisse (M), fissurée d’une profondeur supérieure à la moitié de l’épaisseur résiduelle (Q*) ou usée d’une façon extrêmement inégale (WW*) (art. 31, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-247",
+    "section": "Freins",
+    "component": "Indicateur d’usure (plaquette de frein)",
+    "description": "Vérifier indicateur d’usure (plaquette de frein)",
+    "minorDefects": [
+      "Un indicateur d’usure (125) vient en contact (WW**) avec le disque (art. 31, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-248",
+    "section": "Freins",
+    "component": "Segment ou rivet de la garniture",
+    "description": "Vérifier segment ou rivet de la garniture",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un segment (115) ou un rivet (115) de la garniture vient en contact (AC) avec la surface de frottement du disque lors de l’application des freins (art. 164, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-249",
+    "section": "Freins",
+    "component": "Frein de service",
+    "description": "Vérifier frein de service",
+    "minorDefects": [
+      "Lorsqu’on applique le frein de service (133), on ne perçoit aucune résistance de rotation sur une roue (A) (art. 34)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-250",
+    "section": "Freins",
+    "component": "Frein",
+    "description": "Vérifier frein",
+    "minorDefects": [
+      "Lorsque le frein (133) est relâché, la roue ne tourne pas librement (U) (art. 33)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-251",
+    "section": "Freins",
+    "component": "Garniture (frein à tambour, boulonnée)",
+    "description": "Vérifier garniture (frein à tambour, boulonnée)",
+    "minorDefects": [
+      "L’épaisseur d’une garniture (125) boulonnée est inférieure à 8 mm (5/16 po) ou à 1 mm (1/32 po) au-dessous des pièces de fixation (WW**) (art. 31, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-252",
+    "section": "Freins",
+    "component": "Garniture (frein à tambour, rivetée, essieu relié à la direction)",
+    "description": "Vérifier garniture (frein à tambour, rivetée, essieu relié à la direction)",
+    "minorDefects": [
+      "L’épaisseur d’une garniture (125) rivetée des freins de l’essieu relié à la direction est inférieure à 4,8 mm (3/16 po) ou à 1 mm (1/32 po) au-dessus des rivets (WW**) (art. 31, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-253",
+    "section": "Freins",
+    "component": "Garniture (frein à tambour, rivetée, essieu non relié à la direction)",
+    "description": "Vérifier garniture (frein à tambour, rivetée, essieu non relié à la direction)",
+    "minorDefects": [
+      "L’épaisseur d’une garniture (125) rivetée des freins sur un essieu qui n’est pas relié à la direction est inférieure à 8 mm (5/16 po) ou, au-dessus des rivets (WW**), à 1 mm (1/32 po) (art. 31, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-254",
+    "section": "Freins",
+    "component": "Garniture (frein à tambour, collée)",
+    "description": "Vérifier garniture (frein à tambour, collée)",
+    "minorDefects": [
+      "L’épaisseur d’une garniture (125) collée est inférieure à 1,6 mm (WW**) (1/16 po) pour un système de freinage hydraulique ou électrique ou inférieure à 5 mm (3/16 po) pour un système de freinage pneumatique (art. 31, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-255",
+    "section": "Freins",
+    "component": "Garniture (frein à tambour)",
+    "description": "Vérifier garniture (frein à tambour)",
+    "minorDefects": [
+      "Une garniture (125) est décollée (QA), cassée (F), mal fixée (CC) à son segment, contaminée par l’huile ou la graisse (M), fissurée (Q**) d’une profondeur supérieure à la moitié de l’épaisseur résiduelle ou usée d’une façon extrêmement inégale (WW**) (art. 31, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-256",
+    "section": "Freins",
+    "component": "Segment (frein à tambour)",
+    "description": "Vérifier segment (frein à tambour)",
+    "minorDefects": [
+      "Un segment (115) est manquant (A), installé incorrectement (MI) ou usé à son point de fixation (WW) (art. 31, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-257",
+    "section": "Freins",
+    "component": "Segment, boulon ou rivet de la garniture (frein à tambour)",
+    "description": "Vérifier segment, boulon ou rivet de la garniture (frein à tambour)",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un segment (115), un boulon (115) ou un rivet (115) de la garniture vient en contact (AC) avec la surface de frottement du tambour lors de l’application des freins (art. 164, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-258",
+    "section": "Freins",
+    "component": "Surface de frottement (tambour de frein)",
+    "description": "Vérifier surface de frottement (tambour de frein)",
+    "minorDefects": [
+      "La surface de frottement (123) est contaminée par de l’huile ou de la graisse (M) (art. 31, 9°).",
+      "Il y a indication de surchauffe (ZZ**) sur une surface de frottement (123) (art. 31, 9°).",
+      "La surface de frottement (123) présente un signe de détérioration (N**) nuisant à son efficacité (art. 30, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-259",
+    "section": "Freins",
+    "component": "Tambour de frein",
+    "description": "Vérifier tambour de frein",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une fissure (Q**) s’étend jusqu’au bord extérieur de la surface de frottement d’un tambour (123) ou sur toute autre partie d’un tambour (ne pas tenir compte des fissures de surface superficielles) (art. 164, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-260",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Système d’alimentation en carburant",
+    "description": "Vérifier système d’alimentation en carburant",
+    "minorDefects": [
+      "Il y a un suintement (TA) de carburant le long du système d’alimentation (* ou 295) (art. 81, 1°)."
+    ],
+    "majorDefects": [
+      "Il y a une fuite (T) de carburant autre qu’un suintement le long du système d’alimentation (* ou 295) (art. 171, 2°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-261",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Tuyau de remplissage",
+    "description": "Vérifier tuyau de remplissage",
+    "minorDefects": [
+      "Le tuyau de remplissage (291) présente un suintement (TA) ou est mal fixé (CC) (art. 81, 1° et 81, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-262",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Réservoir",
+    "description": "Vérifier réservoir",
+    "minorDefects": [
+      "Le réservoir (292) présente un suintement (TA), est fissuré (Q) ou mal fixé (CC) (art. 81, 2°)."
+    ],
+    "majorDefects": [
+      "Le réservoir (292) présente une fuite (T) autre qu’un suintement (art. 171, 3°).",
+      "Le réservoir (292) est mal fixé et il y a un risque de séparation (AE) (art. 171, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-263",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Bande de retenue ou de protection du réservoir",
+    "description": "Vérifier bande de retenue ou de protection du réservoir",
+    "minorDefects": [
+      "Une bande de retenue (294*) ou de protection (294*) du réservoir est manquante (A), fissurée (Q), cassée (F), mal fixée (CC) ou non conforme à la norme du fabricant (W**) (art. 81, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-264",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Support de réservoir",
+    "description": "Vérifier support de réservoir",
+    "minorDefects": [
+      "Un support (294*) de réservoir est manquant (A), fissuré (Q), cassé (F) ou mal fixé (CC) (art. 81, 3°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-265",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Bouchon d’un réservoir à essence ou à diesel",
+    "description": "Vérifier bouchon d’un réservoir à essence ou à diesel",
+    "minorDefects": [
+      "Le bouchon (293) d’un réservoir à essence ou à diesel n’est pas conçu (X**) pour ce réservoir ou ne peut pas prévenir un déversement (W**) (art. 81, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-266",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Réservoir à essence ou à diesel",
+    "description": "Vérifier réservoir à essence ou à diesel",
+    "minorDefects": [],
+    "majorDefects": [
+      "Le réservoir à essence ou à diesel n’est pas muni (A) d’un bouchon (293) (art. 171, 3°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-267",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Jauge de carburant",
+    "description": "Vérifier jauge de carburant",
+    "minorDefects": [
+      "La jauge (296) est manquante (A) ou ne fonctionne pas (GG) (art. 81, 6°).",
+      "La jauge (296) n’est pas visible à partir du poste de conduite (DD**) (sauf pour le GPL) (art. 81, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-268",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Canalisation",
+    "description": "Vérifier canalisation",
+    "minorDefects": [
+      "Une canalisation (291) est fendillée au point d’exposer la toile (AG), est entamée (G), écrasée (LA), pincée (LA), corrodée (NA) ou usée (WW) excessivement, mal fixée (CC) au point qu’elle vibre ou frotte sur une partie adjacente (AC) (art. 81, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-269",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Canalisation ou raccord",
+    "description": "Vérifier canalisation ou raccord",
+    "minorDefects": [
+      "Une canalisation (291) ou un raccord (298) est inadéquat (IN) (art. 81, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-270",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Vignette (GNC/GPL)",
+    "description": "Vérifier vignette (gnc/gpl)",
+    "minorDefects": [
+      "La vignette (297) est non conforme (X), absente (A), mal localisée (DD) ou non valide (X) (art. 85, 86, 87 et 88)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-271",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Pédale d’accélérateur",
+    "description": "Vérifier pédale d’accélérateur",
+    "minorDefects": [
+      "La pédale (299) est manquante (A) ou mal fixée (CC) (art. 96, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-272",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Moteur",
+    "description": "Vérifier moteur",
+    "minorDefects": [
+      "Le moteur n’accélère pas (R**) ou ne revient pas au ralenti rapidement (R**) lors de l’utilisation ou après le relâchement de la commande de l’accélérateur (299) (art. 96, 1°).",
+      "Le moteur ne s’arrête pas (GG) lorsqu’il tourne au ralenti et que le dispositif est actionné (290) (art. 96, 1°)."
+    ],
+    "majorDefects": [
+      "Le moteur ne revient pas au ralenti (R**) après le relâchement de la commande de l’accélérateur (299) (art. 171, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-273",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Mécanisme de commande du moteur actionné à l’air",
+    "description": "Vérifier mécanisme de commande du moteur actionné à l’air",
+    "minorDefects": [
+      "Le mécanisme (299) de commande du moteur actionné à l’air présente une fuite (T) (art. 96, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-274",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Tringlerie",
+    "description": "Vérifier tringlerie",
+    "minorDefects": [
+      "La tringlerie (299*) est usée (WW), grippé (U) ou mal fixée (CC) au point de nuire au bon fonctionnement de la pédale (art. 96, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-275",
+    "section": "Système d’alimentation en carburant et Système des commandes du moteur",
+    "component": "Ressort de rappel",
+    "description": "Vérifier ressort de rappel",
+    "minorDefects": [
+      "Un ressort de rappel (299*) est manquant (A), usé (WW) ou inadéquat (IN) (art. 96, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-276",
+    "section": "Système d’échappement",
+    "component": "Élément du système d’échappement",
+    "description": "Vérifier élément du système d’échappement",
+    "minorDefects": [
+      "Un élément du système d’échappement (* ou 306) qui est prévu par le fabricant est absent (A), mal fixé (CC) aux endroits prévus ou présente une fuite (T) de gaz (art. 91).",
+      "Un élément du système d’échappement (*), à l’exception des éléments servant à la régénération du filtre à particules, passe à moins de 50 mm (2 po) (X**) d’un autre élément, tels une pièce en matériau combustible, un fil électrique, le système d’alimentation en carburant ou de freinage (art. 92).",
+      "Un élément du système d’échappement (*) passe à moins de 25 mm (1 po) (X**) d’un réservoir de diesel protégé par un écran approprié contre la chaleur (art. 92).",
+      "Un élément du système d’échappement (*) passe à moins de 150 mm (6 po) (X**) d’une canalisation de carburant sous pression, de type GNC ou GPL (art. 92)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-277",
+    "section": "Système d’échappement",
+    "component": "Matière inflammable dégouttant sur un élément du système d’échappement",
+    "description": "Vérifier matière inflammable dégouttant sur un élément du système d’échappement",
+    "minorDefects": [
+      "Une matière inflammable dégoutte (ZZ**) sur un élément du système d’échappement (* ou 306) (art. 92)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-278",
+    "section": "Système d’échappement",
+    "component": "Fuite de gaz d’échappement",
+    "description": "Vérifier fuite de gaz d’échappement",
+    "minorDefects": [],
+    "majorDefects": [
+      "Il y a une fuite (T**) de gaz d’échappement (306) du moteur : - sous l’habitacle, alors que le plancher est perforé; ou - dans le compartiment moteur (art. 171, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-279",
+    "section": "Système d’échappement",
+    "component": "Silencieux, catalyseur ou résonateur",
+    "description": "Vérifier silencieux, catalyseur ou résonateur",
+    "minorDefects": [
+      "Le silencieux (310), le catalyseur (313) ou le résonateur (312) est absent (A) ou mal fixé (CC) (art. 91).",
+      "Le silencieux (310), le catalyseur (313) ou le résonateur (312) présente une fuite (T) de gaz (art. 91).",
+      "Le silencieux (310), le catalyseur (313) ou le résonateur (312) a subi une réparation inadéquate (FF**) (art. 91)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-280",
+    "section": "Système d’échappement",
+    "component": "Tuyau",
+    "description": "Vérifier tuyau",
+    "minorDefects": [
+      "Un tuyau (311) présente une fuite (T) de gaz (art. 91).",
+      "Un tuyau (311) a subi une réparation inadéquate (FF**) (art. 91).",
+      "Un tuyau (311) traverse l’habitacle (DD**) (art. 95).",
+      "Un tuyau (311) est absent (A) ou mal fixé (CC) (art. 91)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-281",
+    "section": "Système d’échappement",
+    "component": "Sortie du tuyau d’échappement",
+    "description": "Vérifier sortie du tuyau d’échappement",
+    "minorDefects": [
+      "La sortie du tuyau d’échappement du véhicule (311) est située sous l’espace réservé aux occupants et aux bagages ou sous la porte d’urgence (DD**) (art. 95)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-282",
+    "section": "Système d’échappement",
+    "component": "Sortie du tuyau d’échappement (autobus scolaire)",
+    "description": "Vérifier sortie du tuyau d’échappement (autobus scolaire)",
+    "minorDefects": [
+      "Pour l’autobus affecté au transport scolaire, la sortie du tuyau d’échappement (311) est sous ou devant une vitre latérale (DD**) pouvant s’ouvrir (art. 95)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-283",
+    "section": "Système d’échappement",
+    "component": "Extrémité du tuyau d’échappement",
+    "description": "Vérifier extrémité du tuyau d’échappement",
+    "minorDefects": [
+      "L’extrémité du tuyau d’échappement (311) excède horizontalement (X**) le véhicule routier de plus de 15 cm (6 po) (art. 95)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-284",
+    "section": "Système d’échappement",
+    "component": "Raccord (système d’échappement)",
+    "description": "Vérifier raccord (système d’échappement)",
+    "minorDefects": [
+      "Il y a une fuite (T) de gaz à un raccord (307) (art. 91)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-285",
+    "section": "Système d’échappement",
+    "component": "Élément de fixation (système d’échappement)",
+    "description": "Vérifier élément de fixation (système d’échappement)",
+    "minorDefects": [
+      "Un élément de fixation (308) est manquant (A) ou mal fixé (CC) (art. 91)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-286",
+    "section": "Système d’échappement",
+    "component": "Structure protectrice",
+    "description": "Vérifier structure protectrice",
+    "minorDefects": [
+      "La structure protectrice (309) est absente (A) ou mal fixée (CC) (art. 91 et 93)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-287",
+    "section": "Pneus et Roues",
+    "component": "Pneu rechapé",
+    "description": "Vérifier pneu rechapé",
+    "minorDefects": [
+      "Un pneu (275) rechapé est installé sur l’essieu relié à la direction d’un véhicule d’urgence, d’un minibus ou d’un véhicule ayant un poids nominal brut de 4 500 kg (9 921 lb) ou plus (X**), sauf si le véhicule est munis de deux essieux reliés à la direction (art. 120, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-288",
+    "section": "Pneus et Roues",
+    "component": "Pneu",
+    "description": "Vérifier pneu",
+    "minorDefects": [
+      "Sur un essieu ou une combinaison d’essieux (ex. : essieu tandem), on trouve un pneu (275) de dimension, de type de construction ou de série différent (KK), sauf s’il est reconnu par le fabricant du pneu comme équivalent (art. 120, 7°).",
+      "Le véhicule est muni de pneus (275) radiaux à l’avant et de pneus diagonaux à l’arrière (X**), sauf si le véhicule est muni de roues arrière jumelées (art. 120, 8°).",
+      "Un pneu (275) est de dimension inférieure (W**) à la dimension minimale recommandée par le fabricant du véhicule, sauf s’il est reconnu comme un équivalent par le fabricant du pneu. (art. 120, 11°).",
+      "Un pneu (275) touche à la carrosserie ou à un autre élément rigide du véhicule lors du mouvement de la suspension et de la direction (AC**) (art. 120, 11°).",
+      "Un pneu (275) porte la mention qu’il est destiné à un usage spécial (VV**) ou qu’il n’est pas conçu pour rouler sur un chemin public (KK**), sauf s’il est installé sur un camion spécialement adapté à un usage agricole ou sur une remorque de ferme (art. 120, 15°).",
+      "Un pneu (275) n’est pas installé sur une roue selon les normes du fabricant (W**) du pneu (art. 120, 16°)."
+    ],
+    "majorDefects": [
+      "Un pneu (275) est en contact (AC) avec une partie fixe du véhicule (art. 170, 4°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-289",
+    "section": "Pneus et Roues",
+    "component": "Pneu (véhicule de promenade)",
+    "description": "Vérifier pneu (véhicule de promenade)",
+    "minorDefects": [
+      "Un véhicule de promenade est muni de pneus (275) avant d’une série moindre ou d’une bande de roulement plus large que les pneus arrière (X**) (art. 120, 9°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-290",
+    "section": "Pneus et Roues",
+    "component": "Pneus jumelés",
+    "description": "Vérifier pneus jumelés",
+    "minorDefects": [
+      "Les pneus (275) jumelés ont une différence de diamètre, mesuré à la bande de roulement, de plus de 13 mm (1/2 po) (X**) ou sont en contact (AC) (art. 120, 10°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-291",
+    "section": "Pneus et Roues",
+    "component": "Pneu simple ou pneus jumelés",
+    "description": "Vérifier pneu simple ou pneus jumelés",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un pneu simple (275) ou des pneus jumelés du même assemblage de roues sont conçus pour un usage hors route (KK**), alors qu’ils ne sont pas installés sur un camion spécialement adapté pour un usage agricole ou sur une remorque de ferme (art. 170, 1°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-292",
+    "section": "Pneus et Roues",
+    "component": "Goujon, boulon, écrou ou autre pièce de fixation",
+    "description": "Vérifier goujon, boulon, écrou ou autre pièce de fixation",
+    "minorDefects": [
+      "Un goujon (stud), un boulon, un écrou (273) ou toute autre pièce de fixation (277) est endommagé (N), réparé par soudage (RR) ou est de la mauvaise dimension (KK**) (art. 121, 1°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-293",
+    "section": "Pneus et Roues",
+    "component": "Boulon",
+    "description": "Vérifier boulon",
+    "minorDefects": [
+      "Il y a moins d’une spire et demie du filage d’un boulon (273) qui déborde l’écrou de fixation (X**) (à moins d’indication contraire du fabricant) (art. 121, 2°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-294",
+    "section": "Pneus et Roues",
+    "component": "Pièce de fixation d’une roue",
+    "description": "Vérifier pièce de fixation d’une roue",
+    "minorDefects": [],
+    "majorDefects": [
+      "Une pièce de fixation (273, 277) d’une roue est manquante (A), fissurée (Q), cassée (F) ou mal fixée (CC) (art. 170, 6°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-295",
+    "section": "Pneus et Roues",
+    "component": "Roue",
+    "description": "Vérifier roue",
+    "minorDefects": [
+      "Une roue (*) est endommagée (N**) ou corrodée (NA**) au point que sa capacité est affaiblie, faussée (P), mal alignée ou déformée (K**) (art. 121, 3°).",
+      "Une roue (272, 276) porte des marques de réparation (RR) autres que les soudures originales du fabricant ou l’installation d’une bande de renforcement pour la roue à rayons (art. 121, 3°)."
+    ],
+    "majorDefects": [
+      "Une roue (272, 276, 281) présente une fissure (Q), une cassure (F) ou un trou de boulon ovalisé (K**) (art. 170, 7°).",
+      "Une roue (272, 276, 281) présente une marque de réparation par soudage (RR), sauf dans le cas de l’installation d’une bande de renforcement sur une roue moulée (art. 170, 7°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-296",
+    "section": "Pneus et Roues",
+    "component": "Cerceau de fixation (roue formée de deux ou trois pièces)",
+    "description": "Vérifier cerceau de fixation (roue formée de deux ou trois pièces)",
+    "minorDefects": [
+      "Dans le cas d’une roue formée de deux ou trois pièces, le dégagement du cerceau de fixation (279) est de moins de 3 mm (4/32 po) aux extrémités (X**) (art. 121, 4°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-297",
+    "section": "Pneus et Roues",
+    "component": "Roue moulée",
+    "description": "Vérifier roue moulée",
+    "minorDefects": [
+      "Une roue (272) moulée est usée à ses points de fixation (WW**) (art. 121, 5°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-298",
+    "section": "Pneus et Roues",
+    "component": "Rayon d’une roue à rayons",
+    "description": "Vérifier rayon d’une roue à rayons",
+    "minorDefects": [
+      "Un rayon d’une roue (282) à rayons est manquant (A), cassé (F), déformé (K) ou détendu (TT) (art. 121, 6°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-299",
+    "section": "Pneus et Roues",
+    "component": "Entretoise",
+    "description": "Vérifier entretoise",
+    "minorDefects": [
+      "L’entretoise (280) séparant les roues jumelées est endommagée (N), manquante (A), déformée (K), fissurée (Q) ou cassée (F) (art. 121, 7°)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-300",
+    "section": "Pneus et Roues",
+    "component": "Cerceau de fixation (roue multipièces)",
+    "description": "Vérifier cerceau de fixation (roue multipièces)",
+    "minorDefects": [],
+    "majorDefects": [
+      "Un cerceau de fixation (279) d’une roue multipièces est faussé (P), fissuré (Q), mal ajusté (BB), déformé (K), cassé (F), mal fixé (CC), soudé (RR) ou non adapté (KK**) à la jante sur laquelle il est installé (art. 170, 5°)."
+    ],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-301",
+    "section": "Carrosserie",
+    "component": "Partie du véhicule routier",
+    "description": "Vérifier partie du véhicule routier",
+    "minorDefects": [
+      "Une partie (* ou 236) du véhicule routier présente une arête vive ou une saillie (C**) pouvant entraîner un risque de blessure (art. 42)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-302",
+    "section": "Carrosserie",
+    "component": "Élément fixe de la carrosserie",
+    "description": "Vérifier élément fixe de la carrosserie",
+    "minorDefects": [
+      "Un élément fixe (* ou 236) de la carrosserie (aile, capot, toiture, portière, etc.) prévu par le fabricant est manquant (A) ou mal fixé (CC) (art. 41)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-303",
+    "section": "Carrosserie",
+    "component": "Accessoire ou équipement auxiliaire",
+    "description": "Vérifier accessoire ou équipement auxiliaire",
+    "minorDefects": [
+      "Un accessoire (* ou 236) (ex. : porte-bagages extérieur) ou un équipement auxiliaire (* ou 236) (ex. : équipement d’entretien de chemins publics) est mal fixé (CC) (art. 41)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-304",
+    "section": "Carrosserie",
+    "component": "Accessoire ou équipement auxiliaire requis par le Code",
+    "description": "Vérifier accessoire ou équipement auxiliaire requis par le code",
+    "minorDefects": [
+      "Un accessoire (* ou 236) ou un équipement (* ou 236) auxiliaire requis par le Code est manquant (A) ou en mauvais état de fonctionnement (R**) (art. 41)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  },
+  {
+    "id": "item-305",
+    "section": "Carrosserie",
+    "component": "Garde-boue",
+    "description": "Vérifier garde-boue",
+    "minorDefects": [
+      "Un garde-boue (251) requis est manquant (A) (art. 163)."
+    ],
+    "majorDefects": [],
+    "vmrsCode": "",
+    "locationCode": ""
+  }
+]

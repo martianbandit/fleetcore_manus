@@ -55,10 +55,13 @@ export interface ChecklistItem {
   description: string;
   vmrsCode?: string; // Code VMRS pour identifier le composant
   saaqCode?: string; // Code du formulaire SAAQ
+  locationCode?: string; // Code de localisation (diagramme 1-19, positions 40-57)
   status: ItemStatus;
   notes: string | null;
   mediaUrls: string[];
   proofs?: Proof[]; // Preuves photographiques/vidéo
+  minorDefects?: string[]; // Liste des défauts mineurs possibles pour ce composant
+  majorDefects?: string[]; // Liste des défauts majeurs possibles pour ce composant
   isRequired: boolean;
   createdAt: string;
   updatedAt: string;
