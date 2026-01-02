@@ -209,6 +209,26 @@ export default function SettingsScreen() {
               <IconSymbol name="chevron.right" size={16} color={colors.muted} />
             </TouchableOpacity>
 
+            {/* Google Calendar Sync */}
+            <TouchableOpacity
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+              onPress={() => router.push('/settings/calendar-sync' as any)}
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="calendar" size={20} color={colors.foreground} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base" style={{ color: colors.foreground }}>
+                    Google Calendar
+                  </Text>
+                  <Text className="text-sm" style={{ color: colors.muted }}>
+                    Synchroniser les rappels
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
             {/* Auto Sync */}
             <View className="p-4 flex-row items-center justify-between">
               <View className="flex-row items-center flex-1">

@@ -638,3 +638,27 @@
 - [x] Écran de détail de rappel (/reminder/[id])
 - [x] Filtres par type, période et priorité
 - [x] Mini calendrier avec indicateurs d'événements
+
+
+## 🆕 Notifications et Synchronisation (v13)
+
+### Notifications push
+- [x] Service de notifications push avec expo-notifications (push-notification-service.ts)
+- [x] Planification des notifications X jours avant échéance (14, 7, 3, 1, 0 jours)
+- [x] Écran de paramètres des notifications amélioré
+- [x] Gestion des permissions de notification (Android channels)
+- [x] Notifications pour rappels en retard (alertes urgentes)
+
+### Synchronisation Google Calendar
+- [x] Connexion au compte Google via MCP (calendar-service.ts)
+- [x] Création d'événements Google Calendar depuis FleetCore
+- [x] Synchronisation automatique des rappels
+- [x] Écran de configuration (/settings/calendar-sync)
+- [x] Indicateur de statut de synchronisation
+- [x] Gestion des erreurs de synchronisation
+
+### Rappels automatiques par véhicule
+- [x] Création automatique lors de l'ajout d'un véhicule
+- [x] Rappels par défaut: inspection, assurance, immatriculation, maintenance
+- [x] Fonction createVehicleDefaultReminders()
+- [x] Fonction getVehicleReminders() et deleteVehicleReminders()

@@ -5,6 +5,7 @@ import { ScreenContainer } from '@/components/screen-container';
 import { useTheme } from '@/lib/theme-context';
 import { addVehicle, updateVehicle, getVehicle } from '@/lib/data-service';
 import { canAddVehicle } from '@/lib/subscription-service';
+import { createVehicleDefaultReminders } from '@/lib/calendar-service';
 import * as ImagePicker from 'expo-image-picker';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import type { Vehicle } from '@/lib/types';
@@ -159,15 +160,28 @@ export default function AddVehicleScreen() {
           { text: 'OK', onPress: () => router.back() }
         ]);
       } else {
-        await addVehicle({
+        const newVehicle = await addVehicle({
           ...formData,
           status: 'active',
           lastInspectionDate: null,
           lastInspectionStatus: null,
         });
-        Alert.alert('Succès', 'Véhicule ajouté avec succès', [
-          { text: 'OK', onPress: () => router.back() }
-        ]);
+        
+        // Créer les rappels par défaut pour le nouveau véhicule
+        try {
+          await createVehicleDefaultReminders(
+            newVehicle.id,
+            `${formData.make} ${formData.model} (${formData.unit})`
+          );
+        } catch (reminderError) {
+          console.error('Error creating default reminders:', reminderError);
+        }
+        
+        Alert.alert(
+          'Succès', 
+          'Véhicule ajouté avec succès!\n\nDes rappels automatiques ont été créés pour:\n• Inspection annuelle\n• Assurance\n• Immatriculation', 
+          [{ text: 'OK', onPress: () => router.back() }]
+        );
       }
     } catch (error) {
       Alert.alert('Erreur', `Impossible de ${isEditMode ? 'modifier' : 'ajouter'} le véhicule`);

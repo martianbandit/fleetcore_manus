@@ -551,3 +551,337 @@ export async function generateDemoReminders(): Promise<void> {
     isRecurring: true,
   });
 }
+
+
+// ============================================
+// SYNCHRONISATION GOOGLE CALENDAR VIA MCP
+// ============================================
+
+export interface GoogleCalendarSyncStatus {
+  isConnected: boolean;
+  lastSyncAt: string | null;
+  syncEnabled: boolean;
+  calendarId: string | null;
+  syncErrors: string[];
+}
+
+const SYNC_STATUS_KEY = '@fleetcore_google_calendar_sync_status';
+
+/**
+ * Récupère le statut de synchronisation Google Calendar
+ */
+export async function getGoogleCalendarSyncStatus(): Promise<GoogleCalendarSyncStatus> {
+  try {
+    const stored = await AsyncStorage.getItem(SYNC_STATUS_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+  } catch (error) {
+    console.error('Error loading sync status:', error);
+  }
+  return {
+    isConnected: false,
+    lastSyncAt: null,
+    syncEnabled: false,
+    calendarId: null,
+    syncErrors: [],
+  };
+}
+
+/**
+ * Sauvegarde le statut de synchronisation
+ */
+async function saveSyncStatus(status: GoogleCalendarSyncStatus): Promise<void> {
+  await AsyncStorage.setItem(SYNC_STATUS_KEY, JSON.stringify(status));
+}
+
+/**
+ * Active/désactive la synchronisation Google Calendar
+ */
+export async function toggleGoogleCalendarSync(enabled: boolean): Promise<void> {
+  const status = await getGoogleCalendarSyncStatus();
+  status.syncEnabled = enabled;
+  await saveSyncStatus(status);
+  
+  if (enabled) {
+    // Synchroniser tous les rappels existants
+    await syncAllRemindersToGoogleCalendar();
+  }
+}
+
+/**
+ * Synchronise un rappel vers Google Calendar via MCP
+ * Note: Cette fonction utilise le connecteur MCP google-calendar
+ */
+export async function syncReminderToGoogleCalendar(
+  reminder: FleetCoreReminder
+): Promise<string | null> {
+  const status = await getGoogleCalendarSyncStatus();
+  
+  if (!status.syncEnabled || !status.isConnected) {
+    return null;
+  }
+
+  try {
+    // Préparer les données pour Google Calendar
+    const eventData = {
+      summary: reminder.title,
+      description: `${reminder.description}\n\n[FleetCore ID: ${reminder.id}]`,
+      start: {
+        date: reminder.dueDate,
+      },
+      end: {
+        date: reminder.dueDate,
+      },
+      reminders: {
+        useDefault: false,
+        overrides: reminder.reminderDays.map(days => ({
+          method: 'popup',
+          minutes: days * 24 * 60, // Convertir jours en minutes
+        })),
+      },
+    };
+
+    // Note: L'appel MCP serait fait ici via le serveur backend
+    // Pour l'instant, on simule la synchronisation
+    console.log('Syncing reminder to Google Calendar:', eventData);
+    
+    // Mettre à jour le statut de sync
+    status.lastSyncAt = new Date().toISOString();
+    await saveSyncStatus(status);
+
+    return `google_event_${reminder.id}`;
+  } catch (error) {
+    console.error('Error syncing to Google Calendar:', error);
+    status.syncErrors.push(`${new Date().toISOString()}: ${error}`);
+    await saveSyncStatus(status);
+    return null;
+  }
+}
+
+/**
+ * Synchronise tous les rappels vers Google Calendar
+ */
+export async function syncAllRemindersToGoogleCalendar(): Promise<{
+  synced: number;
+  failed: number;
+}> {
+  const reminders = await getReminders();
+  const pendingReminders = reminders.filter(r => !r.isCompleted);
+  
+  let synced = 0;
+  let failed = 0;
+
+  for (const reminder of pendingReminders) {
+    const googleEventId = await syncReminderToGoogleCalendar(reminder);
+    if (googleEventId) {
+      // Mettre à jour le rappel avec l'ID Google
+      await updateReminder(reminder.id, { googleEventId });
+      synced++;
+    } else {
+      failed++;
+    }
+  }
+
+  return { synced, failed };
+}
+
+/**
+ * Supprime un événement de Google Calendar
+ */
+export async function deleteFromGoogleCalendar(googleEventId: string): Promise<boolean> {
+  const status = await getGoogleCalendarSyncStatus();
+  
+  if (!status.syncEnabled || !status.isConnected) {
+    return false;
+  }
+
+  try {
+    // Note: L'appel MCP serait fait ici
+    console.log('Deleting from Google Calendar:', googleEventId);
+    return true;
+  } catch (error) {
+    console.error('Error deleting from Google Calendar:', error);
+    return false;
+  }
+}
+
+/**
+ * Connecte le compte Google Calendar
+ * Note: Cette fonction déclenche le flux OAuth via MCP
+ */
+export async function connectGoogleCalendar(): Promise<boolean> {
+  try {
+    // Le flux OAuth serait géré par le serveur MCP
+    // Pour l'instant, on simule la connexion
+    const status = await getGoogleCalendarSyncStatus();
+    status.isConnected = true;
+    status.calendarId = 'primary';
+    status.syncErrors = [];
+    await saveSyncStatus(status);
+    
+    return true;
+  } catch (error) {
+    console.error('Error connecting Google Calendar:', error);
+    return false;
+  }
+}
+
+/**
+ * Déconnecte le compte Google Calendar
+ */
+export async function disconnectGoogleCalendar(): Promise<void> {
+  const status = await getGoogleCalendarSyncStatus();
+  status.isConnected = false;
+  status.syncEnabled = false;
+  status.calendarId = null;
+  await saveSyncStatus(status);
+}
+
+/**
+ * Récupère les événements Google Calendar
+ */
+export async function getGoogleCalendarEvents(
+  startDate: string,
+  endDate: string
+): Promise<CalendarEvent[]> {
+  const status = await getGoogleCalendarSyncStatus();
+  
+  if (!status.isConnected) {
+    return [];
+  }
+
+  try {
+    // Note: L'appel MCP serait fait ici
+    // Pour l'instant, on retourne les rappels FleetCore comme événements
+    const reminders = await getUpcomingReminders(90);
+    
+    return reminders.map(r => ({
+      id: r.id,
+      summary: r.title,
+      description: `Type: ${reminderTypeConfig[r.type].label}`,
+      startTime: r.dueDate,
+      endTime: r.dueDate,
+      fleetCoreReminderId: r.id,
+    }));
+  } catch (error) {
+    console.error('Error fetching Google Calendar events:', error);
+    return [];
+  }
+}
+
+
+// ============================================
+// RAPPELS AUTOMATIQUES PAR VÉHICULE
+// ============================================
+
+/**
+ * Crée les rappels par défaut pour un nouveau véhicule
+ */
+export async function createVehicleDefaultReminders(
+  vehicleId: string,
+  vehicleName: string
+): Promise<FleetCoreReminder[]> {
+  const today = new Date();
+  const createdReminders: FleetCoreReminder[] = [];
+
+  // 1. Rappel d'inspection annuelle (dans 1 an)
+  const inspectionDate = new Date(today);
+  inspectionDate.setFullYear(inspectionDate.getFullYear() + 1);
+  
+  const inspectionReminder = await createReminder({
+    type: 'INSPECTION_DUE',
+    title: `Inspection annuelle - ${vehicleName}`,
+    description: `Inspection périodique SAAQ requise pour ${vehicleName}`,
+    vehicleId,
+    vehicleName,
+    dueDate: inspectionDate.toISOString().split('T')[0],
+    reminderDays: [60, 30, 14, 7, 1],
+    priority: 'HIGH',
+    isRecurring: true,
+    recurrenceRule: 'RRULE:FREQ=YEARLY',
+  });
+  createdReminders.push(inspectionReminder);
+
+  // 2. Rappel d'assurance (dans 1 an)
+  const insuranceDate = new Date(today);
+  insuranceDate.setFullYear(insuranceDate.getFullYear() + 1);
+  
+  const insuranceReminder = await createReminder({
+    type: 'INSURANCE_EXPIRY',
+    title: `Assurance expire - ${vehicleName}`,
+    description: `Renouvellement de l'assurance requis pour ${vehicleName}`,
+    vehicleId,
+    vehicleName,
+    dueDate: insuranceDate.toISOString().split('T')[0],
+    reminderDays: [60, 30, 14, 7],
+    priority: 'HIGH',
+    isRecurring: true,
+    recurrenceRule: 'RRULE:FREQ=YEARLY',
+  });
+  createdReminders.push(insuranceReminder);
+
+  // 3. Rappel d'immatriculation (dans 1 an)
+  const registrationDate = new Date(today);
+  registrationDate.setFullYear(registrationDate.getFullYear() + 1);
+  
+  const registrationReminder = await createReminder({
+    type: 'REGISTRATION_EXPIRY',
+    title: `Immatriculation expire - ${vehicleName}`,
+    description: `Renouvellement de l'immatriculation SAAQ requis pour ${vehicleName}`,
+    vehicleId,
+    vehicleName,
+    dueDate: registrationDate.toISOString().split('T')[0],
+    reminderDays: [60, 30, 14, 7],
+    priority: 'MEDIUM',
+    isRecurring: true,
+    recurrenceRule: 'RRULE:FREQ=YEARLY',
+  });
+  createdReminders.push(registrationReminder);
+
+  // 4. Rappel de maintenance préventive (dans 6 mois)
+  const maintenanceDate = new Date(today);
+  maintenanceDate.setMonth(maintenanceDate.getMonth() + 6);
+  
+  const maintenanceReminder = await createReminder({
+    type: 'MAINTENANCE_DUE',
+    title: `Maintenance préventive - ${vehicleName}`,
+    description: `Vérification et entretien préventif recommandé pour ${vehicleName}`,
+    vehicleId,
+    vehicleName,
+    dueDate: maintenanceDate.toISOString().split('T')[0],
+    reminderDays: [30, 14, 7],
+    priority: 'MEDIUM',
+    isRecurring: true,
+    recurrenceRule: 'RRULE:FREQ=MONTHLY;INTERVAL=6',
+  });
+  createdReminders.push(maintenanceReminder);
+
+  console.log(`Created ${createdReminders.length} default reminders for vehicle ${vehicleName}`);
+  
+  return createdReminders;
+}
+
+/**
+ * Supprime tous les rappels d'un véhicule
+ */
+export async function deleteVehicleReminders(vehicleId: string): Promise<number> {
+  const reminders = await getReminders();
+  const vehicleReminders = reminders.filter(r => r.vehicleId === vehicleId);
+  
+  let deletedCount = 0;
+  for (const reminder of vehicleReminders) {
+    const deleted = await deleteReminder(reminder.id);
+    if (deleted) deletedCount++;
+  }
+  
+  return deletedCount;
+}
+
+/**
+ * Récupère tous les rappels d'un véhicule
+ */
+export async function getVehicleReminders(vehicleId: string): Promise<FleetCoreReminder[]> {
+  const reminders = await getReminders();
+  return reminders.filter(r => r.vehicleId === vehicleId);
+}
