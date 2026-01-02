@@ -892,3 +892,109 @@
 - [ ] Redirection vers les écrans de bienvenue si premier lancement
 - [ ] Guide contextuel sur le Dashboard après les slides
 - [ ] Option "Revoir le tutoriel" dans les paramètres
+
+
+## 🆕 Interfaces par rôle (v22)
+
+### Service de gestion des rôles
+- [ ] Étendre role-service.ts avec 5 rôles: admin, manager, dispatcher, technician, driver
+- [ ] Permissions granulaires par fonctionnalité et par rôle
+- [ ] Fonction getCurrentUserRole() pour déterminer le rôle actif
+- [ ] Fonction canAccess(feature) pour vérifier les permissions
+- [ ] Redirection automatique vers le dashboard approprié
+
+### Dashboard Administrateur
+- [ ] Vue d'ensemble de toute l'organisation
+- [ ] Gestion des utilisateurs et des rôles
+- [ ] Configuration système et abonnements
+- [ ] Statistiques globales et rapports
+- [ ] Audit des activités
+
+### Dashboard Gestionnaire
+- [ ] KPIs de flotte (véhicules, inspections, conformité)
+- [ ] Suivi des coûts et budgets
+- [ ] Rapports analytiques
+- [ ] Gestion des équipes
+- [ ] Approbation des bons de travail
+
+### Dashboard Dispatcher
+- [ ] Vue carte des véhicules (simulation)
+- [ ] Affectation des missions aux chauffeurs
+- [ ] Suivi en temps réel des trajets
+- [ ] Gestion des urgences et priorités
+- [ ] Communication avec les chauffeurs
+
+### Dashboard Technicien
+- [ ] Bons de travail assignés
+- [ ] Inspections à effectuer
+- [ ] Fiches PEP en cours
+- [ ] Historique des interventions
+- [ ] Chronomètre de travail
+
+### Dashboard Chauffeur
+- [ ] Véhicule assigné du jour
+- [ ] Ronde de sécurité quotidienne
+- [ ] Signalement de défauts
+- [ ] Historique des trajets
+- [ ] Documents du véhicule
+
+### Relations inter-rôles
+- [ ] Dispatcher → Chauffeur: assignation de missions
+- [ ] Chauffeur → Technicien: signalement de défauts → création de bon de travail
+- [ ] Technicien → Gestionnaire: complétion de bon de travail → approbation
+- [ ] Gestionnaire → Administrateur: rapports et demandes d'approbation
+- [ ] Notifications croisées entre rôles
+- [ ] Workflow d'escalade des problèmes
+
+
+
+## 🆕 Interfaces utilisateurs dédiées par rôle (Janvier 2026)
+
+### Service de gestion des rôles
+- [x] Créer le service role-service.ts avec 5 rôles utilisateurs
+- [x] Définir les permissions par rôle (admin, manager, dispatcher, technician, driver)
+- [x] Créer les types User, Mission, DefectReport, ActivityLog
+- [x] Implémenter les fonctions CRUD pour utilisateurs
+- [x] Implémenter les fonctions de gestion des missions
+- [x] Implémenter les fonctions de signalement de défauts
+- [x] Implémenter le journal d'activité
+- [x] Créer les données de démonstration
+
+### Dashboard Administrateur
+- [x] Vue d'ensemble complète de l'organisation
+- [x] Statistiques globales (véhicules, inspections, bons de travail)
+- [x] Gestion des utilisateurs par rôle
+- [x] Journal d'audit des activités
+- [x] Actions rapides (ajouter utilisateur, configuration système)
+
+### Dashboard Gestionnaire de flotte
+- [x] KPIs de flotte (véhicules actifs, en maintenance)
+- [x] Suivi des coûts de maintenance
+- [x] Gestion des équipes
+- [x] Approbation des bons de travail complétés
+- [x] Taux de conformité
+
+### Dashboard Dispatcher (Répartiteur)
+- [x] Vue calendrier des tâches
+- [x] Assignation des techniciens aux bons de travail
+- [x] Suivi des techniciens actifs
+- [x] Alertes urgentes
+- [x] Bons de travail non assignés
+
+### Dashboard Technicien
+- [x] Bons de travail assignés
+- [x] Chronomètre de travail intégré
+- [x] Alertes stock bas
+- [x] Actions rapides (inspection, PEP, inventaire)
+- [x] Démarrer/terminer un bon de travail
+
+### Dashboard Chauffeur
+- [x] Véhicule assigné
+- [x] Ronde de sécurité quotidienne (8 points de vérification)
+- [x] Signalement de défauts avec modal
+- [x] Rappels à venir
+- [x] Actions rapides
+
+### Composants partagés
+- [x] RoleSwitcher - Composant pour basculer entre les rôles/utilisateurs
+- [x] Intégration avec le système de navigation Expo Router
