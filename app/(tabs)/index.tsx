@@ -21,6 +21,8 @@ import {
 } from '@/lib/data-service';
 import { getWorkOrderStats } from '@/lib/work-order-service';
 import { getInventoryStats } from '@/lib/inventory-service';
+import { getGlobalPEPStats } from '@/lib/pep-service';
+import { canAccessPEP } from '@/lib/subscription-service';
 import type { DashboardStats, Inspection, Alert } from '@/lib/types';
 
 export default function DashboardScreen() {
@@ -31,6 +33,8 @@ export default function DashboardScreen() {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [workOrderStats, setWorkOrderStats] = useState<any>(null);
   const [inventoryStats, setInventoryStats] = useState<any>(null);
+  const [pepStats, setPepStats] = useState<any>(null);
+  const [hasPEPAccess, setHasPEPAccess] = useState(false);
   const [overdueReminders, setOverdueReminders] = useState<UpcomingEvent[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -40,12 +44,14 @@ export default function DashboardScreen() {
       // Générer des rappels de démo si nécessaire
       await generateDemoReminders();
       
-      const [statsData, inspectionsData, alertsData, woStats, invStats, overdueData] = await Promise.all([
+      const [statsData, inspectionsData, alertsData, woStats, invStats, pepStatsData, pepAccessResult, overdueData] = await Promise.all([
         getDashboardStats(),
         getInspections(),
         getAlerts(),
         getWorkOrderStats(),
         getInventoryStats(),
+        getGlobalPEPStats(),
+        canAccessPEP(),
         getOverdueReminders(),
       ]);
       setStats(statsData);
@@ -53,6 +59,8 @@ export default function DashboardScreen() {
       setAlerts(alertsData.filter(a => a.severity === 'critical').slice(0, 3));
       setWorkOrderStats(woStats);
       setInventoryStats(invStats);
+      setPepStats(pepStatsData);
+      setHasPEPAccess(pepAccessResult.allowed);
       setOverdueReminders(overdueData.slice(0, 2));
     } catch (error) {
       console.error('Error loading dashboard data:', error);
@@ -233,6 +241,44 @@ export default function DashboardScreen() {
                     </Pressable>
                   </View>
                 </>
+              )}
+              {/* Fiche PEP SAAQ */}
+              <View className="w-1/2 px-1.5 mb-3">
+                <Pressable
+                  onPress={() => router.push('/pep' as any)}
+                  style={({ pressed }) => [pressed && { opacity: 0.8 }]}
+                >
+                  <View className="relative">
+                    <KPICard
+                      title="Fiches PEP"
+                      value={pepStats?.totalForms || 0}
+                      subtitle={hasPEPAccess ? `${pepStats?.pendingForms || 0} en cours` : 'Premium'}
+                      icon="doc.text.fill"
+                      iconColor="#EC4899"
+                    />
+                    {!hasPEPAccess && (
+                      <View className="absolute top-2 right-2 bg-warning px-2 py-0.5 rounded-full">
+                        <Text className="text-xs font-bold text-background">PRO</Text>
+                      </View>
+                    )}
+                  </View>
+                </Pressable>
+              </View>
+              {pepStats && pepStats.upcomingDue > 0 && (
+                <View className="w-1/2 px-1.5 mb-3">
+                  <Pressable
+                    onPress={() => router.push('/reminders' as any)}
+                    style={({ pressed }) => [pressed && { opacity: 0.8 }]}
+                  >
+                    <KPICard
+                      title="PEP à venir"
+                      value={pepStats.upcomingDue}
+                      subtitle="Cette semaine"
+                      icon="calendar.badge.exclamationmark"
+                      iconColor="#F59E0B"
+                    />
+                  </Pressable>
+                </View>
               )}
             </View>
           </View>

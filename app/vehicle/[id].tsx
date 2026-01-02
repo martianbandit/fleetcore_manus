@@ -11,6 +11,8 @@ import { IconSymbol, type IconSymbolName } from '@/components/ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
 import { getVehicle, getInspectionsByVehicle, deleteVehicle } from '@/lib/data-service';
 import { getDocuments, addDocument, deleteDocument, type VehicleDocument } from '@/lib/documents-service';
+import { getPEPFormsByVehicle, type PEPForm } from '@/lib/pep-service';
+import { canAccessPEP } from '@/lib/subscription-service';
 import * as DocumentPicker from 'expo-document-picker';
 import type { Vehicle, Inspection } from '@/lib/types';
 import { VehicleAssignmentManager } from '@/components/vehicle-assignment-manager';
@@ -39,22 +41,28 @@ export default function VehicleDetailScreen() {
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [inspections, setInspections] = useState<Inspection[]>([]);
   const [documents, setDocuments] = useState<VehicleDocument[]>([]);
+  const [pepForms, setPepForms] = useState<PEPForm[]>([]);
+  const [hasPEPAccess, setHasPEPAccess] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const loadData = useCallback(async () => {
     if (!id) return;
     try {
-      const [vehicleData, inspectionsData, documentsData] = await Promise.all([
+      const [vehicleData, inspectionsData, documentsData, pepFormsData, pepAccessResult] = await Promise.all([
         getVehicle(id),
         getInspectionsByVehicle(id),
         getDocuments(id),
+        getPEPFormsByVehicle(id),
+        canAccessPEP(),
       ]);
       setVehicle(vehicleData);
       setInspections(inspectionsData.sort((a, b) => 
         new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime()
       ));
       setDocuments(documentsData);
+      setPepForms(pepFormsData);
+      setHasPEPAccess(pepAccessResult.allowed);
     } catch (error) {
       console.error('Error loading vehicle:', error);
     } finally {
@@ -320,6 +328,101 @@ export default function VehicleDetailScreen() {
             <View className="bg-surface rounded-xl border border-border p-6 items-center">
               <IconSymbol name="doc.fill" size={32} color={colors.muted} />
               <Text className="text-muted mt-2">Aucun document</Text>
+            </View>
+          )}
+        </View>
+
+        {/* Fiches PEP SAAQ */}
+        <View className="mx-4 mt-6 mb-4">
+          <View className="flex-row items-center justify-between mb-3">
+            <View className="flex-row items-center">
+              <Text className="text-lg font-bold text-foreground">
+                Fiches PEP ({pepForms.length})
+              </Text>
+              {!hasPEPAccess && (
+                <View className="ml-2 bg-warning px-2 py-0.5 rounded-full">
+                  <Text className="text-xs font-bold text-background">PRO</Text>
+                </View>
+              )}
+            </View>
+            {hasPEPAccess && (
+              <Pressable
+                onPress={() => router.push(`/pep/create?vehicleId=${id}` as any)}
+                style={({ pressed }) => [{
+                  backgroundColor: colors.primary,
+                  paddingHorizontal: 12,
+                  paddingVertical: 6,
+                  borderRadius: 8,
+                  opacity: pressed ? 0.7 : 1,
+                }]}
+              >
+                <Text style={{ color: '#FFFFFF', fontSize: 12, fontWeight: '600' }}>+ Nouvelle</Text>
+              </Pressable>
+            )}
+          </View>
+          {pepForms.length > 0 ? (
+            <View className="rounded-xl border border-border" style={{ backgroundColor: colors.surface }}>
+              {pepForms.slice(0, 5).map((form, index) => {
+                const statusColor = form.totalMajorDefects > 0 ? colors.error : 
+                  form.totalMinorDefects > 0 ? colors.warning : colors.success;
+                const statusText = form.totalMajorDefects > 0 ? 'Défauts majeurs' :
+                  form.totalMinorDefects > 0 ? 'Défauts mineurs' : 'Conforme';
+                return (
+                  <Pressable
+                    key={form.id}
+                    onPress={() => router.push(`/pep/sign?pepId=${form.id}` as any)}
+                    style={({ pressed }) => [{
+                      padding: 16,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      borderBottomWidth: index < Math.min(pepForms.length, 5) - 1 ? 1 : 0,
+                      borderColor: colors.border,
+                      opacity: pressed ? 0.7 : 1,
+                    }]}
+                  >
+                    <View className="flex-1">
+                      <View className="flex-row items-center">
+                        <Text className="font-semibold" style={{ color: colors.foreground }}>
+                          PEP du {new Date(form.inspectionDate).toLocaleDateString('fr-CA')}
+                        </Text>
+                        <View className="ml-2 px-2 py-0.5 rounded-full" style={{ backgroundColor: statusColor + '20' }}>
+                          <Text className="text-xs font-medium" style={{ color: statusColor }}>
+                            {statusText}
+                          </Text>
+                        </View>
+                      </View>
+                      <Text className="text-sm mt-1" style={{ color: colors.muted }}>
+                        {form.status === 'signed' ? 'Signée' : form.status === 'draft' ? 'Brouillon' : 'Complétée'}
+                        {form.nextMaintenanceDate && ` • Prochain: ${new Date(form.nextMaintenanceDate).toLocaleDateString('fr-CA')}`}
+                      </Text>
+                    </View>
+                    <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+                  </Pressable>
+                );
+              })}
+            </View>
+          ) : (
+            <View className="bg-surface rounded-xl border border-border p-6 items-center">
+              <IconSymbol name="doc.text.fill" size={32} color={colors.muted} />
+              <Text className="text-muted mt-2 text-center">
+                {hasPEPAccess ? 'Aucune fiche PEP pour ce véhicule' : 'Passez au plan Pro pour accéder aux fiches PEP'}
+              </Text>
+              {!hasPEPAccess && (
+                <Pressable
+                  onPress={() => router.push('/subscription/upgrade' as any)}
+                  style={({ pressed }) => [{
+                    marginTop: 12,
+                    backgroundColor: colors.warning,
+                    paddingHorizontal: 16,
+                    paddingVertical: 8,
+                    borderRadius: 8,
+                    opacity: pressed ? 0.7 : 1,
+                  }]}
+                >
+                  <Text style={{ color: '#FFFFFF', fontWeight: '600' }}>Voir les plans</Text>
+                </Pressable>
+              )}
             </View>
           )}
         </View>

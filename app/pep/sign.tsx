@@ -21,6 +21,7 @@ import {
   PEPForm,
   generatePEPPDF,
 } from '@/lib/pep-service';
+import { createPEPReminder } from '@/lib/calendar-service';
 
 export default function SignPEPScreen() {
   const router = useRouter();
@@ -68,6 +69,16 @@ export default function SignPEPScreen() {
       };
       
       await savePEPForm(signedForm);
+      
+      // Créer un rappel automatique pour la prochaine fiche PEP
+      if (signedForm.nextMaintenanceDate) {
+        await createPEPReminder(
+          signedForm.vehicleId,
+          `${signedForm.vehicleInfo.make} ${signedForm.vehicleInfo.model} (${signedForm.vehicleInfo.plateNumber})`,
+          signedForm.nextMaintenanceDate,
+          signedForm.id
+        );
+      }
       
       // Générer le PDF
       const pdfPath = await generatePEPPDF(signedForm);

@@ -620,3 +620,37 @@ export async function generatePEPPDF(form: PEPForm): Promise<string> {
 }
 
 
+
+
+// Obtenir les statistiques PEP globales pour le Dashboard
+export async function getGlobalPEPStats(): Promise<{
+  totalForms: number;
+  completedThisMonth: number;
+  pendingForms: number;
+  upcomingDue: number;
+}> {
+  const allForms = await getPEPForms();
+  const now = new Date();
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  
+  const completedThisMonth = allForms.filter((f: PEPForm) => 
+    f.status === 'signed' && 
+    new Date(f.inspectionDate) >= startOfMonth
+  ).length;
+  
+  const pendingForms = allForms.filter((f: PEPForm) => f.status === 'draft').length;
+  
+  const upcomingDue = allForms.filter((f: PEPForm) => {
+    if (!f.nextMaintenanceDate) return false;
+    const dueDate = new Date(f.nextMaintenanceDate);
+    return dueDate <= nextWeek && dueDate >= now;
+  }).length;
+  
+  return {
+    totalForms: allForms.length,
+    completedThisMonth,
+    pendingForms,
+    upcomingDue,
+  };
+}

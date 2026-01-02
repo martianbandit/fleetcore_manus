@@ -14,6 +14,7 @@ export type ReminderType =
   | 'WORK_ORDER_DEADLINE' // Date limite bon de travail
   | 'PERMIT_EXPIRY'       // Expiration permis
   | 'CERTIFICATION_DUE'   // Certification à renouveler
+  | 'PEP_DUE'             // Fiche PEP SAAQ à faire
   | 'CUSTOM';             // Rappel personnalisé
 
 export type ReminderPriority = 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
@@ -114,6 +115,12 @@ export const reminderTypeConfig: Record<ReminderType, {
     icon: 'checkmark.seal.fill',
     color: '#22C55E',
     defaultReminderDays: [60, 30, 7],
+  },
+  PEP_DUE: {
+    label: 'Fiche PEP SAAQ',
+    icon: 'doc.text.fill',
+    color: '#EC4899',
+    defaultReminderDays: [30, 14, 7, 1],
   },
   CUSTOM: {
     label: 'Rappel personnalisé',
@@ -416,6 +423,7 @@ export async function getReminderStats(): Promise<{
     WORK_ORDER_DEADLINE: 0,
     PERMIT_EXPIRY: 0,
     CERTIFICATION_DUE: 0,
+    PEP_DUE: 0,
     CUSTOM: 0,
   };
 
@@ -884,4 +892,62 @@ export async function deleteVehicleReminders(vehicleId: string): Promise<number>
 export async function getVehicleReminders(vehicleId: string): Promise<FleetCoreReminder[]> {
   const reminders = await getReminders();
   return reminders.filter(r => r.vehicleId === vehicleId);
+}
+
+
+/**
+ * Crée un rappel automatique pour une fiche PEP
+ * Basé sur la date de prochain entretien calculée selon le PNBV
+ */
+export async function createPEPReminder(
+  vehicleId: string,
+  vehicleName: string,
+  nextMaintenanceDate: string,
+  pepFormId: string
+): Promise<FleetCoreReminder> {
+  const reminder: FleetCoreReminder = {
+    id: generateId(),
+    type: 'PEP_DUE',
+    title: `Fiche PEP - ${vehicleName}`,
+    description: `La prochaine fiche d'entretien préventif (PEP) SAAQ est due pour le véhicule ${vehicleName}. Planifiez l'inspection selon les exigences réglementaires.`,
+    vehicleId,
+    vehicleName,
+    inspectionId: pepFormId,
+    dueDate: nextMaintenanceDate,
+    reminderDays: [30, 14, 7, 1],
+    priority: 'HIGH',
+    isRecurring: false,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    isCompleted: false,
+  };
+
+  const reminders = await getReminders();
+  
+  // Supprimer les anciens rappels PEP pour ce véhicule
+  const filteredReminders = reminders.filter(
+    r => !(r.type === 'PEP_DUE' && r.vehicleId === vehicleId && !r.isCompleted)
+  );
+  
+  filteredReminders.push(reminder);
+  await AsyncStorage.setItem(REMINDERS_KEY, JSON.stringify(filteredReminders));
+  
+  return reminder;
+}
+
+/**
+ * Obtient les rappels PEP pour un véhicule
+ */
+export async function getPEPReminders(vehicleId: string): Promise<FleetCoreReminder[]> {
+  const reminders = await getReminders();
+  return reminders.filter(r => r.type === 'PEP_DUE' && r.vehicleId === vehicleId);
+}
+
+/**
+ * Supprime les rappels PEP pour un véhicule
+ */
+export async function deletePEPReminders(vehicleId: string): Promise<void> {
+  const reminders = await getReminders();
+  const filtered = reminders.filter(r => !(r.type === 'PEP_DUE' && r.vehicleId === vehicleId));
+  await AsyncStorage.setItem(REMINDERS_KEY, JSON.stringify(filtered));
 }

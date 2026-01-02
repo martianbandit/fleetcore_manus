@@ -760,3 +760,28 @@
 - [x] Fonction generatePEPPDF() et generatePEPReportData()
 - [x] Écran de signature (/pep/sign) avec résumé des défauts
 - [x] Historique des fiches PEP par véhicule (getPEPFormsByVehicle)
+
+
+## 🆕 Améliorations PEP (v18)
+
+### Lien PEP dans le Dashboard
+- [x] Ajouter KPI "Fiches PEP" dans la section Modules connexes
+- [x] Badge "PRO" pour indiquer la restriction
+- [x] Navigation vers /pep
+- [x] Stats globales PEP (getGlobalPEPStats)
+- [x] KPI "PEP à venir" si des fiches sont dues cette semaine
+
+### Historique PEP par véhicule
+- [x] Afficher la liste des fiches PEP dans le détail véhicule
+- [x] Indicateur de conformité (conforme, défauts mineurs, défauts majeurs)
+- [x] Date du prochain entretien
+- [x] Lien vers le détail de chaque fiche PEP
+- [x] Bouton "+ Nouvelle" pour créer une fiche PEP
+- [x] Message et bouton upgrade pour les plans Free
+
+### Rappels automatiques PEP
+- [x] Créer un rappel automatique lors de la complétion d'une fiche PEP (createPEPReminder)
+- [x] Date basée sur le calcul PNBV (3 ou 6 mois)
+- [x] Type de rappel PEP_DUE ajouté au calendar-service
+- [x] Rappels 30, 14, 7, 1 jours avant échéance
+- [x] Fonctions getPEPReminders et deletePEPReminders
