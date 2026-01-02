@@ -358,3 +358,58 @@ export async function deleteVehicle(id: string): Promise<void> {
     await AsyncStorage.setItem(STORAGE_KEYS.INSPECTIONS, JSON.stringify(filtered));
   }
 }
+
+
+// Technicians
+export interface Technician {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  photo?: string;
+  certifications: string[];
+  createdAt: string;
+}
+
+const TECHNICIANS_KEY = 'technicians';
+
+export async function getTechnicians(): Promise<Technician[]> {
+  const data = await AsyncStorage.getItem(TECHNICIANS_KEY);
+  return data ? JSON.parse(data) : [];
+}
+
+export async function getTechnician(id: string): Promise<Technician | null> {
+  const technicians = await getTechnicians();
+  return technicians.find(t => t.id === id) || null;
+}
+
+export async function addTechnician(technician: Omit<Technician, 'id' | 'createdAt'>): Promise<Technician> {
+  const technicians = await getTechnicians();
+  const newTechnician: Technician = {
+    ...technician,
+    id: `tech_${Date.now()}`,
+    createdAt: new Date().toISOString(),
+  };
+  technicians.push(newTechnician);
+  await AsyncStorage.setItem(TECHNICIANS_KEY, JSON.stringify(technicians));
+  return newTechnician;
+}
+
+export async function updateTechnician(id: string, updates: Partial<Technician>): Promise<Technician | null> {
+  const technicians = await getTechnicians();
+  const index = technicians.findIndex(t => t.id === id);
+  if (index === -1) return null;
+  
+  technicians[index] = {
+    ...technicians[index],
+    ...updates,
+  };
+  await AsyncStorage.setItem(TECHNICIANS_KEY, JSON.stringify(technicians));
+  return technicians[index];
+}
+
+export async function deleteTechnician(id: string): Promise<void> {
+  const technicians = await getTechnicians();
+  const filtered = technicians.filter(t => t.id !== id);
+  await AsyncStorage.setItem(TECHNICIANS_KEY, JSON.stringify(filtered));
+}

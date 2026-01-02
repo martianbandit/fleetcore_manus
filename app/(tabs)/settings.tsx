@@ -190,23 +190,24 @@ export default function SettingsScreen() {
 
           <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
             {/* Notifications */}
-            <View
+            <TouchableOpacity
               className="p-4 flex-row items-center justify-between border-b"
               style={{ borderColor: colors.border }}
+              onPress={() => router.push('/settings/notifications' as any)}
             >
               <View className="flex-row items-center flex-1">
                 <IconSymbol name="bell.fill" size={20} color={colors.foreground} />
-                <Text className="text-base ml-3" style={{ color: colors.foreground }}>
-                  Notifications
-                </Text>
+                <View className="ml-3 flex-1">
+                  <Text className="text-base" style={{ color: colors.foreground }}>
+                    Notifications
+                  </Text>
+                  <Text className="text-sm" style={{ color: colors.muted }}>
+                    Gérer les alertes et rappels
+                  </Text>
+                </View>
               </View>
-              <Switch
-                value={settings.notifications}
-                onValueChange={(value) => updateSetting('notifications', value)}
-                trackColor={{ false: colors.border, true: colors.primary }}
-                thumbColor="#FFF"
-              />
-            </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
 
             {/* Auto Sync */}
             <View className="p-4 flex-row items-center justify-between">

@@ -59,6 +59,18 @@ const MAPPING: Record<string, MaterialIconName> = {
   "arrow.triangle.2.circlepath.camera.fill": "flip-camera-ios",
   "funnel.fill": "filter-list",
   "gear": "settings",
+  "plus": "add",
+  "doc.text": "description",
+  "dollarsign.circle.fill": "attach-money",
+  "checkmark": "check",
+  "person.badge.plus": "person-add",
+  "person.2.fill": "people",
+  "person.circle.fill": "account-circle",
+  "cube.box.fill": "inventory-2",
+  "shippingbox.fill": "inventory",
+  "hammer.fill": "hardware",
+  "arrow.down.circle.fill": "download",
+  "arrow.up.circle.fill": "upload",
 };
 
 type IconSymbolName = keyof typeof MAPPING;

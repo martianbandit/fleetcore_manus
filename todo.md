@@ -468,3 +468,103 @@
 - [x] Ajouter requestNotificationPermissions() dans app/_layout.tsx
 - [x] Appeler au premier lancement de l'app
 - [x] Gérer les erreurs silencieusement
+
+
+## 🔗 Modules connexes et intégrations
+
+### Étape 1: Lien vers paramètres de notification
+- [ ] Ajouter bouton "Gérer les notifications" dans Settings
+- [ ] Navigation vers /settings/notifications
+
+### Étape 2: Écran de détail technicien
+- [ ] Créer app/team/[id].tsx
+- [ ] Afficher statistiques détaillées (inspections, temps moyen, défauts)
+- [ ] Utiliser getTechnicianMetrics() du metrics-service
+- [ ] Historique des inspections du technicien
+
+### Étape 3: Notifications dans les workflows
+- [ ] Appeler notifyInspectionCompleted() à la fin d'une inspection
+- [ ] Appeler notifyMajorDefect() lors de la détection de défauts majeurs
+- [ ] Intégrer dans l'écran checklist
+
+### Module FleetCommand - Bons de travail
+- [ ] Créer lib/work-order-service.ts
+- [ ] Types: WorkOrder, WorkOrderItem, WorkOrderStatus
+- [ ] Fonctions CRUD pour bons de travail
+- [ ] Créer app/work-orders/index.tsx (liste des bons)
+- [ ] Créer app/work-orders/[id].tsx (détail bon de travail)
+- [ ] Créer app/work-orders/create.tsx (création)
+- [ ] Génération automatique depuis inspection avec défauts
+- [ ] Statuts: DRAFT, PENDING, IN_PROGRESS, COMPLETED, CANCELLED
+- [ ] Assignation à un technicien
+- [ ] Estimation des coûts et temps
+- [ ] Suivi des pièces nécessaires
+
+### Module FleetCrew - Gestion du matériel
+- [ ] Créer lib/inventory-service.ts
+- [ ] Types: InventoryItem, InventoryCategory, StockMovement
+- [ ] Fonctions CRUD pour inventaire
+- [ ] Créer app/inventory/index.tsx (liste du matériel)
+- [ ] Créer app/inventory/[id].tsx (détail article)
+- [ ] Créer app/inventory/add.tsx (ajout article)
+- [ ] Catégories: pièces, outils, consommables, équipements
+- [ ] Gestion des stocks (quantité, seuil minimum, alertes)
+- [ ] Mouvements de stock (entrée, sortie, ajustement)
+- [ ] Liaison avec bons de travail (pièces utilisées)
+- [ ] Fournisseurs et prix
+
+### Notifications automatiques
+- [ ] Notification à la création d'un bon de travail
+- [ ] Notification quand stock faible
+- [ ] Notification assignation technicien
+- [ ] Notification bon de travail complété
+
+
+## 🆕 FleetCommand et FleetCrew - Modules connexes (v10)
+
+### FleetCommand - Gestion des bons de travail
+- [x] Service work-order-service.ts complet
+- [x] Types WorkOrder, WorkOrderItem, WorkOrderStatus, WorkOrderPriority
+- [x] CRUD complet pour bons de travail
+- [x] Création automatique de bon de travail depuis inspection avec défauts
+- [x] Écran liste des bons de travail (/work-orders)
+- [x] Écran détail bon de travail (/work-orders/[id])
+- [x] Écran création bon de travail (/work-orders/create)
+- [x] Assignation de technicien aux bons de travail
+- [x] Suivi de progression des tâches
+- [x] Statuts: DRAFT, PENDING, ASSIGNED, IN_PROGRESS, COMPLETED, CANCELLED
+- [x] Priorités: LOW, MEDIUM, HIGH, URGENT
+- [x] Estimation temps et coûts
+- [x] Statistiques des bons de travail
+
+### FleetCrew - Gestion du matériel et inventaire
+- [x] Service inventory-service.ts complet
+- [x] Types InventoryItem, InventoryTransaction, Supplier, InventoryCategory
+- [x] CRUD complet pour articles d'inventaire
+- [x] Catégories: Pièces, Outils, Fluides, Consommables, Sécurité, Électrique, Autres
+- [x] Écran liste inventaire (/inventory)
+- [x] Écran détail article (/inventory/[id])
+- [x] Écran ajout article (/inventory/add)
+- [x] Gestion des entrées/sorties de stock
+- [x] Ajustements manuels de stock
+- [x] Historique des transactions
+- [x] Alertes stock bas et rupture
+- [x] Codes VMRS associés aux articles
+- [x] Statistiques inventaire (valeur totale, articles en stock bas)
+
+### Intégration entre modules
+- [x] Création automatique de bon de travail lors d'inspection avec défauts
+- [x] Notification push lors de création de bon de travail
+- [x] Lien depuis Dashboard vers FleetCommand et FleetCrew
+- [x] Actions rapides réorganisées avec accès aux modules
+
+### Notifications améliorées
+- [x] notifyWorkOrderCreated() - Notification création bon de travail
+- [x] Intégration dans workflow d'inspection
+- [x] Notification pour défauts majeurs avec détails
+- [x] Notification pour défauts mineurs avec bon de travail
+
+### Améliorations UI
+- [x] Lien vers paramètres de notification depuis Settings
+- [x] Dashboard avec 8 actions rapides (2 lignes)
+- [x] Icônes distinctives pour FleetCommand (orange) et FleetCrew (violet)

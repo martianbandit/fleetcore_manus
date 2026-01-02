@@ -171,6 +171,41 @@ export default function DashboardScreen() {
             </Pressable>
 
             <Pressable
+              onPress={() => router.push('/work-orders' as any)}
+              style={({ pressed }) => [
+                styles.quickAction,
+                pressed && styles.quickActionPressed,
+              ]}
+            >
+              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
+                <IconSymbol name="wrench.fill" size={24} color="#F59E0B" />
+              </View>
+              <Text className="text-xs text-foreground font-medium text-center">
+                Fleet{'\n'}Command
+              </Text>
+            </Pressable>
+
+            <Pressable
+              onPress={() => router.push('/inventory' as any)}
+              style={({ pressed }) => [
+                styles.quickAction,
+                pressed && styles.quickActionPressed,
+              ]}
+            >
+              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
+                <IconSymbol name="cube.box.fill" size={24} color="#8B5CF6" />
+              </View>
+              <Text className="text-xs text-foreground font-medium text-center">
+                Fleet{'\n'}Crew
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+
+        {/* Secondary Actions */}
+        <View className="px-4 mt-4">
+          <View className="flex-row justify-between">
+            <Pressable
               onPress={() => handleQuickAction('inspections')}
               style={({ pressed }) => [
                 styles.quickAction,
@@ -197,6 +232,36 @@ export default function DashboardScreen() {
               </View>
               <Text className="text-xs text-foreground font-medium text-center">
                 Voir{'\n'}rapports
+              </Text>
+            </Pressable>
+
+            <Pressable
+              onPress={() => router.push('/team' as any)}
+              style={({ pressed }) => [
+                styles.quickAction,
+                pressed && styles.quickActionPressed,
+              ]}
+            >
+              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
+                <IconSymbol name="person.2.fill" size={24} color="#0066CC" />
+              </View>
+              <Text className="text-xs text-foreground font-medium text-center">
+                Gérer{'\n'}équipe
+              </Text>
+            </Pressable>
+
+            <Pressable
+              onPress={() => router.push('/(tabs)/settings' as any)}
+              style={({ pressed }) => [
+                styles.quickAction,
+                pressed && styles.quickActionPressed,
+              ]}
+            >
+              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
+                <IconSymbol name="gearshape.fill" size={24} color="#64748B" />
+              </View>
+              <Text className="text-xs text-foreground font-medium text-center">
+                Paramètres
               </Text>
             </Pressable>
           </View>

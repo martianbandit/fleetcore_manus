@@ -11,6 +11,9 @@ import { getInspection, getChecklistItems, updateChecklistItem, updateInspection
 import type { Inspection, ChecklistItem, ItemStatus, Proof } from '@/lib/types';
 import { CameraCapture } from '@/components/camera-capture';
 import { ProofGallery } from '@/components/proof-gallery';
+import { notifyInspectionCompleted, notifyMajorDefect, notifyWorkOrderCreated } from '@/lib/notification-service';
+import { createWorkOrderFromInspection } from '@/lib/work-order-service';
+import { getVehicle } from '@/lib/data-service';
 
 const statusConfig: Record<ItemStatus, { label: string; color: string; icon: string }> = {
   pending: { label: 'En attente', color: '#64748B', icon: 'clock.fill' },
@@ -176,22 +179,134 @@ export default function ChecklistScreen() {
 
     // Reload inspection to get updated counts
     const updatedInspection = await getInspection(id!);
+    const vehicle = updatedInspection?.vehicleId ? await getVehicle(updatedInspection.vehicleId) : null;
+    const vehicleName = vehicle ? `${vehicle.make} ${vehicle.model} - ${vehicle.plate}` : 'Véhicule';
+    
+    // Check if there are any defects (minor or major)
+    const hasDefects = (updatedInspection?.minorDefectCount || 0) > 0 || (updatedInspection?.majorDefectCount || 0) > 0;
     
     if (updatedInspection?.majorDefectCount && updatedInspection.majorDefectCount > 0) {
-      Alert.alert(
-        'Inspection bloquée',
-        `L'inspection est bloquée en raison de ${updatedInspection.majorDefectCount} défaut(s) majeur(s). Les défauts doivent être corrigés.`,
-        [
-          {
-            text: 'Voir le résumé',
-            onPress: () => router.replace(`/inspection/${id}` as any),
-          },
-        ]
+      // Send notification for major defects
+      await notifyMajorDefect(
+        vehicleName,
+        `${updatedInspection.majorDefectCount} défaut(s) majeur(s) détecté(s)`,
+        id!
       );
+      
+      // Create work order automatically for defects
+      if (hasDefects) {
+        try {
+          // Collect defects from checklist items
+          const defects = items
+            .filter(item => item.status === 'minor_defect' || item.status === 'major_defect')
+            .map(item => ({
+              description: item.title + (item.notes ? `: ${item.notes}` : ''),
+              componentCode: item.vmrsCode || item.sectionId,
+              defectType: item.status === 'major_defect' ? 'MAJOR' as const : 'MINOR' as const,
+            }));
+          
+          const workOrder = await createWorkOrderFromInspection(
+            id!,
+            updatedInspection.vehicleId,
+            vehicleName,
+            defects
+          );
+          
+          // Send notification for work order created
+          await notifyWorkOrderCreated(
+            vehicleName,
+            workOrder.orderNumber,
+            defects.length
+          );
+          
+          Alert.alert(
+            'Inspection bloquée',
+            `L'inspection est bloquée en raison de ${updatedInspection.majorDefectCount} défaut(s) majeur(s).\n\nBon de travail ${workOrder.orderNumber} créé automatiquement avec ${defects.length} tâche(s).`,
+            [
+              {
+                text: 'Voir le bon de travail',
+                onPress: () => router.replace(`/work-orders/${workOrder.id}` as any),
+              },
+              {
+                text: 'Voir le résumé',
+                onPress: () => router.replace(`/inspection/${id}` as any),
+              },
+            ]
+          );
+        } catch (error) {
+          console.error('Error creating work order:', error);
+          Alert.alert(
+            'Inspection bloquée',
+            `L'inspection est bloquée en raison de ${updatedInspection.majorDefectCount} défaut(s) majeur(s). Erreur lors de la création du bon de travail.`,
+            [
+              {
+                text: 'Voir le résumé',
+                onPress: () => router.replace(`/inspection/${id}` as any),
+              },
+            ]
+          );
+        }
+      }
+    } else if (hasDefects) {
+      // Minor defects only - create work order but don't block
+      try {
+        const defects = items
+          .filter(item => item.status === 'minor_defect')
+          .map(item => ({
+            description: item.title + (item.notes ? `: ${item.notes}` : ''),
+            componentCode: item.vmrsCode || item.sectionId,
+            defectType: 'MINOR' as const,
+          }));
+        
+        const workOrder = await createWorkOrderFromInspection(
+          id!,
+          updatedInspection?.vehicleId || '',
+          vehicleName,
+          defects
+        );
+        
+        await notifyWorkOrderCreated(
+          vehicleName,
+          workOrder.orderNumber,
+          defects.length
+        );
+        
+        await notifyInspectionCompleted(vehicleName, id!);
+        
+        Alert.alert(
+          'Inspection terminée',
+          `L'inspection est complétée avec ${defects.length} défaut(s) mineur(s).\n\nBon de travail ${workOrder.orderNumber} créé pour les réparations.`,
+          [
+            {
+              text: 'Voir le bon de travail',
+              onPress: () => router.replace(`/work-orders/${workOrder.id}` as any),
+            },
+            {
+              text: 'Voir le résumé',
+              onPress: () => router.replace(`/inspection/${id}` as any),
+            },
+          ]
+        );
+      } catch (error) {
+        console.error('Error creating work order:', error);
+        Alert.alert(
+          'Inspection terminée',
+          'Tous les éléments ont été vérifiés. L\'inspection est complétée.',
+          [
+            {
+              text: 'Voir le résumé',
+              onPress: () => router.replace(`/inspection/${id}` as any),
+            },
+          ]
+        );
+      }
     } else {
+      // No defects - just complete
+      await notifyInspectionCompleted(vehicleName, id!);
+      
       Alert.alert(
         'Inspection terminée',
-        'Tous les éléments ont été vérifiés. L\'inspection est complétée.',
+        'Tous les éléments ont été vérifiés. L\'inspection est complétée sans défaut.',
         [
           {
             text: 'Voir le résumé',

@@ -125,6 +125,28 @@ export async function notifyMajorDefect(vehicleName: string, defectDescription: 
 }
 
 /**
+ * Send local notification for work order created
+ */
+export async function notifyWorkOrderCreated(
+  vehicleName: string,
+  workOrderNumber: string,
+  defectCount: number
+): Promise<void> {
+  const settings = await getNotificationSettings();
+  if (!settings.enabled) return;
+
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: '📋 Bon de travail créé',
+      body: `${workOrderNumber}: ${defectCount} défaut(s) à corriger sur ${vehicleName}`,
+      data: { type: 'work_order_created', workOrderNumber },
+      sound: true,
+    },
+    trigger: null,
+  });
+}
+
+/**
  * Send local notification for maintenance due
  */
 export async function notifyMaintenanceDue(vehicleName: string, vehicleId: string, daysRemaining: number): Promise<void> {
