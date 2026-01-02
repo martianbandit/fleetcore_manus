@@ -5,25 +5,24 @@ import * as Haptics from 'expo-haptics';
 import { Platform } from 'react-native';
 
 import { ScreenContainer } from '@/components/screen-container';
-import { KPICard } from '@/components/ui/kpi-card';
-import { InspectionCard } from '@/components/ui/inspection-card';
-import { AlertCard } from '@/components/ui/alert-card';
-import { AdBanner } from '@/components/ui/ad-banner';
+import { StatCard } from '@/components/ui/stat-card';
+import { ActionCard } from '@/components/ui/action-card';
+import { SectionHeader } from '@/components/ui/section-header';
+import { ActivityTimeline, type ActivityItem } from '@/components/ui/activity-timeline';
+import { ProgressRing } from '@/components/ui/progress-ring';
+import { QuickStats } from '@/components/ui/quick-stats';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { UpcomingEventsWidget } from '@/components/ui/upcoming-events-widget';
-import { DeadlineAlert } from '@/components/ui/deadline-alert';
 import { SyncIndicator, useSyncStatus } from '@/components/ui/sync-indicator';
-import { getOverdueReminders, generateDemoReminders, type UpcomingEvent } from '@/lib/calendar-service';
 import {
   getDashboardStats,
   getInspections,
   getAlerts,
+  getRecentActivity,
 } from '@/lib/data-service';
 import { getWorkOrderStats } from '@/lib/work-order-service';
 import { getInventoryStats } from '@/lib/inventory-service';
-import { getGlobalPEPStats } from '@/lib/pep-service';
-import { canAccessPEP } from '@/lib/subscription-service';
-import type { DashboardStats, Inspection, Alert } from '@/lib/types';
+import { getNotificationCounts } from '@/lib/business-notification-service';
+import type { DashboardStats, Inspection, Alert, RecentActivity } from '@/lib/types';
 
 export default function DashboardScreen() {
   const router = useRouter();
@@ -31,37 +30,31 @@ export default function DashboardScreen() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [recentInspections, setRecentInspections] = useState<Inspection[]>([]);
   const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [activities, setActivities] = useState<RecentActivity[]>([]);
   const [workOrderStats, setWorkOrderStats] = useState<any>(null);
   const [inventoryStats, setInventoryStats] = useState<any>(null);
-  const [pepStats, setPepStats] = useState<any>(null);
-  const [hasPEPAccess, setHasPEPAccess] = useState(false);
-  const [overdueReminders, setOverdueReminders] = useState<UpcomingEvent[]>([]);
+  const [notificationCounts, setNotificationCounts] = useState<any>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const loadData = useCallback(async () => {
     try {
-      // Générer des rappels de démo si nécessaire
-      await generateDemoReminders();
-      
-      const [statsData, inspectionsData, alertsData, woStats, invStats, pepStatsData, pepAccessResult, overdueData] = await Promise.all([
+      const [statsData, inspectionsData, alertsData, activityData, woStats, invStats, notifCounts] = await Promise.all([
         getDashboardStats(),
         getInspections(),
         getAlerts(),
+        getRecentActivity(),
         getWorkOrderStats(),
         getInventoryStats(),
-        getGlobalPEPStats(),
-        canAccessPEP(),
-        getOverdueReminders(),
+        getNotificationCounts(),
       ]);
       setStats(statsData);
       setRecentInspections(inspectionsData.slice(0, 5));
       setAlerts(alertsData.filter(a => a.severity === 'critical').slice(0, 3));
+      setActivities(activityData.slice(0, 5));
       setWorkOrderStats(woStats);
       setInventoryStats(invStats);
-      setPepStats(pepStatsData);
-      setHasPEPAccess(pepAccessResult.allowed);
-      setOverdueReminders(overdueData.slice(0, 2));
+      setNotificationCounts(notifCounts);
     } catch (error) {
       console.error('Error loading dashboard data:', error);
     } finally {
@@ -79,27 +72,37 @@ export default function DashboardScreen() {
     setRefreshing(false);
   }, [loadData]);
 
-  const handleQuickAction = (action: string) => {
+  const handleNavigation = (route: string) => {
     if (Platform.OS !== 'web') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-    switch (action) {
-      case 'new-inspection':
-        router.push('/new-inspection' as any);
-        break;
-      case 'vehicles':
-        router.push('/(tabs)/vehicles' as any);
-        break;
-      case 'inspections':
-        router.push('/(tabs)/inspections' as any);
-        break;
-    }
+    router.push(route as any);
   };
+
+  // Transform activities for timeline
+  const timelineItems: ActivityItem[] = activities.map(activity => ({
+    id: activity.id,
+    type: activity.type as any,
+    title: activity.title,
+    description: activity.description,
+    timestamp: activity.timestamp,
+    status: activity.type === 'defect_found' ? 'warning' : 'success',
+    metadata: {
+      vehiclePlate: (activity as any).vehiclePlate,
+      userName: activity.userName,
+    },
+    onPress: activity.vehicleId ? () => handleNavigation(`/vehicle/${activity.vehicleId}`) : undefined,
+  }));
 
   if (loading) {
     return (
       <ScreenContainer className="items-center justify-center">
-        <Text className="text-muted">Chargement...</Text>
+        <View className="items-center">
+          <View className="w-12 h-12 rounded-full bg-primary/20 items-center justify-center mb-3">
+            <IconSymbol name="car.fill" size={24} color="#0891B2" />
+          </View>
+          <Text className="text-muted">Chargement...</Text>
+        </View>
       </ScreenContainer>
     );
   }
@@ -122,390 +125,286 @@ export default function DashboardScreen() {
                 Tableau de bord de gestion de flotte
               </Text>
             </View>
-            <SyncIndicator
-              status={syncStatus.status}
-              lastSyncTime={syncStatus.lastSyncTime}
-              onPress={syncStatus.startSync}
-              size="small"
-            />
+            <View className="flex-row items-center">
+              {/* Notifications Badge */}
+              <Pressable
+                onPress={() => handleNavigation('/notifications')}
+                className="mr-3 relative"
+                style={({ pressed }) => [pressed && { opacity: 0.7 }]}
+              >
+                <View className="w-10 h-10 rounded-full bg-surface border border-border items-center justify-center">
+                  <IconSymbol name="bell.fill" size={20} color="#64748B" />
+                </View>
+                {notificationCounts?.unread > 0 && (
+                  <View className="absolute -top-1 -right-1 bg-error rounded-full min-w-[18px] h-[18px] items-center justify-center px-1">
+                    <Text className="text-[10px] font-bold text-white">
+                      {notificationCounts.unread > 99 ? '99+' : notificationCounts.unread}
+                    </Text>
+                  </View>
+                )}
+              </Pressable>
+              <SyncIndicator
+                status={syncStatus.status}
+                lastSyncTime={syncStatus.lastSyncTime}
+                onPress={syncStatus.startSync}
+                size="small"
+              />
+            </View>
           </View>
         </View>
 
-        {/* KPI Cards */}
-        <View className="px-4">
+        {/* Conformité globale avec Progress Ring */}
+        <View className="px-4 mb-4">
+          <View className="bg-surface rounded-2xl border border-border p-4">
+            <View className="flex-row items-center">
+              <ProgressRing
+                progress={stats?.complianceScore || 0}
+                size={80}
+                color="auto"
+                label="Conformité"
+              />
+              <View className="flex-1 ml-4">
+                <Text className="text-lg font-bold text-foreground">
+                  Score de conformité
+                </Text>
+                <Text className="text-sm text-muted mt-1">
+                  {stats?.complianceScore || 0}% de votre flotte est conforme aux normes SAAQ
+                </Text>
+                <Pressable
+                  onPress={() => handleNavigation('/reports')}
+                  className="flex-row items-center mt-2"
+                  style={({ pressed }) => [pressed && { opacity: 0.7 }]}
+                >
+                  <Text className="text-sm font-medium text-primary">Voir le rapport</Text>
+                  <IconSymbol name="chevron.right" size={14} color="#0891B2" />
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        {/* KPI Cards - Statistiques principales */}
+        <View className="px-4 mb-4">
+          <SectionHeader
+            title="Vue d'ensemble"
+            icon="chart.bar.fill"
+            iconColor="#0891B2"
+          />
           <View className="flex-row flex-wrap -mx-1.5">
             <View className="w-1/2 px-1.5 mb-3">
-              <KPICard
+              <StatCard
                 title="Véhicules"
                 value={stats?.totalVehicles || 0}
                 subtitle={`${stats?.activeVehicles || 0} actifs`}
                 icon="car.fill"
-                iconColor="#0066CC"
+                iconColor="#0891B2"
+                onPress={() => handleNavigation('/(tabs)/vehicles')}
               />
             </View>
             <View className="w-1/2 px-1.5 mb-3">
-              <KPICard
+              <StatCard
                 title="Inspections"
                 value={stats?.todayInspections || 0}
                 subtitle="Aujourd'hui"
                 icon="clipboard.fill"
                 iconColor="#22C55E"
+                onPress={() => handleNavigation('/(tabs)/inspections')}
               />
             </View>
             <View className="w-1/2 px-1.5 mb-3">
-              <KPICard
+              <StatCard
                 title="Défauts actifs"
                 value={stats?.activeDefects || 0}
                 subtitle={`${stats?.majorDefects || 0} majeurs`}
                 icon="exclamationmark.triangle.fill"
                 iconColor="#EF4444"
+                badge={stats?.majorDefects && stats.majorDefects > 0 ? { text: 'Urgent', color: 'error' } : undefined}
               />
             </View>
             <View className="w-1/2 px-1.5 mb-3">
-              <KPICard
-                title="Conformité"
-                value={`${stats?.complianceScore || 0}%`}
-                subtitle="Score global"
-                icon="checkmark.circle.fill"
-                iconColor="#22C55E"
+              <StatCard
+                title="Bons de travail"
+                value={workOrderStats?.inProgress || 0}
+                subtitle={`${workOrderStats?.pending || 0} en attente`}
+                icon="wrench.fill"
+                iconColor="#F59E0B"
+                onPress={() => handleNavigation('/work-orders')}
               />
             </View>
           </View>
         </View>
 
-        {/* FleetCommand & FleetCrew KPIs */}
+        {/* Actions rapides */}
+        <View className="px-4 mb-4">
+          <SectionHeader
+            title="Actions rapides"
+            icon="bolt.fill"
+            iconColor="#F59E0B"
+          />
+          <View className="gap-2">
+            <ActionCard
+              title="Nouvelle inspection"
+              description="Démarrer une inspection de véhicule"
+              icon="plus.circle.fill"
+              variant="primary"
+              onPress={() => handleNavigation('/new-inspection')}
+            />
+            <ActionCard
+              title="Signaler un défaut"
+              description="Rapporter un problème sur un véhicule"
+              icon="exclamationmark.triangle.fill"
+              variant="warning"
+              onPress={() => handleNavigation('/report-defect')}
+            />
+            <ActionCard
+              title="Générer un rapport"
+              description="Créer un rapport de conformité"
+              icon="doc.text.fill"
+              variant="default"
+              onPress={() => handleNavigation('/reports')}
+            />
+          </View>
+        </View>
+
+        {/* Modules connexes - Quick Stats */}
         {(workOrderStats || inventoryStats) && (
-          <View className="px-4 mt-4">
-            <Text className="text-lg font-bold text-foreground mb-3">Modules connexes</Text>
-            <View className="flex-row flex-wrap -mx-1.5">
-              {workOrderStats && (
-                <>
-                  <View className="w-1/2 px-1.5 mb-3">
-                    <Pressable
-                      onPress={() => router.push('/work-orders' as any)}
-                      style={({ pressed }) => [pressed && { opacity: 0.8 }]}
-                    >
-                      <KPICard
-                        title="Bons de travail"
-                        value={workOrderStats.inProgress || 0}
-                        subtitle={`${workOrderStats.pending || 0} en attente`}
-                        icon="wrench.fill"
-                        iconColor="#F59E0B"
-                      />
-                    </Pressable>
-                  </View>
-                  <View className="w-1/2 px-1.5 mb-3">
-                    <Pressable
-                      onPress={() => router.push('/analytics' as any)}
-                      style={({ pressed }) => [pressed && { opacity: 0.8 }]}
-                    >
-                      <KPICard
-                        title="Coûts réparations"
-                        value={`${(workOrderStats.totalActualCost || 0).toLocaleString()} $`}
-                        subtitle="Total complété"
-                        icon="dollarsign.circle.fill"
-                        iconColor="#22C55E"
-                      />
-                    </Pressable>
-                  </View>
-                </>
-              )}
-              {inventoryStats && (
-                <>
-                  <View className="w-1/2 px-1.5 mb-3">
-                    <Pressable
-                      onPress={() => router.push('/inventory' as any)}
-                      style={({ pressed }) => [pressed && { opacity: 0.8 }]}
-                    >
-                      <KPICard
-                        title="Inventaire"
-                        value={inventoryStats.totalItems || 0}
-                        subtitle={`${inventoryStats.lowStockCount || 0} stock bas`}
-                        icon="cube.box.fill"
-                        iconColor="#8B5CF6"
-                      />
-                    </Pressable>
-                  </View>
-                  <View className="w-1/2 px-1.5 mb-3">
-                    <Pressable
-                      onPress={() => router.push('/inventory' as any)}
-                      style={({ pressed }) => [pressed && { opacity: 0.8 }]}
-                    >
-                      <KPICard
-                        title="Valeur stock"
-                        value={`${(inventoryStats.totalValue || 0).toLocaleString()} $`}
-                        subtitle={`${inventoryStats.outOfStockCount || 0} rupture`}
-                        icon="chart.bar.fill"
-                        iconColor="#3B82F6"
-                      />
-                    </Pressable>
-                  </View>
-                </>
-              )}
-              {/* Fiche PEP SAAQ */}
-              <View className="w-1/2 px-1.5 mb-3">
-                <Pressable
-                  onPress={() => router.push('/pep' as any)}
-                  style={({ pressed }) => [pressed && { opacity: 0.8 }]}
-                >
-                  <View className="relative">
-                    <KPICard
-                      title="Fiches PEP"
-                      value={pepStats?.totalForms || 0}
-                      subtitle={hasPEPAccess ? `${pepStats?.pendingForms || 0} en cours` : 'Premium'}
-                      icon="doc.text.fill"
-                      iconColor="#EC4899"
-                    />
-                    {!hasPEPAccess && (
-                      <View className="absolute top-2 right-2 bg-warning px-2 py-0.5 rounded-full">
-                        <Text className="text-xs font-bold text-background">PRO</Text>
-                      </View>
-                    )}
-                  </View>
-                </Pressable>
-              </View>
-              {pepStats && pepStats.upcomingDue > 0 && (
-                <View className="w-1/2 px-1.5 mb-3">
-                  <Pressable
-                    onPress={() => router.push('/reminders' as any)}
-                    style={({ pressed }) => [pressed && { opacity: 0.8 }]}
-                  >
-                    <KPICard
-                      title="PEP à venir"
-                      value={pepStats.upcomingDue}
-                      subtitle="Cette semaine"
-                      icon="calendar.badge.exclamationmark"
-                      iconColor="#F59E0B"
-                    />
-                  </Pressable>
-                </View>
-              )}
-            </View>
+          <View className="px-4 mb-4">
+            <SectionHeader
+              title="Modules"
+              icon="square.grid.2x2.fill"
+              iconColor="#8B5CF6"
+              action={{
+                label: 'Tout voir',
+                onPress: () => handleNavigation('/modules'),
+              }}
+            />
+            <QuickStats
+              items={[
+                {
+                  label: 'Inventaire',
+                  value: inventoryStats?.totalItems || 0,
+                  icon: 'cube.box.fill',
+                  color: '#8B5CF6',
+                },
+                {
+                  label: 'Stock bas',
+                  value: inventoryStats?.lowStockCount || 0,
+                  icon: 'exclamationmark.circle.fill',
+                  color: '#F59E0B',
+                },
+                {
+                  label: 'Réparations',
+                  value: `${(workOrderStats?.totalActualCost || 0).toLocaleString()} $`,
+                  icon: 'dollarsign.circle.fill',
+                  color: '#22C55E',
+                },
+                {
+                  label: 'Complétés',
+                  value: workOrderStats?.completed || 0,
+                  icon: 'checkmark.circle.fill',
+                  color: '#3B82F6',
+                },
+              ]}
+              variant="card"
+              columns={2}
+            />
           </View>
         )}
 
-        {/* Quick Actions */}
-        <View className="px-4 mt-2">
-          <Text className="text-lg font-bold text-foreground mb-3">Actions rapides</Text>
-          <View className="flex-row justify-between">
-            <Pressable
-              onPress={() => handleQuickAction('new-inspection')}
-              style={({ pressed }) => [
-                styles.quickAction,
-                pressed && styles.quickActionPressed,
-              ]}
-            >
-              <View className="bg-primary w-12 h-12 rounded-xl items-center justify-center mb-2">
-                <IconSymbol name="plus.circle.fill" size={24} color="#FFFFFF" />
-              </View>
-              <Text className="text-xs text-foreground font-medium text-center">
-                Nouvelle{'\n'}inspection
-              </Text>
-            </Pressable>
-
-            <Pressable
-              onPress={() => handleQuickAction('vehicles')}
-              style={({ pressed }) => [
-                styles.quickAction,
-                pressed && styles.quickActionPressed,
-              ]}
-            >
-              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
-                <IconSymbol name="car.fill" size={24} color="#0066CC" />
-              </View>
-              <Text className="text-xs text-foreground font-medium text-center">
-                Voir{'\n'}véhicules
-              </Text>
-            </Pressable>
-
-            <Pressable
-              onPress={() => router.push('/work-orders' as any)}
-              style={({ pressed }) => [
-                styles.quickAction,
-                pressed && styles.quickActionPressed,
-              ]}
-            >
-              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
-                <IconSymbol name="wrench.fill" size={24} color="#F59E0B" />
-              </View>
-              <Text className="text-xs text-foreground font-medium text-center">
-                Fleet{'\n'}Command
-              </Text>
-            </Pressable>
-
-            <Pressable
-              onPress={() => router.push('/inventory' as any)}
-              style={({ pressed }) => [
-                styles.quickAction,
-                pressed && styles.quickActionPressed,
-              ]}
-            >
-              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
-                <IconSymbol name="cube.box.fill" size={24} color="#8B5CF6" />
-              </View>
-              <Text className="text-xs text-foreground font-medium text-center">
-                Fleet{'\n'}Crew
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-
-        {/* Secondary Actions */}
-        <View className="px-4 mt-4">
-          <View className="flex-row justify-between">
-            <Pressable
-              onPress={() => handleQuickAction('inspections')}
-              style={({ pressed }) => [
-                styles.quickAction,
-                pressed && styles.quickActionPressed,
-              ]}
-            >
-              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
-                <IconSymbol name="clipboard.fill" size={24} color="#0066CC" />
-              </View>
-              <Text className="text-xs text-foreground font-medium text-center">
-                Voir{'\n'}inspections
-              </Text>
-            </Pressable>
-
-            <Pressable
-              onPress={() => router.push('/analytics' as any)}
-              style={({ pressed }) => [
-                styles.quickAction,
-                pressed && styles.quickActionPressed,
-              ]}
-            >
-              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
-                <IconSymbol name="chart.bar.fill" size={24} color="#0066CC" />
-              </View>
-              <Text className="text-xs text-foreground font-medium text-center">
-                Voir{'\n'}rapports
-              </Text>
-            </Pressable>
-
-            <Pressable
-              onPress={() => router.push('/team' as any)}
-              style={({ pressed }) => [
-                styles.quickAction,
-                pressed && styles.quickActionPressed,
-              ]}
-            >
-              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
-                <IconSymbol name="person.2.fill" size={24} color="#0066CC" />
-              </View>
-              <Text className="text-xs text-foreground font-medium text-center">
-                Gérer{'\n'}équipe
-              </Text>
-            </Pressable>
-
-            <Pressable
-              onPress={() => router.push('/(tabs)/settings' as any)}
-              style={({ pressed }) => [
-                styles.quickAction,
-                pressed && styles.quickActionPressed,
-              ]}
-            >
-              <View className="bg-surface border border-border w-12 h-12 rounded-xl items-center justify-center mb-2">
-                <IconSymbol name="gearshape.fill" size={24} color="#64748B" />
-              </View>
-              <Text className="text-xs text-foreground font-medium text-center">
-                Paramètres
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-
-        {/* Overdue Reminders Alert */}
-        {overdueReminders.length > 0 && (
-          <View className="px-4 mt-4">
-            <View className="flex-row items-center gap-2 mb-3">
-              <IconSymbol name="exclamationmark.triangle.fill" size={20} color="#EF4444" />
-              <Text className="text-lg font-bold text-foreground">Rappels en retard</Text>
-            </View>
-            {overdueReminders.map((reminder) => (
-              <DeadlineAlert
-                key={reminder.id}
-                reminder={reminder}
-                onPress={() => router.push(`/reminder/${reminder.id}` as any)}
-              />
-            ))}
-          </View>
-        )}
-
-        {/* Upcoming Events Widget */}
-        <View className="px-4 mt-4">
-          <UpcomingEventsWidget
-            maxItems={3}
-            showHeader={true}
-            onRefresh={loadData}
-          />
-        </View>
-
-        {/* Alerts */}
+        {/* Alertes critiques */}
         {alerts.length > 0 && (
-          <View className="px-4 mt-6">
-            <View className="flex-row items-center justify-between mb-3">
-              <Text className="text-lg font-bold text-foreground">Alertes critiques</Text>
-              <View className="bg-error/15 px-2 py-0.5 rounded-full">
-                <Text className="text-xs font-semibold text-error">{alerts.length}</Text>
-              </View>
+          <View className="px-4 mb-4">
+            <SectionHeader
+              title="Alertes critiques"
+              icon="exclamationmark.triangle.fill"
+              iconColor="#EF4444"
+              badge={alerts.length}
+              action={{
+                label: 'Tout voir',
+                onPress: () => handleNavigation('/notifications'),
+              }}
+            />
+            <View className="bg-error/10 rounded-2xl border border-error/20 p-4">
+              {alerts.map((alert, index) => (
+                <Pressable
+                  key={alert.id}
+                  onPress={() => alert.vehicleId && handleNavigation(`/vehicle/${alert.vehicleId}`)}
+                  className={`flex-row items-center ${index < alerts.length - 1 ? 'pb-3 mb-3 border-b border-error/10' : ''}`}
+                  style={({ pressed }) => [pressed && { opacity: 0.7 }]}
+                >
+                  <View className="w-8 h-8 rounded-full bg-error/20 items-center justify-center mr-3">
+                    <IconSymbol name="exclamationmark.triangle.fill" size={16} color="#EF4444" />
+                  </View>
+                  <View className="flex-1">
+                    <Text className="text-sm font-semibold text-foreground" numberOfLines={1}>
+                      {alert.title}
+                    </Text>
+                    <Text className="text-xs text-muted" numberOfLines={1}>
+                      {alert.message}
+                    </Text>
+                  </View>
+                  <IconSymbol name="chevron.right" size={14} color="#94A3B8" />
+                </Pressable>
+              ))}
             </View>
-            {alerts.map((alert) => (
-              <AlertCard
-                key={alert.id}
-                alert={alert}
-                onPress={() => {
-                  if (alert.inspectionId) {
-                    router.push(`/inspection/${alert.inspectionId}` as any);
-                  } else if (alert.vehicleId) {
-                    router.push(`/vehicle/${alert.vehicleId}` as any);
-                  }
-                }}
-              />
-            ))}
           </View>
         )}
 
-        {/* Ad Banner - Rotation automatique */}
-        <View className="px-4 mt-6">
-          <AdBanner
-            variant="banner"
-            rotationInterval={5000}
-            showIndicators={true}
-            position="inline"
+        {/* Activité récente */}
+        <View className="px-4 mb-4">
+          <SectionHeader
+            title="Activité récente"
+            icon="clock.fill"
+            iconColor="#64748B"
+            action={{
+              label: 'Historique',
+              onPress: () => handleNavigation('/audit-log'),
+            }}
           />
-        </View>
-
-        {/* Recent Inspections */}
-        <View className="px-4 mt-6">
-          <View className="flex-row items-center justify-between mb-3">
-            <Text className="text-lg font-bold text-foreground">Inspections récentes</Text>
-            <Pressable
-              onPress={() => router.push('/(tabs)/inspections' as any)}
-              style={({ pressed }) => [pressed && { opacity: 0.6 }]}
-            >
-              <Text className="text-sm text-primary font-medium">Voir tout</Text>
-            </Pressable>
+          <View className="bg-surface rounded-2xl border border-border p-4">
+            <ActivityTimeline items={timelineItems} maxItems={5} />
           </View>
-          {recentInspections.length > 0 ? (
-            recentInspections.map((inspection) => (
-              <InspectionCard
-                key={inspection.id}
-                inspection={inspection}
-                compact
-                onPress={() => router.push(`/inspection/${inspection.id}` as any)}
-              />
-            ))
-          ) : (
-            <View className="bg-surface rounded-xl p-6 border border-border items-center">
-              <IconSymbol name="clipboard.fill" size={32} color="#64748B" />
-              <Text className="text-muted mt-2">Aucune inspection récente</Text>
-            </View>
-          )}
         </View>
 
-        {/* Bottom spacing for tab bar */}
-        <View className="h-24" />
+        {/* Accès rapide aux rôles */}
+        <View className="px-4 mb-4">
+          <SectionHeader
+            title="Espaces de travail"
+            icon="person.2.fill"
+            iconColor="#3B82F6"
+          />
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} className="-mx-4 px-4">
+            <View className="flex-row gap-3">
+              {[
+                { id: 'driver', title: 'Chauffeur', icon: 'car.fill', color: '#0891B2', route: '/dashboard/driver' },
+                { id: 'technician', title: 'Technicien', icon: 'wrench.fill', color: '#F59E0B', route: '/dashboard/technician' },
+                { id: 'dispatcher', title: 'Dispatcher', icon: 'calendar', color: '#8B5CF6', route: '/dashboard/dispatcher' },
+                { id: 'manager', title: 'Gestionnaire', icon: 'chart.bar.fill', color: '#22C55E', route: '/dashboard/manager' },
+                { id: 'admin', title: 'Admin', icon: 'gear', color: '#64748B', route: '/dashboard/admin' },
+              ].map((role) => (
+                <Pressable
+                  key={role.id}
+                  onPress={() => handleNavigation(role.route)}
+                  className="bg-surface rounded-xl border border-border p-4 items-center"
+                  style={{ width: 100 }}
+                >
+                  <View
+                    className="w-12 h-12 rounded-full items-center justify-center mb-2"
+                    style={{ backgroundColor: `${role.color}15` }}
+                  >
+                    <IconSymbol name={role.icon as any} size={24} color={role.color} />
+                  </View>
+                  <Text className="text-sm font-medium text-foreground text-center">
+                    {role.title}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </ScrollView>
+        </View>
+
+        {/* Footer spacing */}
+        <View className="h-8" />
       </ScrollView>
     </ScreenContainer>
   );
@@ -513,14 +412,6 @@ export default function DashboardScreen() {
 
 const styles = StyleSheet.create({
   scrollContent: {
-    flexGrow: 1,
-  },
-  quickAction: {
-    alignItems: 'center',
-    width: 80,
-  },
-  quickActionPressed: {
-    opacity: 0.7,
-    transform: [{ scale: 0.95 }],
+    paddingBottom: 100,
   },
 });

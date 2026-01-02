@@ -8,7 +8,8 @@ import { ScreenContainer } from '@/components/screen-container';
 import { VehicleCard } from '@/components/ui/vehicle-card';
 import { SearchBar } from '@/components/ui/search-bar';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { AdBanner } from '@/components/ui/ad-banner';
+import { SectionHeader } from '@/components/ui/section-header';
+import { QuickStats } from '@/components/ui/quick-stats';
 import { getVehicles, searchVehicles } from '@/lib/data-service';
 import type { Vehicle, VehicleStatus } from '@/lib/types';
 import { useColors } from '@/hooks/use-colors';
@@ -177,12 +178,38 @@ export default function VehiclesScreen() {
         }
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
-          <AdBanner
-            variant="banner"
-            rotationInterval={5000}
-            showIndicators={true}
-            compact={true}
-          />
+          <View className="px-4 mb-4">
+            <QuickStats
+              items={[
+                {
+                  label: 'Actifs',
+                  value: vehicles.filter(v => v.status === 'active').length,
+                  icon: 'checkmark.circle.fill',
+                  color: '#22C55E',
+                },
+                {
+                  label: 'Maintenance',
+                  value: vehicles.filter(v => v.status === 'maintenance').length,
+                  icon: 'wrench.fill',
+                  color: '#F59E0B',
+                },
+                {
+                  label: 'Inactifs',
+                  value: vehicles.filter(v => v.status === 'inactive').length,
+                  icon: 'pause.circle.fill',
+                  color: '#64748B',
+                },
+                {
+                  label: 'Total',
+                  value: vehicles.length,
+                  icon: 'car.fill',
+                  color: '#0891B2',
+                },
+              ]}
+              variant="compact"
+              columns={4}
+            />
+          </View>
         }
         ListEmptyComponent={
           <View className="items-center py-12">
