@@ -83,6 +83,7 @@ export default function InspectionsScreen() {
       COMPLETED: inspections.filter(i => i.status === 'COMPLETED').length,
       BLOCKED: inspections.filter(i => i.status === 'BLOCKED').length,
       DRAFT: inspections.filter(i => i.status === 'DRAFT').length,
+      INTERRUPTED: inspections.filter(i => i.status === 'INTERRUPTED').length,
     };
   };
 

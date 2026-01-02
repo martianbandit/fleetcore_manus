@@ -20,6 +20,7 @@ const statusConfig: Record<ItemStatus, { label: string; color: string; icon: str
   ok: { label: 'OK', color: '#22C55E', icon: 'checkmark.circle.fill' },
   minor_defect: { label: 'Défaut mineur', color: '#F59E0B', icon: 'exclamationmark.triangle.fill' },
   major_defect: { label: 'Défaut majeur', color: '#EF4444', icon: 'xmark.circle.fill' },
+  blocking_defect: { label: 'Défaut bloquant', color: '#DC2626', icon: 'xmark.octagon.fill' },
 };
 
 export default function ChecklistScreen() {

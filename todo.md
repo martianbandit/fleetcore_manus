@@ -1020,3 +1020,81 @@
 - [x] Implémenter la fonction d'analyse de défauts
 - [x] Intégrer les suggestions de diagnostic dans les formulaires
 - [x] Créer l'interface de consultation des diagnostics (dans modal signalement)
+
+
+## 🆕 Vision Produit FleetCore v1.0 (Janvier 2026)
+
+### Gestion des véhicules avancée
+- [ ] Ajouter les états avancés (Actif, En maintenance, Immobilisé légalement, Interdit de circuler, Retiré de flotte)
+- [ ] Implémenter la galerie d'images multiples par véhicule
+- [ ] Ajouter la gestion des documents liés (immatriculation, assurance, inspections, factures)
+- [ ] Créer l'historique inviolable par véhicule
+
+### Traçabilité et preuve légale (CRITIQUE)
+- [ ] Implémenter l'Audit Log immuable (qui, quand, quoi, sur quel objet, offline/online)
+- [ ] Ajouter le versioning des inspections (v1/v2/v3)
+- [ ] Générer des PDF figés par version avec hash et timestamp
+- [ ] Empêcher la modification d'inspection complétée sans nouvelle version
+
+### Mode terrain et résilience
+- [ ] Améliorer le mode offline-first (inspections 100% hors ligne)
+- [ ] Implémenter la file d'actions en attente
+- [ ] Ajouter la synchronisation automatique au retour réseau
+- [ ] Implémenter l'autosave et récupération après crash
+- [ ] Gérer l'état "inspection interrompue"
+
+### Notifications métier intelligentes
+- [ ] Notification inspection en retard
+- [ ] Notification défaut bloquant non réparé
+- [ ] Notification véhicule utilisé malgré blocage
+- [ ] Notification paiement échoué (Stripe)
+- [ ] Notification limite de plan atteinte
+
+### Rapports et métriques v1.0
+- [ ] Rapport historique inspections par véhicule
+- [ ] Rapport taux de conformité (6/12 mois)
+- [ ] Rapport temps immobilisé cumulé
+- [ ] Rapport coûts de maintenance
+- [ ] Export PDF réglementaire
+- [ ] Export CSV métriques
+
+### IA - périmètre réaliste v1.0
+- [ ] Analyse de récurrence de défauts
+- [ ] Alertes de risque simples
+- [ ] Estimation de durée basée sur historique
+- [ ] Explainability obligatoire (source, historique, niveau de confiance)
+
+
+## 🆕 Vision Produit FleetCore v1.0 - Implémenté
+
+### Gestion avancée des véhicules
+- [x] États avancés (active, maintenance, legally_immobilized, circulation_banned, retired) - types.ts
+- [x] Galerie de photos par véhicule (types définis) - VehiclePhoto interface
+- [x] Documents attachés (immatriculation, assurance, factures) - VehicleDocument interface
+
+### Traçabilité et preuve légale
+- [x] Audit log complet (qui, quoi, quand) - audit-service.ts
+- [x] Versioning des inspections - InspectionVersion interface
+- [x] Verrouillage après complétion - isLocked, lockedAt, lockedBy
+
+### Mode terrain et résilience
+- [x] File d'actions en attente (offline-first) - sync-service.ts
+- [x] Synchronisation automatique - startPeriodicSync()
+- [x] Autosave et récupération d'inspections interrompues - autosave(), getInterruptedInspections()
+
+### Notifications métier intelligentes
+- [x] Inspection en retard - business-notification-service.ts
+- [x] Défaut bloquant non réparé - checkUnresolvedBlockingDefects()
+- [x] Véhicule utilisé malgré blocage - alertVehicleUsedWhileBlocked()
+- [x] Paiement échoué - notifyPaymentFailed()
+- [x] Limite de plan atteinte - notifyPlanLimitApproaching()
+- [x] Document expirant - notifyDocumentExpiring()
+
+### Rapports et métriques
+- [x] Historique inspections par véhicule - reports-service.ts
+- [x] Taux de conformité (6/12 mois) - generateComplianceReport()
+- [x] Temps immobilisé cumulé - totalDowntimeHours
+- [x] Coûts de maintenance - totalMaintenanceCost
+- [x] Exports PDF et CSV - exportReportToCSV(), exportFleetMetricsToCSV()
+- [x] Analyse de récurrence des défauts - analyzeDefectRecurrence()
+- [x] Estimation durée inspection - estimateInspectionDuration()
