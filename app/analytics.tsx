@@ -357,7 +357,7 @@ export default function AnalyticsScreen() {
             <View className="px-4 mb-6">
               <SectionHeader 
                 title="Performance techniciens" 
-                onPress={() => router.push('/team' as any)}
+                onPress={() => router.push('/teams' as any)}
               />
               <View 
                 className="rounded-xl p-4 border"

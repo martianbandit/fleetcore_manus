@@ -4,22 +4,20 @@ import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { ScreenContainer } from '@/components/screen-container';
 import { useTheme } from '@/lib/theme-context';
-import { getNotificationSettings, saveNotificationSettings } from '@/lib/notification-service';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import {
-  getNotificationSettings as getPushSettings,
-  saveNotificationSettings as savePushSettings,
+  getNotificationSettings,
+  saveNotificationSettings,
   requestNotificationPermissions,
-  sendTestNotification,
-  getScheduledNotifications,
-  scheduleAllReminderNotifications,
-  type NotificationSettings as PushSettings,
-} from '@/lib/push-notification-service';
+  clearAllNotifications,
+  cancelAllScheduledNotifications,
+  type NotificationSettings,
+} from '@/lib/notification-service';
 
 export default function NotificationSettingsScreen() {
   const { colors } = useTheme();
   
-  const [settings, setSettings] = useState({
+  const [settings, setSettings] = useState<NotificationSettings>({
     enabled: true,
     inspectionCompleted: true,
     inspectionReminders: true,
@@ -33,21 +31,13 @@ export default function NotificationSettingsScreen() {
     quietHoursStart: '22:00',
     quietHoursEnd: '07:00',
   });
-  const [pushSettings, setPushSettings] = useState<PushSettings | null>(null);
-  const [scheduledCount, setScheduledCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  const loadAllSettings = useCallback(async () => {
+  const loadSettings = useCallback(async () => {
     try {
-      const [saved, push, scheduled] = await Promise.all([
-        getNotificationSettings(),
-        getPushSettings(),
-        getScheduledNotifications(),
-      ]);
+      const saved = await getNotificationSettings();
       if (saved) setSettings(saved);
-      setPushSettings(push);
-      setScheduledCount(scheduled.length);
     } catch (error) {
       console.error('Error loading settings:', error);
     } finally {
@@ -56,74 +46,62 @@ export default function NotificationSettingsScreen() {
   }, []);
 
   useEffect(() => {
-    loadAllSettings();
-  }, [loadAllSettings]);
+    loadSettings();
+  }, [loadSettings]);
 
-  const handleToggle = async (key: keyof typeof settings) => {
+  const handleToggle = async (key: keyof NotificationSettings) => {
     if (Platform.OS !== 'web') {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
+    
+    // Si on active les notifications, vérifier les permissions
+    if (key === 'enabled' && !settings.enabled) {
+      const hasPermission = await requestNotificationPermissions();
+      if (!hasPermission) {
+        Alert.alert('Permissions requises', 'Veuillez autoriser les notifications dans les paramètres de votre appareil.');
+        return;
+      }
+    }
+    
     const newSettings = {
       ...settings,
       [key]: !settings[key],
     };
     setSettings(newSettings);
-    await saveNotificationSettings(newSettings);
-  };
-
-  const handlePushToggle = async (key: keyof PushSettings, value: boolean) => {
-    if (!pushSettings) return;
-    if (Platform.OS !== 'web') {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    }
-    if (key === 'enabled' && value) {
-      const hasPermission = await requestNotificationPermissions();
-      if (!hasPermission) {
-        Alert.alert('Permissions requises', 'Veuillez autoriser les notifications dans les paramètres.');
-        return;
-      }
-    }
     setSaving(true);
     try {
-      const updated = { ...pushSettings, [key]: value };
-      await savePushSettings(updated);
-      setPushSettings(updated);
-      const scheduled = await getScheduledNotifications();
-      setScheduledCount(scheduled.length);
+      await saveNotificationSettings(newSettings);
     } catch (error) {
-      Alert.alert('Erreur', 'Impossible de sauvegarder');
+      Alert.alert('Erreur', 'Impossible de sauvegarder les paramètres');
     } finally {
       setSaving(false);
     }
   };
 
-  const handleTestNotification = async () => {
-    if (Platform.OS !== 'web') {
-      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    }
-    try {
-      await sendTestNotification();
-      Alert.alert('Succès', 'Notification de test envoyée!');
-    } catch (error) {
-      Alert.alert('Erreur', 'Impossible d\'envoyer la notification');
-    }
-  };
-
-  const handleRefreshSchedule = async () => {
-    if (Platform.OS !== 'web') {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    }
-    setSaving(true);
-    try {
-      await scheduleAllReminderNotifications();
-      const scheduled = await getScheduledNotifications();
-      setScheduledCount(scheduled.length);
-      Alert.alert('Succès', `${scheduled.length} notifications planifiées`);
-    } catch (error) {
-      Alert.alert('Erreur', 'Impossible de rafraîchir');
-    } finally {
-      setSaving(false);
-    }
+  const handleClearAll = async () => {
+    Alert.alert(
+      'Effacer les notifications',
+      'Voulez-vous effacer toutes les notifications?',
+      [
+        { text: 'Annuler', style: 'cancel' },
+        {
+          text: 'Effacer',
+          style: 'destructive',
+          onPress: async () => {
+            if (Platform.OS !== 'web') {
+              Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            }
+            try {
+              await clearAllNotifications();
+              await cancelAllScheduledNotifications();
+              Alert.alert('Succès', 'Toutes les notifications ont été effacées');
+            } catch (error) {
+              Alert.alert('Erreur', 'Impossible d\'effacer les notifications');
+            }
+          },
+        },
+      ]
+    );
   };
 
   if (loading) {
@@ -133,6 +111,37 @@ export default function NotificationSettingsScreen() {
       </ScreenContainer>
     );
   }
+
+  const SettingRow = ({ 
+    title, 
+    description, 
+    settingKey, 
+    disabled = false 
+  }: { 
+    title: string; 
+    description: string; 
+    settingKey: keyof NotificationSettings;
+    disabled?: boolean;
+  }) => (
+    <View className="rounded-xl p-4 mb-3" style={{ backgroundColor: colors.surface, opacity: disabled ? 0.5 : 1 }}>
+      <View className="flex-row items-center justify-between">
+        <View className="flex-1 mr-4">
+          <Text className="text-base font-semibold mb-1" style={{ color: colors.foreground }}>
+            {title}
+          </Text>
+          <Text className="text-sm" style={{ color: colors.muted }}>
+            {description}
+          </Text>
+        </View>
+        <Switch
+          value={settings[settingKey] as boolean}
+          onValueChange={() => handleToggle(settingKey)}
+          trackColor={{ false: colors.border, true: colors.primary }}
+          disabled={disabled || saving}
+        />
+      </View>
+    </View>
+  );
 
   return (
     <ScreenContainer className="flex-1">
@@ -151,47 +160,68 @@ export default function NotificationSettingsScreen() {
           <View style={{ width: 24 }} />
         </View>
 
+        {/* Activation globale */}
+        <View className="mb-6">
+          <View 
+            className="rounded-xl p-4" 
+            style={{ 
+              backgroundColor: settings.enabled ? `${colors.success}15` : colors.surface,
+              borderWidth: 1,
+              borderColor: settings.enabled ? colors.success : colors.border,
+            }}
+          >
+            <View className="flex-row items-center justify-between">
+              <View className="flex-1 mr-4">
+                <Text className="text-lg font-bold mb-1" style={{ color: colors.foreground }}>
+                  Notifications activées
+                </Text>
+                <Text className="text-sm" style={{ color: colors.muted }}>
+                  {settings.enabled ? 'Vous recevrez des alertes' : 'Aucune notification ne sera envoyée'}
+                </Text>
+              </View>
+              <Switch
+                value={settings.enabled}
+                onValueChange={() => handleToggle('enabled')}
+                trackColor={{ false: colors.border, true: colors.success }}
+                disabled={saving}
+              />
+            </View>
+          </View>
+        </View>
+
         {/* Notifications d'inspection */}
         <View className="mb-6">
           <Text className="text-sm font-semibold mb-3" style={{ color: colors.muted }}>
             INSPECTIONS
           </Text>
           
-          <View className="rounded-xl p-4 mb-3" style={{ backgroundColor: colors.surface }}>
-            <View className="flex-row items-center justify-between">
-              <View className="flex-1 mr-4">
-                <Text className="text-base font-semibold mb-1" style={{ color: colors.foreground }}>
-                  Inspection complétée
-                </Text>
-                <Text className="text-sm" style={{ color: colors.muted }}>
-                  Recevoir une notification lorsqu'une inspection est terminée
-                </Text>
-              </View>
-              <Switch
-                value={settings.inspectionCompleted}
-                onValueChange={() => handleToggle('inspectionCompleted')}
-                trackColor={{ false: colors.border, true: colors.primary }}
-              />
-            </View>
-          </View>
-
-          <View className="rounded-xl p-4" style={{ backgroundColor: colors.surface }}>
-            <View className="flex-row items-center justify-between">
-              <View className="flex-1 mr-4">
-                <Text className="text-base font-semibold mb-1" style={{ color: colors.foreground }}>
-                  Défaut majeur détecté
-                </Text>
-                <Text className="text-sm" style={{ color: colors.muted }}>
-                  Alerte immédiate en cas de défaut majeur
-                </Text>
-              </View>
-              <Switch
-                value={settings.majorDefects}
-                onValueChange={() => handleToggle('majorDefects')}
-                trackColor={{ false: colors.border, true: colors.primary }}
-              />
-            </View>
-          </View>
+          <SettingRow
+            title="Inspection complétée"
+            description="Notification lorsqu'une inspection est terminée"
+            settingKey="inspectionCompleted"
+            disabled={!settings.enabled}
+          />
+          
+          <SettingRow
+            title="Rappels d'inspection"
+            description="Rappels pour les inspections à venir"
+            settingKey="inspectionReminders"
+            disabled={!settings.enabled}
+          />
+          
+          <SettingRow
+            title="Défauts majeurs"
+            description="Alerte immédiate en cas de défaut majeur"
+            settingKey="majorDefects"
+            disabled={!settings.enabled}
+          />
+          
+          <SettingRow
+            title="Défauts bloquants"
+            description="Alerte critique pour défauts bloquants"
+            settingKey="blockingDefects"
+            disabled={!settings.enabled}
+          />
         </View>
 
         {/* Notifications de maintenance */}
@@ -200,23 +230,26 @@ export default function NotificationSettingsScreen() {
             MAINTENANCE
           </Text>
           
-          <View className="rounded-xl p-4" style={{ backgroundColor: colors.surface }}>
-            <View className="flex-row items-center justify-between">
-              <View className="flex-1 mr-4">
-                <Text className="text-base font-semibold mb-1" style={{ color: colors.foreground }}>
-                  Échéance de maintenance
-                </Text>
-                <Text className="text-sm" style={{ color: colors.muted }}>
-                  Rappel 7 jours avant l'échéance de maintenance
-                </Text>
-              </View>
-              <Switch
-                value={settings.maintenanceDue}
-                onValueChange={() => handleToggle('maintenanceDue')}
-                trackColor={{ false: colors.border, true: colors.primary }}
-              />
-            </View>
-          </View>
+          <SettingRow
+            title="Échéance de maintenance"
+            description="Rappel 7 jours avant l'échéance"
+            settingKey="maintenanceDue"
+            disabled={!settings.enabled}
+          />
+        </View>
+
+        {/* Notifications équipe */}
+        <View className="mb-6">
+          <Text className="text-sm font-semibold mb-3" style={{ color: colors.muted }}>
+            ÉQUIPE
+          </Text>
+          
+          <SettingRow
+            title="Mises à jour d'équipe"
+            description="Notifications des assignations et changements"
+            settingKey="teamUpdates"
+            disabled={!settings.enabled}
+          />
         </View>
 
         {/* Notifications de paiement */}
@@ -225,92 +258,43 @@ export default function NotificationSettingsScreen() {
             PAIEMENTS
           </Text>
           
-          <View className="rounded-xl p-4" style={{ backgroundColor: colors.surface }}>
-            <View className="flex-row items-center justify-between">
-              <View className="flex-1 mr-4">
-                <Text className="text-base font-semibold mb-1" style={{ color: colors.foreground }}>
-                  Rappels de paiement
-                </Text>
-                <Text className="text-sm" style={{ color: colors.muted }}>
-                  Notifications pour les paiements et factures
-                </Text>
-              </View>
-              <Switch
-                value={settings.paymentReminders}
-                onValueChange={() => handleToggle('paymentReminders')}
-                trackColor={{ false: colors.border, true: colors.primary }}
-              />
-            </View>
-          </View>
+          <SettingRow
+            title="Rappels de paiement"
+            description="Notifications pour les paiements et factures"
+            settingKey="paymentReminders"
+            disabled={!settings.enabled}
+          />
         </View>
 
+        {/* Synchronisation */}
+        <View className="mb-6">
+          <Text className="text-sm font-semibold mb-3" style={{ color: colors.muted }}>
+            SYNCHRONISATION
+          </Text>
+          
+          <SettingRow
+            title="Alertes de synchronisation"
+            description="Notifications de succès/échec de sync"
+            settingKey="syncAlerts"
+            disabled={!settings.enabled}
+          />
+        </View>
 
-
-        {/* Push Notifications Section */}
-        {pushSettings && (
-          <View className="mb-6">
-            <Text className="text-sm font-semibold mb-3" style={{ color: colors.muted }}>
-              RAPPELS AUTOMATIQUES
+        {/* Actions */}
+        <View className="mb-6">
+          <Pressable
+            onPress={handleClearAll}
+            className="py-4 rounded-xl items-center"
+            style={({ pressed }) => [
+              { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.error },
+              pressed && { opacity: 0.8 },
+            ]}
+          >
+            <Text className="font-semibold" style={{ color: colors.error }}>
+              Effacer toutes les notifications
             </Text>
-            
-            <View className="rounded-xl p-4 mb-3" style={{ backgroundColor: pushSettings.enabled ? `${colors.success}10` : colors.surface, borderWidth: 1, borderColor: pushSettings.enabled ? colors.success : colors.border }}>
-              <View className="flex-row items-center justify-between">
-                <View className="flex-1 mr-4">
-                  <Text className="text-base font-semibold mb-1" style={{ color: colors.foreground }}>
-                    Notifications push
-                  </Text>
-                  <Text className="text-sm" style={{ color: colors.muted }}>
-                    {scheduledCount} notification(s) planifiée(s)
-                  </Text>
-                </View>
-                <Switch
-                  value={pushSettings.enabled}
-                  onValueChange={(v) => handlePushToggle('enabled', v)}
-                  trackColor={{ false: colors.border, true: colors.success }}
-                  disabled={saving}
-                />
-              </View>
-            </View>
-
-            <View className="rounded-xl p-4 mb-3" style={{ backgroundColor: colors.surface }}>
-              <View className="flex-row items-center justify-between">
-                <View className="flex-1 mr-4">
-                  <Text className="text-base font-semibold mb-1" style={{ color: colors.foreground }}>
-                    Alertes en retard
-                  </Text>
-                  <Text className="text-sm" style={{ color: colors.muted }}>
-                    Notification pour les rappels en retard
-                  </Text>
-                </View>
-                <Switch
-                  value={pushSettings.overdueAlerts}
-                  onValueChange={(v) => handlePushToggle('overdueAlerts', v)}
-                  trackColor={{ false: colors.border, true: colors.primary }}
-                  disabled={saving || !pushSettings.enabled}
-                />
-              </View>
-            </View>
-
-            <View className="flex-row gap-2">
-              <Pressable
-                onPress={handleTestNotification}
-                disabled={saving || !pushSettings.enabled}
-                className="flex-1 py-3 rounded-xl items-center"
-                style={({ pressed }) => [{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }, pressed && { opacity: 0.8 }, !pushSettings.enabled && { opacity: 0.5 }]}
-              >
-                <Text className="font-medium" style={{ color: colors.primary }}>Test</Text>
-              </Pressable>
-              <Pressable
-                onPress={handleRefreshSchedule}
-                disabled={saving || !pushSettings.enabled}
-                className="flex-1 py-3 rounded-xl items-center"
-                style={({ pressed }) => [{ backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border }, pressed && { opacity: 0.8 }, !pushSettings.enabled && { opacity: 0.5 }]}
-              >
-                <Text className="font-medium" style={{ color: colors.foreground }}>Rafraîchir</Text>
-              </Pressable>
-            </View>
-          </View>
-        )}
+          </Pressable>
+        </View>
 
         {/* Note */}
         <View className="rounded-xl p-4 mb-6" style={{ backgroundColor: colors.surface, borderColor: colors.border, borderWidth: 1 }}>

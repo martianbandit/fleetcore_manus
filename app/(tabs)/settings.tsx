@@ -606,7 +606,7 @@ export default function SettingsScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => router.push('/team' as any)}
+              onPress={() => router.push('/teams' as any)}
               className="p-4 flex-row items-center justify-between"
             >
               <View className="flex-row items-center flex-1">
