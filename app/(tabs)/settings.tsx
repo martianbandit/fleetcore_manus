@@ -10,6 +10,7 @@ import { getSettings, saveSettings, type AppSettings } from '@/lib/data-service'
 import { getSubscription, getUsageStats, PLAN_NAMES } from '@/lib/subscription-service';
 import { getCompanyProfile } from '@/lib/company-service';
 import { resetOnboarding } from '@/lib/onboarding-service';
+import { getCurrentUserRole, ROLE_CONFIGS, type UserRole } from '@/lib/role-service';
 import type { PlanType } from '@/lib/subscription-service';
 
 export default function SettingsScreen() {
@@ -19,22 +20,25 @@ export default function SettingsScreen() {
   const [subscription, setSubscription] = useState<{ plan: PlanType } | null>(null);
   const [usage, setUsage] = useState<{ vehiclesCount: number; inspectionsThisMonth: number } | null>(null);
   const [company, setCompany] = useState<{ name: string } | null>(null);
+  const [currentRole, setCurrentRole] = useState<UserRole>('driver');
 
   useEffect(() => {
     loadData();
   }, []);
 
   const loadData = async () => {
-    const [settingsData, subscriptionData, usageData, companyData] = await Promise.all([
+    const [settingsData, subscriptionData, usageData, companyData, roleData] = await Promise.all([
       getSettings(),
       getSubscription(),
       getUsageStats(),
       getCompanyProfile(),
+      getCurrentUserRole(),
     ]);
     setSettingsState(settingsData);
     setSubscription(subscriptionData);
     setUsage(usageData);
     setCompany(companyData);
+    setCurrentRole(roleData);
   };
 
   const updateSetting = async (key: keyof AppSettings, value: any) => {
@@ -345,6 +349,62 @@ export default function SettingsScreen() {
                 ))}
               </View>
             </View>
+          </View>
+        </View>
+
+        {/* Rôle et Dashboard Section */}
+        <View className="px-4 mb-6">
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            RÔLE ET DASHBOARD
+          </Text>
+
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            <TouchableOpacity
+              onPress={() => router.push('/role-select' as any)}
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+            >
+              <View className="flex-row items-center flex-1">
+                <View
+                  className="w-10 h-10 rounded-full items-center justify-center mr-3"
+                  style={{ backgroundColor: ROLE_CONFIGS[currentRole].color + '20' }}
+                >
+                  <IconSymbol name="person.fill" size={20} color={ROLE_CONFIGS[currentRole].color} />
+                </View>
+                <View className="flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Changer de rôle
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Actuellement: {ROLE_CONFIGS[currentRole].nameFr}
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => router.push(ROLE_CONFIGS[currentRole].dashboardRoute as any)}
+              className="p-4 flex-row items-center justify-between"
+            >
+              <View className="flex-row items-center flex-1">
+                <View
+                  className="w-10 h-10 rounded-full items-center justify-center mr-3"
+                  style={{ backgroundColor: colors.primary + '20' }}
+                >
+                  <IconSymbol name="house.fill" size={20} color={colors.primary} />
+                </View>
+                <View className="flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Accéder à mon dashboard
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Dashboard {ROLE_CONFIGS[currentRole].nameFr}
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
           </View>
         </View>
 

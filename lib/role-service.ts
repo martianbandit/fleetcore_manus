@@ -307,6 +307,28 @@ export async function getCurrentUserRole(): Promise<UserRole> {
 }
 
 /**
+ * Définit le rôle de l'utilisateur courant
+ */
+export async function setCurrentUserRole(role: UserRole): Promise<void> {
+  const user = await getCurrentUser();
+  if (user) {
+    user.role = role;
+    await setCurrentUser(user);
+  } else {
+    // Créer un utilisateur temporaire avec le rôle sélectionné
+    const tempUser: User = {
+      id: 'temp_user',
+      name: 'Utilisateur',
+      email: '',
+      role: role,
+      isActive: true,
+      createdAt: new Date().toISOString(),
+    };
+    await setCurrentUser(tempUser);
+  }
+}
+
+/**
  * Récupère tous les utilisateurs
  */
 export async function getUsers(): Promise<User[]> {

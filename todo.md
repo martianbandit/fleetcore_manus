@@ -998,3 +998,25 @@
 ### Composants partagés
 - [x] RoleSwitcher - Composant pour basculer entre les rôles/utilisateurs
 - [x] Intégration avec le système de navigation Expo Router
+
+
+## 🆕 Intégration Jotform et Navigation par rôle (Janvier 2026)
+
+### Formulaires Jotform pour chauffeurs
+- [x] Explorer les outils Jotform MCP disponibles
+- [x] Créer le formulaire de ronde de sécurité quotidienne avec upload d'images (ID: 260015116962046)
+- [x] Créer le formulaire de signalement de défauts avec photos (ID: 260015390984054)
+- [x] Créer le formulaire de rapport d'incident (ID: 260015304617042)
+- [x] Intégrer les formulaires dans le Dashboard Chauffeur
+- [x] Configurer la récupération des soumissions
+
+### Navigation entre dashboards par rôle
+- [x] Créer un écran de sélection de rôle au démarrage
+- [x] Ajouter un menu de navigation vers les dashboards (dans Paramètres)
+- [x] Implémenter la redirection automatique selon le rôle utilisateur
+
+### Service de diagnostic avec Perplexity
+- [x] Créer le service perplexity-service.ts
+- [x] Implémenter la fonction d'analyse de défauts
+- [x] Intégrer les suggestions de diagnostic dans les formulaires
+- [x] Créer l'interface de consultation des diagnostics (dans modal signalement)
