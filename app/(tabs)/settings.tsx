@@ -10,6 +10,7 @@ import { getSettings, saveSettings, type AppSettings } from '@/lib/data-service'
 import { getSubscription, getUsageStats, PLAN_NAMES } from '@/lib/subscription-service';
 import { getCompanyProfile } from '@/lib/company-service';
 import { resetOnboarding } from '@/lib/onboarding-service';
+import { loadDemoData, resetAllData, isDemoDataLoaded } from '@/lib/demo-data-service';
 import { getCurrentUserRole, ROLE_CONFIGS, type UserRole } from '@/lib/role-service';
 import type { PlanType } from '@/lib/subscription-service';
 
@@ -21,10 +22,71 @@ export default function SettingsScreen() {
   const [usage, setUsage] = useState<{ vehiclesCount: number; inspectionsThisMonth: number } | null>(null);
   const [company, setCompany] = useState<{ name: string } | null>(null);
   const [currentRole, setCurrentRole] = useState<UserRole>('driver');
+  const [demoLoaded, setDemoLoaded] = useState(false);
+  const [loadingDemo, setLoadingDemo] = useState(false);
 
   useEffect(() => {
     loadData();
+    checkDemoData();
   }, []);
+
+  const checkDemoData = async () => {
+    const loaded = await isDemoDataLoaded();
+    setDemoLoaded(loaded);
+  };
+
+  const handleLoadDemoData = async () => {
+    Alert.alert(
+      'Charger les données de démonstration',
+      'Cette action va ajouter 5 véhicules et 8 inspections de démonstration. Voulez-vous continuer?',
+      [
+        { text: 'Annuler', style: 'cancel' },
+        {
+          text: 'Charger',
+          onPress: async () => {
+            setLoadingDemo(true);
+            try {
+              const result = await loadDemoData();
+              setDemoLoaded(true);
+              await loadData();
+              Alert.alert('Succès', `${result.vehicles} véhicules et ${result.inspections} inspections chargés`);
+            } catch (error) {
+              Alert.alert('Erreur', 'Impossible de charger les données de démonstration');
+            } finally {
+              setLoadingDemo(false);
+            }
+          },
+        },
+      ]
+    );
+  };
+
+  const handleResetData = async () => {
+    Alert.alert(
+      'Réinitialiser les données',
+      '⚠️ Cette action va supprimer TOUTES les données (véhicules, inspections, etc.). Cette action est irréversible.',
+      [
+        { text: 'Annuler', style: 'cancel' },
+        {
+          text: 'Réinitialiser',
+          style: 'destructive',
+          onPress: async () => {
+            setLoadingDemo(true);
+            try {
+              await resetAllData();
+              setDemoLoaded(false);
+              await loadData();
+              Alert.alert('Succès', 'Toutes les données ont été supprimées');
+            } catch (error) {
+              Alert.alert('Erreur', 'Impossible de réinitialiser les données');
+            } finally {
+              setLoadingDemo(false);
+            }
+          },
+        },
+      ]
+    );
+  };
 
   const loadData = async () => {
     const [settingsData, subscriptionData, usageData, companyData, roleData] = await Promise.all([
@@ -465,6 +527,69 @@ export default function SettingsScreen() {
                   </Text>
                   <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
                     Configurer les droits d'accès par rôle
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Demo Data Section */}
+        <View className="px-4 mb-6">
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            DONNÉES DE DÉMONSTRATION
+          </Text>
+
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            <TouchableOpacity
+              onPress={handleLoadDemoData}
+              disabled={loadingDemo || demoLoaded}
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border, opacity: (loadingDemo || demoLoaded) ? 0.5 : 1 }}
+            >
+              <View className="flex-row items-center flex-1">
+                <View
+                  className="w-10 h-10 rounded-full items-center justify-center mr-3"
+                  style={{ backgroundColor: colors.success + '20' }}
+                >
+                  <IconSymbol name="square.and.arrow.down.fill" size={20} color={colors.success} />
+                </View>
+                <View className="flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    {loadingDemo ? 'Chargement...' : demoLoaded ? 'Données démo chargées' : 'Charger les données démo'}
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    {demoLoaded ? '5 véhicules et 8 inspections disponibles' : 'Ajouter 5 véhicules et 8 inspections'}
+                  </Text>
+                </View>
+              </View>
+              {demoLoaded && (
+                <View className="px-2 py-1 rounded-full" style={{ backgroundColor: colors.success + '20' }}>
+                  <Text className="text-xs font-semibold" style={{ color: colors.success }}>✓ Chargé</Text>
+                </View>
+              )}
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={handleResetData}
+              disabled={loadingDemo}
+              className="p-4 flex-row items-center justify-between"
+              style={{ opacity: loadingDemo ? 0.5 : 1 }}
+            >
+              <View className="flex-row items-center flex-1">
+                <View
+                  className="w-10 h-10 rounded-full items-center justify-center mr-3"
+                  style={{ backgroundColor: colors.error + '20' }}
+                >
+                  <IconSymbol name="trash.fill" size={20} color={colors.error} />
+                </View>
+                <View className="flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Réinitialiser les données
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Supprimer tous les véhicules et inspections
                   </Text>
                 </View>
               </View>

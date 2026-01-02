@@ -224,3 +224,21 @@
 - [ ] Telematics (Geotab, Samsara)
 - [ ] ERP (SAP, Oracle)
 - [ ] Systèmes de maintenance (Fleetio)
+
+
+## 🆕 Prochaines étapes en cours
+
+### Données de démonstration
+- [x] Ajouter un bouton "Charger données démo" dans les paramètres
+- [x] Afficher une confirmation avant le chargement
+- [x] Permettre la réinitialisation des données
+
+### Parcours chauffeur
+- [x] Vérifier l'accès au Dashboard Chauffeur
+- [x] Tester l'intégration des formulaires Jotform
+- [x] Améliorer l'UX du signalement de défauts
+
+### Diagnostic IA Perplexity
+- [x] Vérifier la configuration de SONAR_API_KEY
+- [x] Tester le diagnostic avec des défauts réels (quickDiagnostic local)
+- [x] Afficher les résultats de diagnostic dans l'UI
