@@ -9,6 +9,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { getSettings, saveSettings, type AppSettings } from '@/lib/data-service';
 import { getSubscription, getUsageStats, PLAN_NAMES } from '@/lib/subscription-service';
 import { getCompanyProfile } from '@/lib/company-service';
+import { resetOnboarding } from '@/lib/onboarding-service';
 import type { PlanType } from '@/lib/subscription-service';
 
 export default function SettingsScreen() {
@@ -404,6 +405,55 @@ export default function SettingsScreen() {
                   </Text>
                   <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
                     Configurer les droits d'accès par rôle
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Help & Tutorial Section */}
+        <View className="px-4 mb-6">
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            AIDE & TUTORIEL
+          </Text>
+
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            <TouchableOpacity
+              onPress={async () => {
+                await resetOnboarding();
+                router.replace('/onboarding' as any);
+              }}
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="questionmark.circle.fill" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Revoir le tutoriel
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Relancer le guide de démarrage
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => router.push('/help' as any)}
+              className="p-4 flex-row items-center justify-between"
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="book.fill" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    FAQ & Documentation
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Questions fréquentes et guides
                   </Text>
                 </View>
               </View>

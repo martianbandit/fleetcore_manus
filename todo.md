@@ -851,3 +851,44 @@
 - [x] Abonnements et facturation (6 questions)
 - [x] Dépannage technique (7 questions)
 - [x] Mettre à jour l'index de documentation (README.md)
+
+
+## 🆕 Tutoriel de première utilisation (v21)
+
+### Service Onboarding
+- [x] Créer onboarding-service.ts pour gérer l'état du tutoriel
+- [x] Stockage AsyncStorage pour savoir si l'utilisateur a terminé l'onboarding
+- [x] Gestion des étapes du tutoriel (progression, 6 étapes)
+- [x] Fonction resetOnboarding() pour réinitialiser depuis les paramètres
+- [x] Fonctions completeOnboarding(), hasCompletedOnboarding()
+
+### Écrans de bienvenue (Welcome Slides)
+- [x] Écran 1: Bienvenue dans FleetCore (icône camion)
+- [x] Écran 2: Gestion de votre flotte (icône véhicule)
+- [x] Écran 3: Inspections et conformité SAAQ (icône clipboard)
+- [x] Écran 4: FleetCommand et FleetCrew (icône clé)
+- [x] Écran 5: Rappels et notifications (icône cloche)
+- [x] Écran 6: Prêt à commencer (icône check)
+- [x] Navigation par swipe (FlatList horizontal)
+- [x] Indicateurs de progression (dots animés)
+- [x] Boutons "Passer" et "Commencer"
+- [x] Animations d'entrée (fade + scale)
+
+### Composant Tooltip contextuel
+- [x] Composant OnboardingTooltip avec flèche directionnelle
+- [x] Overlay semi-transparent avec trou pour l'élément cible
+- [x] Animation d'apparition/disparition (fade + slide)
+- [x] Boutons "Suivant" et "Passer le guide"
+- [x] Positionnement automatique (top/bottom)
+
+### Intégration dans l'application
+- [x] Route /onboarding dans _layout.tsx (gestureEnabled: false)
+- [x] Section "Aide & Tutoriel" dans les paramètres
+- [x] Option "Revoir le tutoriel" avec resetOnboarding()
+- [x] Écran FAQ interactif (/help) avec recherche et filtres
+- [x] 20 questions FAQ intégrées dans l'app
+- [x] Bouton "Contacter le support"
+- [ ] Vérification au démarrage si onboarding complété
+- [ ] Redirection vers les écrans de bienvenue si premier lancement
+- [ ] Guide contextuel sur le Dashboard après les slides
+- [ ] Option "Revoir le tutoriel" dans les paramètres

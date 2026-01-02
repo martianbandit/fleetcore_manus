@@ -78,6 +78,13 @@ const MAPPING: Record<string, MaterialIconName> = {
   "checkmark.seal.fill": "verified",
   "minus": "remove",
   "cube.box": "inventory-2",
+  // Onboarding & Help
+  "truck.fill": "local-shipping",
+  "questionmark.circle.fill": "help",
+  "book.fill": "menu-book",
+  "person.3.fill": "groups",
+  "lock.fill": "lock",
+  "link": "link",
 };
 
 type IconSymbolName = keyof typeof MAPPING;
