@@ -10,6 +10,9 @@ import { InspectionCard } from '@/components/ui/inspection-card';
 import { AlertCard } from '@/components/ui/alert-card';
 import { AdBanner } from '@/components/ui/ad-banner';
 import { IconSymbol } from '@/components/ui/icon-symbol';
+import { UpcomingEventsWidget } from '@/components/ui/upcoming-events-widget';
+import { DeadlineAlert } from '@/components/ui/deadline-alert';
+import { getOverdueReminders, generateDemoReminders, type UpcomingEvent } from '@/lib/calendar-service';
 import {
   getDashboardStats,
   getInspections,
@@ -26,23 +29,29 @@ export default function DashboardScreen() {
   const [alerts, setAlerts] = useState<Alert[]>([]);
   const [workOrderStats, setWorkOrderStats] = useState<any>(null);
   const [inventoryStats, setInventoryStats] = useState<any>(null);
+  const [overdueReminders, setOverdueReminders] = useState<UpcomingEvent[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const loadData = useCallback(async () => {
     try {
-      const [statsData, inspectionsData, alertsData, woStats, invStats] = await Promise.all([
+      // Générer des rappels de démo si nécessaire
+      await generateDemoReminders();
+      
+      const [statsData, inspectionsData, alertsData, woStats, invStats, overdueData] = await Promise.all([
         getDashboardStats(),
         getInspections(),
         getAlerts(),
         getWorkOrderStats(),
         getInventoryStats(),
+        getOverdueReminders(),
       ]);
       setStats(statsData);
       setRecentInspections(inspectionsData.slice(0, 5));
       setAlerts(alertsData.filter(a => a.severity === 'critical').slice(0, 3));
       setWorkOrderStats(woStats);
       setInventoryStats(invStats);
+      setOverdueReminders(overdueData.slice(0, 2));
     } catch (error) {
       console.error('Error loading dashboard data:', error);
     } finally {
@@ -346,6 +355,32 @@ export default function DashboardScreen() {
               </Text>
             </Pressable>
           </View>
+        </View>
+
+        {/* Overdue Reminders Alert */}
+        {overdueReminders.length > 0 && (
+          <View className="px-4 mt-4">
+            <View className="flex-row items-center gap-2 mb-3">
+              <IconSymbol name="exclamationmark.triangle.fill" size={20} color="#EF4444" />
+              <Text className="text-lg font-bold text-foreground">Rappels en retard</Text>
+            </View>
+            {overdueReminders.map((reminder) => (
+              <DeadlineAlert
+                key={reminder.id}
+                reminder={reminder}
+                onPress={() => router.push(`/reminder/${reminder.id}` as any)}
+              />
+            ))}
+          </View>
+        )}
+
+        {/* Upcoming Events Widget */}
+        <View className="px-4 mt-4">
+          <UpcomingEventsWidget
+            maxItems={3}
+            showHeader={true}
+            onRefresh={loadData}
+          />
         </View>
 
         {/* Alerts */}

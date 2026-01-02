@@ -71,6 +71,13 @@ const MAPPING: Record<string, MaterialIconName> = {
   "hammer.fill": "hardware",
   "arrow.down.circle.fill": "download",
   "arrow.up.circle.fill": "upload",
+  // Calendar
+  "calendar.badge.plus": "event",
+  "calendar.badge.exclamationmark": "event-busy",
+  "shield.fill": "shield",
+  "checkmark.seal.fill": "verified",
+  "minus": "remove",
+  "cube.box": "inventory-2",
 };
 
 type IconSymbolName = keyof typeof MAPPING;

@@ -604,3 +604,37 @@
 - [x] Taux de complétion des bons de travail
 - [x] Bons de travail en attente/en cours (dans Dashboard)
 - [x] KPIs FleetCommand et FleetCrew dans le Dashboard principal
+
+
+## 🆕 Intégration Google Calendar (v12)
+
+### Service Google Calendar
+- [x] Explorer les outils MCP Google Calendar disponibles
+- [x] Créer calendar-service.ts pour l'intégration
+- [x] Fonctions pour créer/modifier/supprimer des rappels
+- [x] Fonctions pour récupérer les rappels à venir
+- [x] Gestion des rappels et notifications
+- [x] Génération automatique de rappels de démo
+
+### Composants visuels
+- [x] CalendarMiniWidget - Mini calendrier avec événements et indicateurs
+- [x] ReminderCard - Carte de rappel avec actions (compléter, détails)
+- [x] UpcomingEventsWidget - Liste des rappels à venir avec stats
+- [x] DeadlineAlert - Alerte animée pour dates critiques
+
+### Types de rappels FleetCore
+- [x] Rappels d'inspection périodique (SAAQ)
+- [x] Rappels de maintenance préventive
+- [x] Alertes d'expiration (assurance, immatriculation)
+- [x] Rappels de vidange d'huile
+- [x] Rappels de rotation des pneus
+- [x] Rappels personnalisés
+
+### Intégration dans l'application
+- [x] Widget rappels dans le Dashboard (UpcomingEventsWidget)
+- [x] Alertes en retard dans le Dashboard (DeadlineAlert)
+- [x] Écran de gestion des rappels (/reminders)
+- [x] Écran de création de rappel (/reminders/create)
+- [x] Écran de détail de rappel (/reminder/[id])
+- [x] Filtres par type, période et priorité
+- [x] Mini calendrier avec indicateurs d'événements
