@@ -12,6 +12,7 @@ import { AdBanner } from '@/components/ui/ad-banner';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { UpcomingEventsWidget } from '@/components/ui/upcoming-events-widget';
 import { DeadlineAlert } from '@/components/ui/deadline-alert';
+import { SyncIndicator, useSyncStatus } from '@/components/ui/sync-indicator';
 import { getOverdueReminders, generateDemoReminders, type UpcomingEvent } from '@/lib/calendar-service';
 import {
   getDashboardStats,
@@ -24,6 +25,7 @@ import type { DashboardStats, Inspection, Alert } from '@/lib/types';
 
 export default function DashboardScreen() {
   const router = useRouter();
+  const syncStatus = useSyncStatus();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [recentInspections, setRecentInspections] = useState<Inspection[]>([]);
   const [alerts, setAlerts] = useState<Alert[]>([]);
@@ -105,10 +107,20 @@ export default function DashboardScreen() {
       >
         {/* Header */}
         <View className="px-4 pt-2 pb-4">
-          <Text className="text-3xl font-bold text-foreground">FleetCore</Text>
-          <Text className="text-base text-muted mt-1">
-            Tableau de bord de gestion de flotte
-          </Text>
+          <View className="flex-row justify-between items-start">
+            <View className="flex-1">
+              <Text className="text-3xl font-bold text-foreground">FleetCore</Text>
+              <Text className="text-base text-muted mt-1">
+                Tableau de bord de gestion de flotte
+              </Text>
+            </View>
+            <SyncIndicator
+              status={syncStatus.status}
+              lastSyncTime={syncStatus.lastSyncTime}
+              onPress={syncStatus.startSync}
+              size="small"
+            />
+          </View>
         </View>
 
         {/* KPI Cards */}

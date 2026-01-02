@@ -248,6 +248,105 @@ export default function SettingsScreen() {
           </View>
         </View>
 
+        {/* Regional Settings Section */}
+        <View className="px-4 mb-6">
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            RÉGIONAL
+          </Text>
+
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            {/* Language */}
+            <View className="p-4 border-b" style={{ borderColor: colors.border }}>
+              <Text className="text-base font-semibold mb-3" style={{ color: colors.foreground }}>
+                Langue
+              </Text>
+              <View className="flex-row gap-2">
+                {(['fr', 'en'] as const).map((lang) => (
+                  <TouchableOpacity
+                    key={lang}
+                    onPress={() => updateSetting('language', lang)}
+                    className="flex-1 py-3 rounded-xl items-center"
+                    style={{
+                      backgroundColor: settings.language === lang ? colors.primary : colors.background,
+                      borderWidth: 1,
+                      borderColor: settings.language === lang ? colors.primary : colors.border,
+                    }}
+                  >
+                    <Text
+                      className="font-semibold"
+                      style={{
+                        color: settings.language === lang ? '#FFF' : colors.foreground,
+                      }}
+                    >
+                      {lang === 'fr' ? 'Français' : 'English'}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+
+            {/* Date Format */}
+            <View className="p-4 border-b" style={{ borderColor: colors.border }}>
+              <Text className="text-base font-semibold mb-3" style={{ color: colors.foreground }}>
+                Format de date
+              </Text>
+              <View className="flex-row gap-2">
+                {(['YYYY-MM-DD', 'DD/MM/YYYY', 'MM/DD/YYYY'] as const).map((format) => (
+                  <TouchableOpacity
+                    key={format}
+                    onPress={() => updateSetting('dateFormat', format)}
+                    className="flex-1 py-3 rounded-xl items-center"
+                    style={{
+                      backgroundColor: settings.dateFormat === format ? colors.primary : colors.background,
+                      borderWidth: 1,
+                      borderColor: settings.dateFormat === format ? colors.primary : colors.border,
+                    }}
+                  >
+                    <Text
+                      className="font-semibold text-xs"
+                      style={{
+                        color: settings.dateFormat === format ? '#FFF' : colors.foreground,
+                      }}
+                    >
+                      {format}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+
+            {/* Distance Unit */}
+            <View className="p-4">
+              <Text className="text-base font-semibold mb-3" style={{ color: colors.foreground }}>
+                Unité de distance
+              </Text>
+              <View className="flex-row gap-2">
+                {(['km', 'mi'] as const).map((unit) => (
+                  <TouchableOpacity
+                    key={unit}
+                    onPress={() => updateSetting('distanceUnit', unit)}
+                    className="flex-1 py-3 rounded-xl items-center"
+                    style={{
+                      backgroundColor: settings.distanceUnit === unit ? colors.primary : colors.background,
+                      borderWidth: 1,
+                      borderColor: settings.distanceUnit === unit ? colors.primary : colors.border,
+                    }}
+                  >
+                    <Text
+                      className="font-semibold"
+                      style={{
+                        color: settings.distanceUnit === unit ? '#FFF' : colors.foreground,
+                      }}
+                    >
+                      {unit === 'km' ? 'Kilomètres (km)' : 'Miles (mi)'}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+          </View>
+        </View>
+
         {/* Resources Section */}
         <View className="px-4 mb-8">
           <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>

@@ -13,7 +13,8 @@ import type { Vehicle } from '@/lib/types';
 export default function AddVehicleScreen() {
   const { colors, colorScheme } = useTheme();
   const isDark = colorScheme === 'dark';
-  const { vehicleId } = useLocalSearchParams<{ vehicleId?: string }>();
+  const params = useLocalSearchParams<{ vehicleId?: string; id?: string }>();
+  const vehicleId = params.vehicleId || params.id;
   const isEditMode = !!vehicleId;
   
   const [formData, setFormData] = useState({

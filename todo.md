@@ -54,8 +54,8 @@
 - [x] Ajout de véhicule avec formulaire validé
 - [x] Upload d'image de couverture (galerie + caméra)
 - [x] Validation des champs (VIN 17 caractères, plaque, etc.)
-- [ ] **MANQUANT**: Édition des informations véhicule (pas d'écran edit)
-- [ ] **MANQUANT**: Suppression de véhicule (fonction existe mais pas de bouton UI)
+- [x] **COMPLÉTÉ**: Édition des informations véhicule (mode édition dans add.tsx)
+- [x] **COMPLÉTÉ**: Suppression de véhicule (boutons dans vehicle/[id].tsx)
 - [ ] **MANQUANT**: Galerie d'images multiples par véhicule
 
 ### Gestion des inspections
@@ -89,7 +89,7 @@
 - [x] Ajouter les preuves photographiques au rapport
 - [x] Section "Preuves de réparation"
 - [x] Signatures électroniques
-- [ ] **MANQUANT**: Bouton "Générer PDF" dans l'UI (fonction existe)
+- [x] **COMPLÉTÉ**: Bouton "Générer PDF" dans l'UI (inspection/[id].tsx)
 
 ### Synchronisation cloud
 - [x] Schémas Drizzle pour véhicules et inspections (drizzle/schema.ts)
@@ -97,7 +97,7 @@
 - [x] Mode hors-ligne avec AsyncStorage
 - [ ] **MANQUANT**: Synchronisation automatique lors de la connexion
 - [ ] **MANQUANT**: Gestion des conflits de synchronisation
-- [ ] **MANQUANT**: Indicateur de statut sync dans l'UI
+- [x] **COMPLÉTÉ**: Indicateur de statut sync dans l'UI (SyncIndicator component)
 
 ## ✅ Fonctionnalités professionnelles implémentées
 
@@ -107,8 +107,8 @@
 - [x] Couleur primaire personnalisable
 - [x] Sauvegarde des préférences (getSettings/saveSettings)
 - [x] Application du thème à tous les écrans
-- [ ] **MANQUANT**: Toggle mode sombre dans Settings (UI existe mais pas connecté au ThemeProvider)
-- [ ] **MANQUANT**: Sélecteur de couleur primaire dans Settings
+- [x] **COMPLÉTÉ**: Toggle mode sombre dans Settings (connecté au ThemeProvider)
+- [x] **COMPLÉTÉ**: Sélecteur de couleur primaire dans Settings
 
 ### Métriques et collecte de données
 - [x] Service metrics-service.ts complet
@@ -122,7 +122,7 @@
 - [x] Export des métriques en CSV
 - [x] **COMPLÉTÉ**: UI pour afficher les métriques (écran analytics avec onglets)
 - [x] **COMPLÉTÉ**: UI pour démarrer/arrêter le chrono de travail (WorkTimer component)
-- [ ] **MANQUANT**: UI pour ajouter les coûts de maintenance
+- [x] **COMPLÉTÉ**: UI pour ajouter les coûts de maintenance (/maintenance-costs)
 
 ### Espaces publicitaires
 - [x] Composant AdBanner (banner + card variants)
@@ -130,7 +130,7 @@
 - [x] Composant UsefulLinkCard
 - [x] Liens vers ressources SAAQ, VMRS, formations
 - [x] Catégorisation par type
-- [ ] **MANQUANT**: Intégration dans les écrans (composants créés mais pas affichés)
+- [x] **COMPLÉTÉ**: Intégration dans les écrans (AdBanner dans toutes les pages)
 - [ ] **MANQUANT**: API publicitaire réelle
 
 ### Gestion de documents
@@ -140,7 +140,7 @@
 - [x] Recherche par nom, notes, tags
 - [x] Statistiques de documents (DocumentStats)
 - [x] Suppression avec nettoyage des fichiers
-- [ ] **MANQUANT**: UI pour gérer les documents (pas d'écran documents)
+- [x] **COMPLÉTÉ**: UI pour gérer les documents (/documents)
 - [ ] **MANQUANT**: Prévisualisation de documents PDF
 - [ ] **MANQUANT**: Intégration dans vehicle detail
 
@@ -148,9 +148,9 @@
 - [x] Interface AppSettings dans data-service.ts
 - [x] Sauvegarde des préférences (theme, primaryColor, language, dateFormat, distanceUnit, notifications, autoSync)
 - [x] Écran Settings de base créé
-- [ ] **MANQUANT**: UI pour modifier la langue (fr/en)
-- [ ] **MANQUANT**: UI pour changer le format de date
-- [ ] **MANQUANT**: UI pour changer les unités (km/mi)
+- [x] **COMPLÉTÉ**: UI pour modifier la langue (fr/en) dans Settings
+- [x] **COMPLÉTÉ**: UI pour changer le format de date dans Settings
+- [x] **COMPLÉTÉ**: UI pour changer les unités (km/mi) dans Settings
 - [ ] **MANQUANT**: Configuration des collecteurs de métriques
 - [ ] **MANQUANT**: Personnalisation des champs de formulaire
 
