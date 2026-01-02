@@ -722,3 +722,41 @@
 - [x] UI de gestion des rôles (/settings/permissions)
 - [x] Toggles CRUD par ressource et par rôle
 - [x] Section Administration dans les paramètres
+
+
+## 🆕 Fiche d'entretien préventif PEP SAAQ (v17)
+
+### Service PEP
+- [x] Créer pep-service.ts avec structure JSON complète des 12 sections SAAQ
+- [x] Types pour PEPForm, PEPSection, PEPComponent, PEPDefect
+- [x] Fonctions CRUD pour les fiches PEP (create, read, update, delete)
+- [x] Validation des défauts mineures/majeures avec compteurs
+- [x] Calcul automatique de la prochaine date d'entretien selon PNBV
+
+### Formulaire PEP interactif
+- [x] Écran principal avec en-tête véhicule (plaque, NIV, PNBV, etc.)
+- [x] Navigation par sections (12 sections SAAQ)
+- [x] Grille de composants avec colonnes S/O, C, Min, Maj
+- [x] Sélection rapide des défauts par composant
+- [x] Champ de remarques et notes
+- [x] Écran de sélection de véhicule (/pep/select-vehicle)
+- [x] Liste des fiches PEP (/pep)
+
+### Diagramme de localisation
+- [x] Vue de dessus du véhicule avec positions numérotées (VehicleDiagram)
+- [x] Sélection interactive des positions (pneus, freins, essieux)
+- [x] Affichage des mesures par position
+- [x] Légende des statuts (conforme, mineur, majeur)
+
+### Restriction par plan d'abonnement
+- [x] Vérification du plan (Plus, Pro, Entreprise uniquement)
+- [x] Écran de mise à niveau pour les plans Free (/subscription/upgrade)
+- [x] Badge "Premium" sur la fonctionnalité
+- [x] Fonction canAccessPEP() dans subscription-service
+- [x] Ajout du plan "Plus" (29$/mois) entre Free et Pro
+
+### Génération PDF
+- [x] Export PDF conforme au formulaire SAAQ 6609 30
+- [x] Fonction generatePEPPDF() et generatePEPReportData()
+- [x] Écran de signature (/pep/sign) avec résumé des défauts
+- [x] Historique des fiches PEP par véhicule (getPEPFormsByVehicle)
