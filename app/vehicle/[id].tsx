@@ -13,6 +13,7 @@ import { getVehicle, getInspectionsByVehicle, deleteVehicle } from '@/lib/data-s
 import { getDocuments, addDocument, deleteDocument, type VehicleDocument } from '@/lib/documents-service';
 import * as DocumentPicker from 'expo-document-picker';
 import type { Vehicle, Inspection } from '@/lib/types';
+import { VehicleAssignmentManager } from '@/components/vehicle-assignment-manager';
 
 interface InfoRowProps {
   icon: IconSymbolName;
@@ -234,6 +235,15 @@ export default function VehicleDetailScreen() {
               <Text style={[styles.secondaryButtonText, { color: colors.error }]}>Supprimer</Text>
             </Pressable>
           </View>
+        </View>
+
+        {/* Techniciens assignés */}
+        <View className="mx-4 mt-6">
+          <VehicleAssignmentManager
+            vehicleId={id || ''}
+            vehiclePlate={vehicle.plate}
+            onAssignmentChange={loadData}
+          />
         </View>
 
         {/* Documents */}

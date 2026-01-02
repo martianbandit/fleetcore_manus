@@ -347,6 +347,71 @@ export default function SettingsScreen() {
           </View>
         </View>
 
+        {/* Administration Section */}
+        <View className="px-4 mb-6">
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            ADMINISTRATION
+          </Text>
+
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            <TouchableOpacity
+              onPress={() => router.push('/technicians' as any)}
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="person.fill" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Techniciens
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Gérer les techniciens et leurs spécialités
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => router.push('/teams' as any)}
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="person.3.fill" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Équipes
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Organiser les techniciens en équipes
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => router.push('/settings/permissions' as any)}
+              className="p-4 flex-row items-center justify-between"
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="lock.fill" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Permissions
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Configurer les droits d'accès par rôle
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
         {/* Resources Section */}
         <View className="px-4 mb-8">
           <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>

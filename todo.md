@@ -684,3 +684,41 @@
 - [x] Appliquer le style à tous les composants (KPICard, VehicleCard, InspectionCard, AlertCard, StatusBadge, SearchBar)
 - [x] Bordures subtiles avec effet glow
 - [x] Icônes avec fond coloré et bordure
+
+
+## 🆕 Relations et tables (v16)
+
+### Service de gestion des équipes
+- [x] Créer team-service.ts avec types Technician, Team, Assignment, RolePermission
+- [x] CRUD techniciens (add, update, delete, get, getByTeam)
+- [x] CRUD équipes (add, update, delete, get, getStats)
+- [x] Gestion des affectations véhicule-technicien (assign, end, getByVehicle)
+- [x] Historique des affectations avec dates
+
+### Écran de gestion des techniciens
+- [x] Liste des techniciens avec recherche et filtres (/technicians)
+- [x] Ajout de technicien (nom, email, téléphone, spécialités) (/technician/add)
+- [x] Détail technicien avec statistiques (/technician/[id])
+- [x] Modification et suppression de technicien
+- [x] Affichage des véhicules assignés et équipe
+
+### Écran de gestion des équipes
+- [x] Liste des équipes avec membres (/teams)
+- [x] Création d'équipe avec sélection de couleur (/team/add)
+- [x] Détail équipe avec membres (/team-detail/[id])
+- [x] Modification et suppression d'équipe
+- [x] Statistiques par équipe (membres, inspections, véhicules, performance)
+
+### Affectations véhicule-technicien
+- [x] Interface d'affectation dans détail véhicule (VehicleAssignmentManager)
+- [x] Liste des techniciens assignés avec dates
+- [x] Affectation multiple (équipe entière)
+- [x] Dates de début/fin d'affectation
+- [x] Modal de sélection avec onglets (techniciens/équipes)
+
+### Permissions par rôle
+- [x] Définir les rôles (admin, manager, technician, viewer)
+- [x] Permissions par fonctionnalité (8 ressources: véhicules, inspections, workOrders, inventory, technicians, teams, reports, settings)
+- [x] UI de gestion des rôles (/settings/permissions)
+- [x] Toggles CRUD par ressource et par rôle
+- [x] Section Administration dans les paramètres
