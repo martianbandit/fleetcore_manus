@@ -14,7 +14,10 @@ import { getDocuments, addDocument, deleteDocument, type VehicleDocument } from 
 import { getPEPFormsByVehicle, type PEPForm } from '@/lib/pep-service';
 import { canAccessPEP } from '@/lib/subscription-service';
 import * as DocumentPicker from 'expo-document-picker';
-import type { Vehicle, Inspection } from '@/lib/types';
+import type { Vehicle, Inspection, VehicleImage } from '@/lib/types';
+import { ImageGallery } from '@/components/ui/image-gallery';
+import { DocumentList } from '@/components/ui/document-list';
+import type { VehicleDocument as VehicleDocType } from '@/lib/types';
 import { VehicleAssignmentManager } from '@/components/vehicle-assignment-manager';
 
 interface InfoRowProps {
@@ -45,6 +48,8 @@ export default function VehicleDetailScreen() {
   const [hasPEPAccess, setHasPEPAccess] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [vehicleImages, setVehicleImages] = useState<VehicleImage[]>([]);
+  const [vehicleDocs, setVehicleDocs] = useState<VehicleDocType[]>([]);
 
   const loadData = useCallback(async () => {
     if (!id) return;
@@ -254,82 +259,68 @@ export default function VehicleDetailScreen() {
           />
         </View>
 
-        {/* Documents */}
+        {/* Galerie d'images */}
+        <View className="mx-4 mt-6">
+          <View className="flex-row items-center justify-between mb-3">
+            <Text className="text-lg font-bold text-foreground">
+              Galerie photos ({vehicleImages.length})
+            </Text>
+          </View>
+          <View className="bg-surface rounded-xl border border-border p-4">
+            <ImageGallery
+              images={vehicleImages.map(img => ({
+                id: img.id,
+                uri: img.uri,
+                caption: img.caption,
+                createdAt: img.takenAt,
+              }))}
+              onAddImage={async (uri) => {
+                const newImage: VehicleImage = {
+                  id: `img_${Date.now()}`,
+                  vehicleId: id || '',
+                  uri: uri,
+                  localUri: uri,
+                  thumbnail: uri,
+                  caption: '',
+                  takenAt: new Date().toISOString(),
+                  uploadedBy: 'current_user',
+                  isPrimary: vehicleImages.length === 0,
+                };
+                setVehicleImages(prev => [...prev, newImage]);
+              }}
+              onRemoveImage={(imgId) => {
+                setVehicleImages(prev => prev.filter(img => img.id !== imgId));
+              }}
+              maxImages={20}
+              editable={true}
+              emptyText="Aucune photo du véhicule"
+            />
+          </View>
+        </View>
+
+        {/* Documents améliorés */}
         <View className="mx-4 mt-6 mb-4">
           <View className="flex-row items-center justify-between mb-3">
             <Text className="text-lg font-bold text-foreground">
-              Documents ({documents.length})
+              Documents ({vehicleDocs.length})
             </Text>
-            <Pressable
-              onPress={async () => {
-                try {
-                  if (id) {
-                    const doc = await addDocument(id, 'manual');
-                    if (doc) {
-                      await loadData();
-                    }
-                  }
-                } catch (error) {
-                  console.error('Error adding document:', error);
-                  Alert.alert('Erreur', 'Impossible d\'ajouter le document');
-                }
-              }}
-              style={({ pressed }) => [{
-                backgroundColor: colors.primary,
-                paddingHorizontal: 12,
-                paddingVertical: 6,
-                borderRadius: 8,
-                opacity: pressed ? 0.7 : 1,
-              }]}
-            >
-              <Text style={{ color: '#FFFFFF', fontSize: 12, fontWeight: '600' }}>+ Ajouter</Text>
-            </Pressable>
           </View>
-          {documents.length > 0 ? (
-            <View className="rounded-xl border border-border" style={{ backgroundColor: colors.surface }}>
-              {documents.map((doc, index) => (
-                <View
-                  key={doc.id}
-                  className="p-4 flex-row items-center justify-between"
-                  style={{ borderBottomWidth: index < documents.length - 1 ? 1 : 0, borderColor: colors.border }}
-                >
-                  <View className="flex-1">
-                    <Text className="font-semibold" style={{ color: colors.foreground }}>{doc.name}</Text>
-                    <Text className="text-sm mt-1" style={{ color: colors.muted }}>
-                      {doc.type} • {(doc.size / 1024).toFixed(1)} KB
-                    </Text>
-                  </View>
-                  <Pressable
-                    onPress={() => {
-                      Alert.alert(
-                        'Supprimer le document',
-                        `Êtes-vous sûr de vouloir supprimer ${doc.name}?`,
-                        [
-                          { text: 'Annuler', style: 'cancel' },
-                          {
-                            text: 'Supprimer',
-                            style: 'destructive',
-                            onPress: async () => {
-                              await deleteDocument(doc.id);
-                              await loadData();
-                            },
-                          },
-                        ]
-                      );
-                    }}
-                    style={({ pressed }) => [{ opacity: pressed ? 0.5 : 1 }]}
-                  >
-                    <IconSymbol name="trash.fill" size={20} color={colors.error} />
-                  </Pressable>
-                </View>
-              ))}
-            </View>
-          ) : (
-            <View className="bg-surface rounded-xl border border-border p-6 items-center">
-              <IconSymbol name="doc.fill" size={32} color={colors.muted} />
-              <Text className="text-muted mt-2">Aucun document</Text>
-            </View>
-          )}
+          <DocumentList
+            documents={vehicleDocs}
+            onAddDocument={async (doc) => {
+              const newDoc: VehicleDocType = {
+                ...doc,
+                id: `doc_${Date.now()}`,
+                vehicleId: id || '',
+              };
+              setVehicleDocs(prev => [...prev, newDoc]);
+            }}
+            onRemoveDocument={(docId) => {
+              setVehicleDocs(prev => prev.filter(d => d.id !== docId));
+            }}
+            editable={true}
+            emptyText="Aucun document attaché"
+          />
         </View>
 
         {/* Fiches PEP SAAQ */}

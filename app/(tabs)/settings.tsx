@@ -504,7 +504,8 @@ export default function SettingsScreen() {
 
             <TouchableOpacity
               onPress={() => router.push('/help' as any)}
-              className="p-4 flex-row items-center justify-between"
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
             >
               <View className="flex-row items-center flex-1">
                 <IconSymbol name="book.fill" size={20} color={colors.primary} />
@@ -514,6 +515,24 @@ export default function SettingsScreen() {
                   </Text>
                   <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
                     Questions fréquentes et guides
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => router.push('/settings/resources' as any)}
+              className="p-4 flex-row items-center justify-between"
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="link" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Ressources utiles
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Liens SAAQ, guides et support
                   </Text>
                 </View>
               </View>

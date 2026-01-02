@@ -9,6 +9,7 @@ import { SearchBar } from '@/components/ui/search-bar';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useColors } from '@/hooks/use-colors';
 import { getVehicles, createInspection } from '@/lib/data-service';
+import { scheduleInspectionReminder } from '@/lib/notification-service';
 import type { Vehicle, InspectionType } from '@/lib/types';
 
 const inspectionTypes: { key: InspectionType; label: string; description: string; icon: string }[] = [
@@ -104,6 +105,16 @@ export default function NewInspectionScreen() {
       if (Platform.OS !== 'web') {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
       }
+      
+      // Planifier un rappel pour le lendemain matin si l'inspection n'est pas terminée
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      await scheduleInspectionReminder(
+        selectedVehicle.plate,
+        selectedVehicle.id,
+        8, // 8h00
+        0
+      );
       
       // Navigate to checklist
       router.replace(`/checklist/${inspection.id}` as any);
