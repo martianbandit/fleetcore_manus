@@ -22,9 +22,16 @@ export default function NotificationSettingsScreen() {
   const [settings, setSettings] = useState({
     enabled: true,
     inspectionCompleted: true,
+    inspectionReminders: true,
     majorDefects: true,
+    blockingDefects: true,
     maintenanceDue: true,
     paymentReminders: true,
+    teamUpdates: true,
+    syncAlerts: true,
+    quietHoursEnabled: false,
+    quietHoursStart: '22:00',
+    quietHoursEnd: '07:00',
   });
   const [pushSettings, setPushSettings] = useState<PushSettings | null>(null);
   const [scheduledCount, setScheduledCount] = useState(0);

@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // NetInfo sera importé dynamiquement pour éviter les erreurs de build
 // import NetInfo from '@react-native-community/netinfo';
 import type { PendingAction, SyncState, AuditEntityType } from './types';
+import { notifySyncCompleted, notifySyncFailed } from './notification-service';
 
 // ============================================================================
 // CONFIGURATION
@@ -223,6 +224,16 @@ export async function syncPendingActions(): Promise<{
     failedActionsCount: failed,
     isSyncing: false,
   });
+  
+  // Envoyer une notification si des éléments ont été synchronisés
+  if (synced > 0) {
+    await notifySyncCompleted(synced);
+  }
+  
+  // Notifier en cas d'échecs
+  if (failed > 0) {
+    await notifySyncFailed(`${failed} action(s) échouée(s)`);
+  }
   
   return { synced, failed, remaining: remaining.length };
 }

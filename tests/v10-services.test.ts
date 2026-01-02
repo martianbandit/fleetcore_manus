@@ -18,6 +18,12 @@ vi.mock('@react-native-async-storage/async-storage', () => ({
   },
 }));
 
+// Mock notification-service pour éviter les imports expo
+vi.mock('../lib/notification-service', () => ({
+  notifySyncCompleted: vi.fn(),
+  notifySyncFailed: vi.fn(),
+}));
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // ============================================================================
