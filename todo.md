@@ -344,3 +344,43 @@
 - [x] Mettre à jour le statut d'abonnement local (AsyncStorage + DB)
 - [ ] Envoyer des notifications push aux utilisateurs (TODO dans le code)
 - [x] Logger tous les événements webhook pour audit
+
+
+## 🎯 Tâches prioritaires complétées
+
+### 1. Connecter le mode sombre au ThemeProvider
+- [x] Vérifier que le toggle dans Settings utilise bien useTheme()
+- [x] S'assurer que tous les écrans utilisent les couleurs du thème (background, foreground, surface, etc.)
+- [x] Appliquer le mode sombre aux arrière-plans de tous les composants
+- [x] Tester le changement de thème en temps réel
+
+### 2. Ajouter boutons éditer/supprimer dans vehicle detail
+- [x] Ajouter bouton "Éditer" dans l'écran vehicle/[id].tsx
+- [x] Créer navigation vers vehicle/add.tsx avec mode édition
+- [x] Ajouter bouton "Supprimer" avec confirmation
+- [x] Utiliser deleteVehicle() du data-service.ts
+- [x] Rediriger vers la liste après suppression
+
+### 3. Créer l'écran analytics
+- [x] Créer app/analytics.tsx
+- [x] Afficher les métriques de flotte (FleetMetrics)
+- [x] Graphique des temps d'inspection par mois
+- [x] Graphique des coûts de maintenance par véhicule
+- [x] Graphique des défauts les plus fréquents
+- [x] Statistiques par technicien
+- [x] Bouton d'export CSV
+
+### 4. Intégrer gestion de documents dans vehicle detail
+- [x] Ajouter section "Documents" dans vehicle/[id].tsx
+- [x] Bouton "Ajouter document" avec expo-document-picker
+- [x] Liste des documents avec catégories
+- [x] Bouton de suppression par document
+- [x] Utiliser documents-service.ts
+- [x] Afficher les statistiques de documents
+
+### 5. Ajouter bouton génération PDF dans inspection detail
+- [x] Ajouter bouton "Générer rapport PDF" dans inspection/[id].tsx (déjà présent)
+- [x] Utiliser generateInspectionPDF() du pdf-generator.ts
+- [x] Afficher un indicateur de chargement
+- [x] Partager le PDF généré (expo-sharing)
+- [x] Gérer les erreurs de génération

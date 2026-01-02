@@ -10,6 +10,7 @@ import { SearchBar } from '@/components/ui/search-bar';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { getVehicles, searchVehicles } from '@/lib/data-service';
 import type { Vehicle, VehicleStatus } from '@/lib/types';
+import { useColors } from '@/hooks/use-colors';
 
 const statusFilters: { key: VehicleStatus | 'all'; label: string }[] = [
   { key: 'all', label: 'Tous' },
@@ -19,6 +20,7 @@ const statusFilters: { key: VehicleStatus | 'all'; label: string }[] = [
 ];
 
 export default function VehiclesScreen() {
+  const colors = useColors();
   const router = useRouter();
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [filteredVehicles, setFilteredVehicles] = useState<Vehicle[]>([]);
@@ -140,14 +142,19 @@ export default function VehiclesScreen() {
               onPress={() => handleFilterChange(item.key)}
               style={({ pressed }) => [
                 styles.filterChip,
-                activeFilter === item.key && styles.filterChipActive,
+                {
+                  backgroundColor: activeFilter === item.key ? colors.primary : colors.surface,
+                  borderColor: activeFilter === item.key ? colors.primary : colors.border,
+                },
                 pressed && { opacity: 0.7 },
               ]}
             >
               <Text
                 style={[
                   styles.filterChipText,
-                  activeFilter === item.key && styles.filterChipTextActive,
+                  {
+                    color: activeFilter === item.key ? '#FFFFFF' : colors.muted,
+                  },
                 ]}
               >
                 {item.label}
@@ -170,7 +177,7 @@ export default function VehiclesScreen() {
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={
           <View className="items-center py-12">
-            <IconSymbol name="car.fill" size={48} color="#64748B" />
+            <IconSymbol name="car.fill" size={48} color={colors.muted} />
             <Text className="text-muted mt-4 text-center">
               {searchQuery || activeFilter !== 'all'
                 ? 'Aucun véhicule trouvé'
@@ -191,21 +198,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
-    backgroundColor: '#F1F5F9',
     borderWidth: 1,
-    borderColor: '#E2E8F0',
-  },
-  filterChipActive: {
-    backgroundColor: '#0066CC',
-    borderColor: '#0066CC',
   },
   filterChipText: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#64748B',
-  },
-  filterChipTextActive: {
-    color: '#FFFFFF',
   },
   listContent: {
     paddingHorizontal: 16,
