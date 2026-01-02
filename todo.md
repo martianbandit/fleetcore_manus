@@ -384,3 +384,47 @@
 - [x] Afficher un indicateur de chargement
 - [x] Partager le PDF généré (expo-sharing)
 - [x] Gérer les erreurs de génération
+
+
+## 🚀 Tâches en cours d'implémentation
+
+### 1. Lien vers analytics depuis Dashboard
+- [ ] Ajouter bouton "Voir rapports" dans la section Actions rapides
+- [ ] Navigation vers /analytics
+- [ ] Icône chart/graph appropriée
+
+### 2. Écran de gestion des techniciens
+- [ ] Créer app/team.tsx
+- [ ] Liste des techniciens avec photos
+- [ ] Formulaire d'ajout de technicien (nom, email, téléphone, certifications)
+- [ ] Afficher les statistiques par technicien (depuis metrics-service)
+- [ ] Boutons éditer/supprimer technicien
+- [ ] Intégrer dans la Tab Bar ou Settings
+
+### 3. Notifications push
+- [ ] Configurer expo-notifications
+- [ ] Demander les permissions de notification
+- [ ] Envoyer notification lors d'inspection complétée
+- [ ] Envoyer notification pour défauts majeurs détectés
+- [ ] Envoyer notification pour échéances de maintenance
+- [ ] Intégrer avec webhooks Stripe pour notifications de paiement
+- [ ] Paramètres de notifications dans Settings
+
+### 4. Bannières publicitaires dans Dashboard
+- [ ] Intégrer AdBanner component dans Dashboard
+- [ ] Afficher 1-2 bannières entre les sections
+- [ ] Rotation des publicités locales
+- [ ] Liens cliquables vers fournisseurs
+
+### 5. Section Ressources utiles dans Settings
+- [ ] Créer section "Ressources" dans Settings
+- [ ] Afficher les UsefulLinkCard
+- [ ] Catégories: Réglementation, Formations, Outils, Support
+- [ ] Liens vers SAAQ, VMRS, formations, support FleetCore
+
+### 6. Synchronisation automatique
+- [ ] Détecter la connectivité réseau
+- [ ] Synchroniser automatiquement au démarrage si connecté
+- [ ] Synchroniser après chaque modification (véhicule, inspection)
+- [ ] Afficher indicateur de statut sync dans la Tab Bar
+- [ ] Gérer les conflits de synchronisation (last-write-wins)

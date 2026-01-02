@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Switch, Linking, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { useState, useEffect } from 'react';
 import { ScreenContainer } from '@/components/screen-container';
@@ -223,6 +223,90 @@ export default function SettingsScreen() {
                 thumbColor="#FFF"
               />
             </View>
+          </View>
+        </View>
+
+        {/* Resources Section */}
+        <View className="px-4 mb-8">
+          <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
+            RESSOURCES UTILES
+          </Text>
+
+          <View className="rounded-2xl overflow-hidden" style={{ backgroundColor: colors.surface }}>
+            <TouchableOpacity
+              onPress={() => Linking.openURL('https://saaq.gouv.qc.ca')}
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="link" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    SAAQ - Sécurité routière
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Réglementations et normes
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => Linking.openURL('https://www.vmrscode.com')}
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="link" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Codes VMRS
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Système de codification des composants
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => Linking.openURL('https://www.carfax.ca')}
+              className="p-4 flex-row items-center justify-between border-b"
+              style={{ borderColor: colors.border }}
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="link" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    CARFAX Canada
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Historique des véhicules
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => router.push('/team' as any)}
+              className="p-4 flex-row items-center justify-between"
+            >
+              <View className="flex-row items-center flex-1">
+                <IconSymbol name="person.2.fill" size={20} color={colors.primary} />
+                <View className="ml-3 flex-1">
+                  <Text className="text-base font-medium" style={{ color: colors.foreground }}>
+                    Gestion de l'équipe
+                  </Text>
+                  <Text className="text-xs mt-0.5" style={{ color: colors.muted }}>
+                    Ajouter et gérer les techniciens
+                  </Text>
+                </View>
+              </View>
+              <IconSymbol name="chevron.right" size={16} color={colors.muted} />
+            </TouchableOpacity>
           </View>
         </View>
 
