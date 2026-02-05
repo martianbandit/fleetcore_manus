@@ -242,3 +242,11 @@
 - [x] Vérifier la configuration de SONAR_API_KEY
 - [x] Tester le diagnostic avec des défauts réels (quickDiagnostic local)
 - [x] Afficher les résultats de diagnostic dans l'UI
+
+
+## 🆕 Navigation - Bouton retour
+
+- [x] Créer un composant BackButton réutilisable (back-button.tsx)
+- [x] Configurer le header avec bouton retour dans le layout principal (_layout.tsx)
+- [x] Ajouter les titres pour tous les écrans (70+ écrans configurés)
+- [x] Tester la navigation sur toutes les pages

@@ -5,7 +5,8 @@ import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
-import { Platform } from "react-native";
+import { Platform, Pressable } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import "@/lib/_core/nativewind-pressable";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { ThemeProvider as FleetCoreThemeProvider } from "@/lib/theme-context";
@@ -98,10 +99,103 @@ export default function RootLayout() {
         <QueryClientProvider client={queryClient}>
           {/* Default to hiding native headers so raw route segments don't appear (e.g. "(tabs)", "products/[id]"). */}
           {/* If a screen needs the native header, explicitly enable it and set a human title via Stack.Screen options. */}
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="onboarding" options={{ gestureEnabled: false }} />
-            <Stack.Screen name="oauth/callback" />
+          <Stack 
+              screenOptions={({ navigation }) => ({
+                headerShown: true,
+                headerStyle: {
+                  backgroundColor: '#ffffff',
+                },
+                headerTintColor: '#0a7ea4',
+                headerTitleStyle: {
+                  fontWeight: '600',
+                  fontSize: 17,
+                },
+                headerBackTitleVisible: false,
+                headerLeft: ({ canGoBack }) => 
+                  canGoBack ? (
+                    <Pressable
+                      onPress={() => navigation.goBack()}
+                      style={({ pressed }) => ({
+                        opacity: pressed ? 0.7 : 1,
+                        paddingHorizontal: 8,
+                        paddingVertical: 4,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                      })}
+                      hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                    >
+                      <Ionicons name="chevron-back" size={28} color="#0a7ea4" />
+                    </Pressable>
+                  ) : null,
+              })}
+            >
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="onboarding" options={{ headerShown: false, gestureEnabled: false }} />
+            <Stack.Screen name="oauth/callback" options={{ headerShown: false }} />
+            
+            {/* Écrans principaux */}
+            <Stack.Screen name="analytics" options={{ title: 'Analytiques' }} />
+            <Stack.Screen name="audit-log" options={{ title: 'Journal d\'audit' }} />
+            <Stack.Screen name="new-inspection" options={{ title: 'Nouvelle inspection' }} />
+            <Stack.Screen name="notifications" options={{ title: 'Notifications' }} />
+            <Stack.Screen name="reports" options={{ title: 'Rapports' }} />
+            <Stack.Screen name="role-select" options={{ title: 'Sélection du rôle' }} />
+            
+            {/* Véhicules */}
+            <Stack.Screen name="vehicle/[id]" options={{ title: 'Détail véhicule' }} />
+            
+            {/* Inspections */}
+            <Stack.Screen name="inspection/[id]" options={{ title: 'Détail inspection' }} />
+            <Stack.Screen name="checklist/[id]" options={{ title: 'Checklist' }} />
+            
+            {/* Dashboards par rôle */}
+            <Stack.Screen name="dashboard/admin" options={{ title: 'Administration' }} />
+            <Stack.Screen name="dashboard/dispatcher" options={{ title: 'Dispatcher' }} />
+            <Stack.Screen name="dashboard/driver" options={{ title: 'Chauffeur' }} />
+            <Stack.Screen name="dashboard/manager" options={{ title: 'Gestionnaire' }} />
+            <Stack.Screen name="dashboard/technician" options={{ title: 'Technicien' }} />
+            
+            {/* PEP */}
+            <Stack.Screen name="pep/index" options={{ title: 'PEP' }} />
+            <Stack.Screen name="pep/create" options={{ title: 'Créer PEP' }} />
+            <Stack.Screen name="pep/select-vehicle" options={{ title: 'Sélectionner véhicule' }} />
+            <Stack.Screen name="pep/sign" options={{ title: 'Signer PEP' }} />
+            
+            {/* Rappels */}
+            <Stack.Screen name="reminders/index" options={{ title: 'Rappels' }} />
+            <Stack.Screen name="reminders/create" options={{ title: 'Nouveau rappel' }} />
+            <Stack.Screen name="reminder/[id]" options={{ title: 'Détail rappel' }} />
+            
+            {/* Inventaire */}
+            <Stack.Screen name="inventory/index" options={{ title: 'Inventaire' }} />
+            <Stack.Screen name="inventory/add" options={{ title: 'Ajouter pièce' }} />
+            <Stack.Screen name="inventory/[id]" options={{ title: 'Détail pièce' }} />
+            
+            {/* Équipes */}
+            <Stack.Screen name="teams/index" options={{ title: 'Équipes' }} />
+            <Stack.Screen name="technician/[id]" options={{ title: 'Détail technicien' }} />
+            <Stack.Screen name="technicians/index" options={{ title: 'Techniciens' }} />
+            <Stack.Screen name="team-detail/[id]" options={{ title: 'Détail équipe' }} />
+            
+            {/* Bons de travail */}
+            <Stack.Screen name="work-orders/index" options={{ title: 'Bons de travail' }} />
+            <Stack.Screen name="work-orders/[id]" options={{ title: 'Détail bon' }} />
+            <Stack.Screen name="work-orders/create" options={{ title: 'Nouveau bon' }} />
+            
+            {/* Paramètres */}
+            <Stack.Screen name="settings/notifications" options={{ title: 'Notifications' }} />
+            <Stack.Screen name="settings/language" options={{ title: 'Langue' }} />
+            <Stack.Screen name="settings/resources" options={{ title: 'Ressources' }} />
+            <Stack.Screen name="settings/calendar-sync" options={{ title: 'Synchronisation calendrier' }} />
+            <Stack.Screen name="settings/permissions" options={{ title: 'Permissions' }} />
+            
+            {/* Autres */}
+            <Stack.Screen name="documents/index" options={{ title: 'Documents' }} />
+            <Stack.Screen name="help/index" options={{ title: 'Aide' }} />
+            <Stack.Screen name="maintenance-costs/index" options={{ title: 'Coûts maintenance' }} />
+            <Stack.Screen name="subscription/index" options={{ title: 'Abonnement' }} />
+            <Stack.Screen name="auth/login" options={{ title: 'Connexion', headerShown: false }} />
+            <Stack.Screen name="dev/theme-lab" options={{ title: 'Theme Lab' }} />
           </Stack>
           <StatusBar style="auto" />
         </QueryClientProvider>
