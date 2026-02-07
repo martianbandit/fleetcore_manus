@@ -87,7 +87,7 @@ export async function requestNotificationPermissions(): Promise<boolean> {
     const token = await Notifications.getExpoPushTokenAsync({
       projectId: '6c0f7c3d-6f5d-4e5a-9e3a-2f8b1c4d5e6f', // Replace with your Expo project ID
     });
-    console.log('Push token:', token.data);
+    console.log('Push token stored');
     await AsyncStorage.setItem('pushToken', token.data);
   } catch (error) {
     console.error('Error getting push token:', error);

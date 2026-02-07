@@ -45,7 +45,15 @@ const config: ExpoConfig = {
     edgeToEdgeEnabled: true,
     predictiveBackGestureEnabled: false,
     package: env.androidPackage,
-    permissions: ["POST_NOTIFICATIONS"],
+    // Explicit permissions required by app features (camera capture, photo picking, notifications).
+    permissions: [
+      "INTERNET",
+      "CAMERA",
+      "READ_MEDIA_IMAGES",
+      "READ_EXTERNAL_STORAGE",
+      "WRITE_EXTERNAL_STORAGE",
+      "POST_NOTIFICATIONS",
+    ],
     intentFilters: [
       {
         action: "VIEW",
@@ -78,19 +86,6 @@ const config: ExpoConfig = {
       {
         photosPermission: "Allow $(PRODUCT_NAME) to save inspection photos.",
         savePhotosPermission: "Allow $(PRODUCT_NAME) to save inspection photos to your library.",
-      },
-    ],
-    [
-      "expo-audio",
-      {
-        microphonePermission: "Allow $(PRODUCT_NAME) to access your microphone.",
-      },
-    ],
-    [
-      "expo-video",
-      {
-        supportsBackgroundPlayback: true,
-        supportsPictureInPicture: true,
       },
     ],
     [

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { ScreenContainer } from '@/components/screen-container';
 import { useTheme } from '@/lib/theme-context';
@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useState, useEffect } from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import { Platform } from 'react-native';
+import { getApiBaseUrl } from '@/constants/oauth';
 
 export default function LoginScreen() {
   const { colors } = useTheme();
@@ -27,9 +28,33 @@ export default function LoginScreen() {
         // On web, redirect to OAuth endpoint
         window.location.href = '/api/auth/login';
       } else {
+        const baseUrl =
+          process.env.EXPO_PUBLIC_API_URL ||
+          process.env.EXPO_PUBLIC_API_BASE_URL ||
+          getApiBaseUrl() ||
+          (__DEV__ ? 'http://localhost:3000' : '');
+
+        if (!baseUrl) {
+          Alert.alert(
+            'Configuration requise',
+            "L'URL du serveur n'est pas configurée. Veuillez définir EXPO_PUBLIC_API_URL.",
+          );
+          setLoading(false);
+          return;
+        }
+
+        if (!__DEV__ && baseUrl.startsWith('http://')) {
+          Alert.alert(
+            'Connexion non sécurisée',
+            "Une URL HTTPS est requise pour se connecter en production.",
+          );
+          setLoading(false);
+          return;
+        }
+
         // On native, open OAuth in browser
         const result = await WebBrowser.openAuthSessionAsync(
-          `${process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3000'}/api/auth/login`,
+          `${baseUrl}/api/auth/login`,
           'fleetcore://oauth/callback'
         );
         
