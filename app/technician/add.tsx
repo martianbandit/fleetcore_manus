@@ -156,12 +156,6 @@ export default function AddTechnicianScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: isEditing ? 'Modifier technicien' : 'Nouveau technicien',
-          headerBackTitle: 'Annuler',
-        }}
-      />
 
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 100 }}>
         {/* Basic Info */}

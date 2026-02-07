@@ -100,12 +100,6 @@ export default function TechniciansScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: 'Techniciens',
-          headerBackTitle: 'Retour',
-        }}
-      />
 
       {/* Stats Header */}
       <View

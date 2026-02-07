@@ -129,7 +129,6 @@ export default function VehicleDetailScreen() {
   if (loading) {
     return (
       <ScreenContainer className="items-center justify-center">
-        <Stack.Screen options={{ title: 'Chargement...' }} />
         <Text className="text-muted">Chargement...</Text>
       </ScreenContainer>
     );
@@ -138,7 +137,6 @@ export default function VehicleDetailScreen() {
   if (!vehicle) {
     return (
       <ScreenContainer className="items-center justify-center">
-        <Stack.Screen options={{ title: 'Erreur' }} />
         <IconSymbol name="xmark.circle.fill" size={48} color={colors.error} />
         <Text className="text-foreground mt-4">Véhicule non trouvé</Text>
         <Pressable
@@ -156,12 +154,6 @@ export default function VehicleDetailScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: vehicle.plate,
-          headerBackTitle: 'Retour',
-        }}
-      />
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         refreshControl={

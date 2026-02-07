@@ -203,12 +203,6 @@ export default function ResourcesScreen() {
 
   return (
     <ScreenContainer>
-      <Stack.Screen
-        options={{
-          title: 'Ressources',
-          headerBackTitle: 'Retour',
-        }}
-      />
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View className="px-4 py-4">

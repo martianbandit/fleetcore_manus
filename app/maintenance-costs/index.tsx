@@ -161,12 +161,6 @@ export default function MaintenanceCostsScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: 'Coûts de maintenance',
-          headerBackTitle: 'Retour',
-        }}
-      />
 
       {/* Stats Header */}
       <View

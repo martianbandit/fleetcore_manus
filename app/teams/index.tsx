@@ -81,12 +81,6 @@ export default function TeamsScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: 'Équipes',
-          headerBackTitle: 'Retour',
-        }}
-      />
 
       {/* Stats Header */}
       <View

@@ -128,7 +128,6 @@ export default function NewInspectionScreen() {
   if (loading) {
     return (
       <ScreenContainer className="items-center justify-center">
-        <Stack.Screen options={{ title: 'Nouvelle inspection' }} />
         <Text className="text-muted">Chargement...</Text>
       </ScreenContainer>
     );
@@ -136,12 +135,6 @@ export default function NewInspectionScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: 'Nouvelle inspection',
-          headerBackTitle: 'Retour',
-        }}
-      />
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}

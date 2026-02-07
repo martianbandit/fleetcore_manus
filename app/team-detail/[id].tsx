@@ -94,7 +94,6 @@ export default function TeamDetailScreen() {
   if (!team) {
     return (
       <ScreenContainer edges={['top', 'left', 'right']}>
-        <Stack.Screen options={{ title: 'Chargement...' }} />
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text style={{ color: colors.muted }}>Chargement...</Text>
         </View>
@@ -111,23 +110,6 @@ export default function TeamDetailScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: team.name,
-          headerBackTitle: 'Retour',
-          headerRight: () => (
-            <View style={{ flexDirection: 'row', gap: 16 }}>
-              <Pressable onPress={() => router.push(`/team/add?id=${id}` as any)}>
-                <IconSymbol name="pencil" size={22} color={colors.primary} />
-              </Pressable>
-              <Pressable onPress={handleDelete}>
-                <IconSymbol name="trash.fill" size={22} color={colors.error} />
-              </Pressable>
-            </View>
-          ),
-        }}
-      />
-
       <ScrollView
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         contentContainerStyle={{ paddingBottom: 100 }}

@@ -250,3 +250,10 @@
 - [x] Configurer le header avec bouton retour dans le layout principal (_layout.tsx)
 - [x] Ajouter les titres pour tous les écrans (70+ écrans configurés)
 - [x] Tester la navigation sur toutes les pages
+
+
+## 🆕 Corrections UI demandées
+
+- [x] Corriger le doublon de la flèche de retour (supprimé Stack.Screen dans new-inspection, team-detail, technician, vehicle)
+- [x] Supprimer la section Abonnement des paramètres
+- [x] Ajouter la Tarification FleetCore dans le Dashboard Admin en premier plan (plan actuel, utilisation, plans disponibles)

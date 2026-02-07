@@ -158,12 +158,6 @@ export default function PermissionsScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: 'Permissions',
-          headerBackTitle: 'Retour',
-        }}
-      />
 
       <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
         {/* Role Selector */}

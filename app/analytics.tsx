@@ -192,7 +192,6 @@ export default function AnalyticsScreen() {
   if (loading || !metrics) {
     return (
       <ScreenContainer className="items-center justify-center">
-        <Stack.Screen options={{ title: 'Analytics' }} />
         <Text style={{ color: colors.muted }}>Chargement des métriques...</Text>
       </ScreenContainer>
     );
@@ -213,12 +212,6 @@ export default function AnalyticsScreen() {
 
   return (
     <ScreenContainer>
-      <Stack.Screen
-        options={{
-          title: 'Analytics',
-          headerBackTitle: 'Retour',
-        }}
-      />
       <ScrollView 
         className="flex-1" 
         showsVerticalScrollIndicator={false}

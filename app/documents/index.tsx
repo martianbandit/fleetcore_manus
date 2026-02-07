@@ -240,13 +240,6 @@ export default function DocumentsScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: 'Documents',
-          headerBackTitle: 'Retour',
-        }}
-      />
-
       {/* Stats Header */}
       <View
         style={{

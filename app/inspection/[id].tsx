@@ -126,7 +126,6 @@ export default function InspectionDetailScreen() {
   if (loading) {
     return (
       <ScreenContainer className="items-center justify-center">
-        <Stack.Screen options={{ title: 'Chargement...' }} />
         <Text className="text-muted">Chargement...</Text>
       </ScreenContainer>
     );
@@ -135,7 +134,6 @@ export default function InspectionDetailScreen() {
   if (!inspection) {
     return (
       <ScreenContainer className="items-center justify-center">
-        <Stack.Screen options={{ title: 'Erreur' }} />
         <IconSymbol name="xmark.circle.fill" size={48} color={colors.error} />
         <Text className="text-foreground mt-4">Inspection non trouvée</Text>
         <Pressable
@@ -153,12 +151,6 @@ export default function InspectionDetailScreen() {
 
   return (
     <ScreenContainer edges={['top', 'left', 'right']}>
-      <Stack.Screen
-        options={{
-          title: `Inspection ${inspection.vehicle?.plate || ''}`,
-          headerBackTitle: 'Retour',
-        }}
-      />
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         refreshControl={

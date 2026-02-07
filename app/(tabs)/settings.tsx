@@ -175,42 +175,6 @@ export default function SettingsScreen() {
           </View>
         )}
 
-        {/* Subscription Section */}
-        {subscription && usage && (
-          <View className="px-4 mb-6">
-            <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>
-              ABONNEMENT
-            </Text>
-            <TouchableOpacity
-              onPress={() => router.push('/subscription/upgrade' as any)}
-              className="rounded-2xl p-4"
-              style={{ backgroundColor: colors.surface }}
-            >
-              <View className="flex-row items-center justify-between mb-3">
-                <View>
-                  <Text className="text-lg font-bold" style={{ color: colors.foreground }}>
-                    Plan {PLAN_NAMES[subscription.plan]}
-                  </Text>
-                  <Text className="text-sm" style={{ color: colors.muted }}>
-                    {usage.vehiclesCount} véhicules • {usage.inspectionsThisMonth} inspections ce mois
-                  </Text>
-                </View>
-                <IconSymbol name="chevron.right" size={20} color={colors.muted} />
-              </View>
-              {subscription.plan === 'free' && (
-                <View
-                  className="px-3 py-2 rounded-lg"
-                  style={{ backgroundColor: colors.primary + '15' }}
-                >
-                  <Text className="text-xs font-semibold" style={{ color: colors.primary }}>
-                    Passez au plan Pro pour débloquer toutes les fonctionnalités
-                  </Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          </View>
-        )}
-
         {/* Appearance Section */}
         <View className="px-4 mb-6">
           <Text className="text-sm font-semibold mb-2" style={{ color: colors.muted }}>

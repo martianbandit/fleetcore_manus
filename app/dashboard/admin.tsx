@@ -35,7 +35,7 @@ import {
 import { getVehicles } from '@/lib/data-service';
 import { getInspections } from '@/lib/data-service';
 import { getWorkOrders, getWorkOrderStats } from '@/lib/work-order-service';
-import { getSubscription, type Subscription } from '@/lib/subscription-service';
+import { getSubscription, getUsageStats, PLAN_NAMES, PLAN_PRICES, PLAN_LIMITS, PLAN_DESCRIPTIONS, PLAN_FEATURES, type Subscription, type PlanType, type UsageStats } from '@/lib/subscription-service';
 import { type WorkOrder } from '@/lib/work-order-service';
 
 export default function AdminDashboard() {
@@ -45,6 +45,7 @@ export default function AdminDashboard() {
   const [roleStats, setRoleStats] = useState<RoleStats | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const [activityLogs, setActivityLogs] = useState<ActivityLog[]>([]);
+  const [usage, setUsage] = useState<UsageStats | null>(null);
   const [fleetStats, setFleetStats] = useState({
     vehicles: 0,
     inspections: 0,
@@ -55,7 +56,7 @@ export default function AdminDashboard() {
 
   const loadData = useCallback(async () => {
     try {
-      const [stats, userList, logs, vehicles, inspections, workOrders, plan] = await Promise.all([
+      const [stats, userList, logs, vehicles, inspections, workOrders, plan, usageData] = await Promise.all([
         getRoleStats(),
         getUsers(),
         getActivityLogs(20),
@@ -63,6 +64,7 @@ export default function AdminDashboard() {
         getInspections(),
         getWorkOrders(),
         getSubscription(),
+        getUsageStats(),
       ]);
       
       setRoleStats(stats);
@@ -75,6 +77,7 @@ export default function AdminDashboard() {
         pendingWorkOrders: workOrders.filter((wo: WorkOrder) => wo.status === 'PENDING').length,
       });
       setSubscription(plan);
+      setUsage(usageData);
     } catch (error) {
       console.error('Error loading admin data:', error);
     }
@@ -291,6 +294,136 @@ export default function AdminDashboard() {
           </View>
           <View style={styles.planBadge}>
             <Text style={styles.planText}>{subscription?.plan || 'free'}</Text>
+          </View>
+        </View>
+
+        {/* Tarification FleetCore */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Tarification FleetCore</Text>
+          <View style={{
+            backgroundColor: colors.surface,
+            borderRadius: 16,
+            padding: 16,
+            borderWidth: 1,
+            borderColor: colors.border,
+          }}>
+            {/* Plan actuel */}
+            <View style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: 16,
+              paddingBottom: 16,
+              borderBottomWidth: 1,
+              borderBottomColor: colors.border,
+            }}>
+              <View>
+                <Text style={{ fontSize: 12, color: colors.muted, marginBottom: 4 }}>PLAN ACTUEL</Text>
+                <Text style={{ fontSize: 22, fontWeight: '800', color: colors.primary }}>
+                  {PLAN_NAMES[subscription?.plan || 'free']}
+                </Text>
+                <Text style={{ fontSize: 13, color: colors.muted, marginTop: 2 }}>
+                  {PLAN_DESCRIPTIONS[subscription?.plan || 'free']}
+                </Text>
+              </View>
+              <View style={{
+                backgroundColor: colors.primary + '15',
+                paddingHorizontal: 14,
+                paddingVertical: 8,
+                borderRadius: 12,
+              }}>
+                <Text style={{ fontSize: 20, fontWeight: '800', color: colors.primary }}>
+                  {PLAN_PRICES[subscription?.plan || 'free']?.monthly}$
+                </Text>
+                <Text style={{ fontSize: 11, color: colors.primary, textAlign: 'center' }}>/mois</Text>
+              </View>
+            </View>
+
+            {/* Utilisation */}
+            <View style={{ marginBottom: 16 }}>
+              <Text style={{ fontSize: 14, fontWeight: '700', color: colors.foreground, marginBottom: 10 }}>
+                Utilisation du plan
+              </Text>
+              <View style={{ gap: 8 }}>
+                <View>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
+                    <Text style={{ fontSize: 13, color: colors.muted }}>Véhicules</Text>
+                    <Text style={{ fontSize: 13, fontWeight: '600', color: colors.foreground }}>
+                      {usage?.vehiclesCount || 0} / {PLAN_LIMITS[subscription?.plan || 'free']?.maxVehicles === Infinity ? '\u221e' : PLAN_LIMITS[subscription?.plan || 'free']?.maxVehicles}
+                    </Text>
+                  </View>
+                  <View style={{ height: 6, backgroundColor: colors.border, borderRadius: 3 }}>
+                    <View style={{
+                      height: 6,
+                      backgroundColor: colors.primary,
+                      borderRadius: 3,
+                      width: `${Math.min(((usage?.vehiclesCount || 0) / (PLAN_LIMITS[subscription?.plan || 'free']?.maxVehicles === Infinity ? 100 : PLAN_LIMITS[subscription?.plan || 'free']?.maxVehicles)) * 100, 100)}%` as any,
+                    }} />
+                  </View>
+                </View>
+                <View>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
+                    <Text style={{ fontSize: 13, color: colors.muted }}>Inspections ce mois</Text>
+                    <Text style={{ fontSize: 13, fontWeight: '600', color: colors.foreground }}>
+                      {usage?.inspectionsThisMonth || 0} / {PLAN_LIMITS[subscription?.plan || 'free']?.maxInspectionsPerMonth === Infinity ? '\u221e' : PLAN_LIMITS[subscription?.plan || 'free']?.maxInspectionsPerMonth}
+                    </Text>
+                  </View>
+                  <View style={{ height: 6, backgroundColor: colors.border, borderRadius: 3 }}>
+                    <View style={{
+                      height: 6,
+                      backgroundColor: colors.success,
+                      borderRadius: 3,
+                      width: `${Math.min(((usage?.inspectionsThisMonth || 0) / (PLAN_LIMITS[subscription?.plan || 'free']?.maxInspectionsPerMonth === Infinity ? 100 : PLAN_LIMITS[subscription?.plan || 'free']?.maxInspectionsPerMonth)) * 100, 100)}%` as any,
+                    }} />
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            {/* Plans disponibles */}
+            <Text style={{ fontSize: 14, fontWeight: '700', color: colors.foreground, marginBottom: 10 }}>
+              Plans disponibles
+            </Text>
+            {(['free', 'plus', 'pro', 'enterprise'] as PlanType[]).map((plan) => (
+              <Pressable
+                key={plan}
+                style={({ pressed }) => [{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  paddingVertical: 12,
+                  paddingHorizontal: 12,
+                  borderRadius: 12,
+                  marginBottom: 6,
+                  backgroundColor: subscription?.plan === plan ? colors.primary + '10' : 'transparent',
+                  borderWidth: subscription?.plan === plan ? 1.5 : 1,
+                  borderColor: subscription?.plan === plan ? colors.primary : colors.border,
+                  opacity: pressed ? 0.7 : 1,
+                }]}
+                onPress={() => router.push('/subscription/upgrade' as any)}
+              >
+                <View style={{ flex: 1 }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                    <Text style={{ fontSize: 15, fontWeight: '700', color: subscription?.plan === plan ? colors.primary : colors.foreground }}>
+                      {PLAN_NAMES[plan]}
+                    </Text>
+                    {subscription?.plan === plan && (
+                      <View style={{ backgroundColor: colors.primary, paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6 }}>
+                        <Text style={{ fontSize: 10, fontWeight: '700', color: '#fff' }}>ACTUEL</Text>
+                      </View>
+                    )}
+                  </View>
+                  <Text style={{ fontSize: 12, color: colors.muted, marginTop: 2 }}>
+                    {PLAN_LIMITS[plan].maxVehicles === Infinity ? 'Véhicules illimités' : `${PLAN_LIMITS[plan].maxVehicles} véhicules`}
+                    {' \u2022 '}
+                    {PLAN_LIMITS[plan].maxInspectionsPerMonth === Infinity ? 'Inspections illimitées' : `${PLAN_LIMITS[plan].maxInspectionsPerMonth} insp./mois`}
+                  </Text>
+                </View>
+                <Text style={{ fontSize: 16, fontWeight: '800', color: subscription?.plan === plan ? colors.primary : colors.foreground }}>
+                  {PLAN_PRICES[plan].monthly}$/mo
+                </Text>
+              </Pressable>
+            ))}
           </View>
         </View>
 
